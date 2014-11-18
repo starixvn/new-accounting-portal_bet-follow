@@ -2,10 +2,13 @@
 /BetFollow.Infrastructure/obj
 /BetFollow.UserLogIn/bin
 /BetFollow.UserLogIn/obj
+/BetFollow.AutoFollowBet/bin
+/BetFollow.AutoFollowBet/obj
 /BetFollow/bin
 /BetFollow/obj
 bin
 /*StyleCop.Cache
+/BetFollow.AutoFollowBet/*.Cache
 /BetFollow.Infrastructure/*.Cache
 /BetFollow.UserLogIn/*.Cache
 /BetFollow/*.Cache

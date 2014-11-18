@@ -10,8 +10,8 @@
 
 namespace BetFollow
 {
-    using System.Web;
     using System.Web.Optimization;
+    using BetFollow.Infrastructure.Extensions;
     using BetFollow.UserLogIn.AppStart;
 
     /// <summary>
@@ -56,7 +56,40 @@ namespace BetFollow
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
+            RegisterBundles_Bootstrap(bundles);
+            RegisterBundles_Common(bundles);
+            RegisterBundles_Home(bundles);
             UserLogInBundles.RegisterAll(bundles);
+        }
+
+        private static void RegisterBundles_Bootstrap(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/scripts/respond").Include(
+                "~/Scripts/respond.js"));
+        }
+
+        private static void RegisterBundles_Common(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/Views/CommonScripts").Include(
+                "~/Scripts/jquery.js",
+                "~/Scripts/json2.js",
+                "~/Scripts/jquery-ui-1.8.14.custom.js"));
+            bundles.AddAndInclude(
+                "~/site/common",
+                "~/content/bootstrap/css/bootstrap.css",
+                "~/Content/site/common.less");
+        }
+
+        private static void RegisterBundles_Home(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/Views/HomeScripts").Include(
+                "~/Areas/Home/Scripts/MenuManager.js"));
+
+            bundles.AddAndInclude(
+                "~/Views/HomeStyles",
+                "~/Content/site/ui-darkness/jquery-ui-1.8.14.custom.css",
+                "~/Areas/Home/Styles/default.less",
+                "~/Content/site/customizeJqueryUI.less");
         }
     }
 }

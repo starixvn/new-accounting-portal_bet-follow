@@ -10,12 +10,13 @@
 namespace BetFollow.Controllers
 {
     using System.Web.Mvc;
+    using BetFollow.Infrastructure.Controllers;
     using BetFollow.Infrastructure.Services;
 
     /// <summary>
     /// Home Controller.
     /// </summary>
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -49,6 +50,18 @@ namespace BetFollow.Controllers
             }
 
             return View("~/Areas/Home/Default.cshtml");
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult GettingUserMenu()
+        {
+            ViewBag.MenuItemList = CurrentSession.MenuItemList;
+            return PartialView("~/Areas/Home/_Menu.cshtml");
+        }
+
+        public ActionResult BlankPage()
+        {
+            return View("~/Areas/Home/BlankPage.cshtml");
         }
     }
 }

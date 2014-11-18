@@ -1,17 +1,60 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = Resources.Labels.Follow_Bet_System;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/site/common")
+    @Styles.Render("~/Views/HomeStyles")
 </head>
 <body>
-    <div>
-    asdasdas
+    <div class="container crm-container">
+        <div class="row header">
+            <div class="col-xs-3 col-sm-3 col-md-3 leftHeader">
+                <img alt="" src="~/Content/site/Images/logo-crm.png" class="crm-logo touchable-element" 
+                    title="@Resources.Labels.Home"
+                    onclick="javascript:menuManager.goToHomePage();"
+                    href="javascript:;"/>
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 rightHeader">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        @Html.Action("GettingUserMenu", new RouteValueDictionary(new { controller = "Home", area = "" }))
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        @Html.ActionLink(Resources.Labels.Sign_out, "LogOut", "UserLogin", routeValues: null, htmlAttributes: new { @class = "pull-right logout" })
+                        <div class="login-info pull-right">
+                            @Resources.Labels.Welcome
+                            <span class="txt-username">@ViewBag.AccUsername</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row search-breadbrumb">
+            <div class="col-xs-12 col-sm-12 col-md-12 breadcrumb">
+                <div class="col-xs-9 col-sm-9 col-md-9" id="divSubMenu">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                </div>
+            </div>
+        </div>
+        <div class="row contentbox">
+            <div id="rightcontent" class="col-xs-12 col-sm-12 col-md-12 rightcontent">
+                <iframe id="centerFr" name="centerFr" src="BlankPage" scrolling="auto" marginwidth="0"
+                    marginheight="0" frameborder="0" vspace="0" hspace="0" style="width: 100%; height: 100%;"
+                    allowtransparency="true"></iframe>
+            </div>
+        </div>
     </div>
+    <div id="div-resultpopup" class="selector display-none">
+    </div>
+    @Scripts.Render("~/Views/CommonScripts")
+    @Scripts.Render("~/Views/HomeScripts")
+    <script language="javascript" type="text/javascript">
+        window.rootUrl = '@Url.Content("~")';
+        menuManager.initPage();
+    </script>
 </body>
 </html>
