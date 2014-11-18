@@ -1,0 +1,21 @@
+﻿@using Fanex.NAP.Core.Web;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="CRM" content="width=device-width" />
+    <title>@ViewResources.Offline</title>
+    <link href="@Url.Content("~/Views/Common/Styles/UnderMaintenance.less?ver=1")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <h1>
+            @ViewResources.Maintenance</h1>
+        <p>
+            CRM is currently unavailable due to scheduled maintenance.<br />
+            This downtime will last from <span class="em">@(ViewBag.UmtFrom)</span> &rarr; <span
+                class="em">@(ViewBag.UmtTo)</span> (GMT+8). Thanks for your patience!
+        </p>
+    </div>
+</body>
+</html>

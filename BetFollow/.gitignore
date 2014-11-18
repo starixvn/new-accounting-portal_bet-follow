@@ -1,0 +1,13 @@
+/BetFollow.Infrastructure/bin
+/BetFollow.Infrastructure/obj
+/BetFollow.UserLogIn/bin
+/BetFollow.UserLogIn/obj
+/BetFollow/bin
+/BetFollow/obj
+bin
+/*StyleCop.Cache
+/BetFollow.Infrastructure/*.Cache
+/BetFollow.UserLogIn/*.Cache
+/BetFollow/*.Cache
+/BetFollow.suo
+/packages
