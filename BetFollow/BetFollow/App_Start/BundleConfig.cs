@@ -11,6 +11,7 @@
 namespace BetFollow
 {
     using System.Web.Optimization;
+    using BetFollow.AutoFollowBet.AppStart;
     using BetFollow.Infrastructure.Extensions;
     using BetFollow.UserLogIn.AppStart;
 
@@ -59,7 +60,10 @@ namespace BetFollow
             RegisterBundles_Bootstrap(bundles);
             RegisterBundles_Common(bundles);
             RegisterBundles_Home(bundles);
+            RegisterBundles_MultiSelect(bundles);
+            RegisterBundles_FanexGrid(bundles);
             UserLogInBundles.RegisterAll(bundles);
+            AutoFollowBetBundles.RegisterAll(bundles);
         }
 
         private static void RegisterBundles_Bootstrap(BundleCollection bundles)
@@ -68,16 +72,25 @@ namespace BetFollow
                 "~/Scripts/respond.js"));
         }
 
+        /// <summary>
+        /// Registers the common bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
         private static void RegisterBundles_Common(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/Views/CommonScripts").Include(
-                "~/Scripts/jquery.js",
+                "~/Scripts/JQuery/jquery-1.8.2.js",
                 "~/Scripts/json2.js",
-                "~/Scripts/jquery-ui-1.8.14.custom.js"));
+                "~/Scripts/jquery-ui-1.8.14.custom.js",
+                "~/Scripts/BlockUI/jquery.blockUI.1.33.js",
+                "~/Scripts/BlockUI/BlockUI.js",
+                "~/Scripts/ShareScripts/SharedScriptManager.js"));
             bundles.AddAndInclude(
                 "~/site/common",
                 "~/content/bootstrap/css/bootstrap.css",
-                "~/Content/site/common.less");
+                "~/Content/site/common.less",
+                "~/Content/site/Message.less",
+                "~/Scripts/JQuery/UI/css/custom-theme/jquery-ui-1.8.10.custom.css");
         }
 
         private static void RegisterBundles_Home(BundleCollection bundles)
@@ -90,6 +103,34 @@ namespace BetFollow
                 "~/Content/site/ui-darkness/jquery-ui-1.8.14.custom.css",
                 "~/Areas/Home/Styles/default.less",
                 "~/Content/site/customizeJqueryUI.less");
+        }
+
+        private static void RegisterBundles_MultiSelect(BundleCollection bundles)
+        {
+            bundles.AddAndInclude(
+                "~/Styles/FanexMultipleSelect",
+                "~/Scripts/MultipleSelect/fanex.multiSelect.css",
+                "~/Content/site/customizeMultiSelect.less");
+
+            bundles.Add(new ScriptBundle("~/Scripts/FanexMultipleSelect").Include(
+                "~/Scripts/MultipleSelect/fanex.multiSelect.js"));
+        }
+
+        /// <summary>
+        /// Registers the FANEX grid bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
+        private static void RegisterBundles_FanexGrid(BundleCollection bundles)
+        {
+            bundles.AddAndInclude(
+                "~/Styles/FanexGridStyles",
+                "~/Scripts/Pager/pagination.css",
+                "~/Scripts/FanexGrid/table.css",
+                "~/Scripts/FanexGrid/reportgrid.css");
+
+            bundles.Add(new ScriptBundle("~/Scripts/FanexGridScripts").Include(
+                "~/Scripts/FanexGrid/gridscroller.js",
+                "~/Scripts/Pager/jpager.js"));
         }
     }
 }

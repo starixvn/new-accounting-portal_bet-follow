@@ -76,11 +76,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\Admin_AutoFollowBetSection\Admin_AutoFollowBetCollection.cs" />
+    <Compile Include="Configurations\Admin_AutoFollowBetSection\Admin_AutoFollowBetConfigCollection.cs" />
+    <Compile Include="Configurations\Admin_AutoFollowBetSection\Admin_AutoFollowBetConfigElement.cs" />
+    <Compile Include="Configurations\Admin_AutoFollowBetSection\Admin_AutoFollowBetElement.cs" />
+    <Compile Include="Configurations\Admin_AutoFollowBetSection\Admin_AutoFollowBetSection.cs" />
+    <Compile Include="Constants\BAStatusConstants.cs" />
+    <Compile Include="Constants\CustomerConstants.cs" />
     <Compile Include="Constants\ErrorCodeConstants.cs" />
+    <Compile Include="Constants\FunctionPermissions.cs" />
     <Compile Include="Constants\HttpMethodConstants.cs" />
+    <Compile Include="Constants\SourceTypeConstants.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Extensions\BundleExtensions.cs" />
     <Compile Include="Extensions\SessionExtension.cs" />
+    <Compile Include="Helpers\IPHelper.cs" />
     <Compile Include="Helpers\LogExtensions.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,6 +98,7 @@
     <Compile Include="Services\IPermissionService.cs" />
     <Compile Include="Services\PermissionService.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

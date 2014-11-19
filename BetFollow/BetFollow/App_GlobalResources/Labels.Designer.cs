@@ -61,15 +61,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone or Username or Nickname.
-        /// </summary>
-        internal static string Default_SearchTextbox {
-            get {
-                return ResourceManager.GetString("Default_SearchTextbox", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Follow Bet System.
         /// </summary>
         internal static string Follow_Bet_System {
@@ -84,15 +75,6 @@ namespace Resources {
         internal static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show/Hide Left Panel.
-        /// </summary>
-        internal static string Home_Index_CollapseExpandLeftPanel {
-            get {
-                return ResourceManager.GetString("Home_Index_CollapseExpandLeftPanel", resourceCulture);
             }
         }
         

@@ -3,13 +3,21 @@
   <Words>
     <Recognized />
     <Unrecognized />
-    <Deprecated />
+    <Deprecated>
+      <Term>Username</Term>
+    </Deprecated>
     <Compound />
-    <DiscreteExceptions />
+    <DiscreteExceptions>
+      <Term />
+    </DiscreteExceptions>
   </Words>
   <Acronyms>
     <CasingExceptions>
       <Acronym>SSO</Acronym>
+      <Acronym>HDP</Acronym>
+      <Acronym>1st</Acronym>
+      <Acronym>st</Acronym>
+      <Acronym />
     </CasingExceptions>
   </Acronyms>
 </Dictionary>
