@@ -1,15 +1,32 @@
-﻿@{
-    Layout = null;
+﻿@using BetFollow.AutoFollowBet.Resources;
+@{
+    ViewBag.Title = Labels.Auto_Follow_Bet;
 }
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/site/common")
+    @Styles.Render("~/Areas/AutoFollowBet/ManageListStyles")
 </head>
 <body>
-    <div>
-        adasdasdf
+    <div class="main container">
+        <div class="row filter-frm one-row">
+            <div class="row row-item">
+                <div>
+                    <label for="subject" class="lblSubject width-70">
+                        @Labels.Subject</label>
+                </div>
+                <div class="item subject-auto-complete-container" data-ng-model="subjectOptions.IsUpdate">
+                    <input id="subject" type="text" class="textbox subject-auto-complete txtSubject"
+                        data-ng-model="subjectOptions.Subject" />
+                </div>
+            </div>
+        </div>
     </div>
+    @Scripts.Render("~/Views/CommonScripts")
+    @Scripts.Render("~/Areas/AutoFollowBet/ManageListScripts")
+    <script language="javascript" type="text/javascript">
+        window.rootUrl = '@Url.Content("~")';
+    </script>
 </body>
 </html>

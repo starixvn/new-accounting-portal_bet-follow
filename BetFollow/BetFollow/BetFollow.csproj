@@ -139,6 +139,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\AutoFollowBet\ManageList\Scripts\ManageListController.js" />
     <Content Include="Areas\Home\Scripts\MenuManager.js" />
     <Content Include="Areas\Home\Styles\Images\Banner\bg_banner.jpg" />
     <Content Include="Areas\Home\Styles\Images\Banner\bg_head_tb.jpg" />
@@ -392,6 +393,7 @@
     <Content Include="Areas\Home\BlankPage.cshtml" />
     <Content Include="Areas\AutoFollowBet\Web.config" />
     <Content Include="Areas\AutoFollowBet\ManageList\Index.cshtml" />
+    <None Include="Areas\AutoFollowBet\ManageList\Styles\ManageList.less" />
     <None Include="Areas\Home\Styles\default.less" />
     <None Include="Areas\User\Common\Styles\UnderMaintenance.less" />
     <None Include="Areas\User\LogIn\Styles\login.less" />
