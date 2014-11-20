@@ -390,6 +390,7 @@
     <Content Include="Scripts\Pager\paginate.css" />
     <Content Include="Scripts\Pager\pagination.css" />
     <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\ShareScripts\RecheckIn.js" />
     <Content Include="Scripts\ShareScripts\SharedScriptManager.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

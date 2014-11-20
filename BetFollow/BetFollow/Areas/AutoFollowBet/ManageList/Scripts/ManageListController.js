@@ -263,7 +263,7 @@ var autoFollowBet = {
         autoFollowBet.blockUI();
         var postParams = autoFollowBet.getListInfoParams();
         autoFollowBet.CachedData.getListInfoParams = postParams;
-        sharedScriptManager.hideMessage("errorMessage");
+        sharedScriptManager.hideMessage("errormessage");
         if (!autoFollowBet.validateSelectInfoParams(postParams)) {
             autoFollowBet.unblockUI();
             return;
@@ -386,7 +386,7 @@ var autoFollowBet = {
         return paramList.join(",");
     },
     validateSelectInfoParams: function (postParams) {
-        sharedScriptManager.hideMessage("errorMessage");
+        sharedScriptManager.hideMessage("errormessage");
         if (postParams.LiveStatus.length == 0) {
             sharedScriptManager.showMessage(
                 "errormessage",

@@ -20,35 +20,35 @@
         If you are having problems, try <a href='http://browsehappy.com/'>this</a> for full
         browsing experience. Thank you!
     </div>
-
-    
-        <div class="center">
-            <div id="login-box">
-                <div id="msg">
-                    <span id="inner-msg">@ViewBag.Message</span>
+    <div class="center">
+        <div id="login-box">
+            <div id="msg">
+                <span id="inner-msg">@ViewBag.Message</span>
+            </div>
+            <div class="header">
+                <div class="welcome">
                 </div>
-                <div class="header">
-                    <div class="welcome">
-                    </div>
-                    <div class="secure">
-                    </div>
-                </div>
-                <div class="auth">
-                    <form action="@Url.Content("~/UserLogin/Index")" method="POST" id="frmLogin" name="frmLogin">
-                        @Html.AntiForgeryToken()
-                        <input id="loginToken" name="loginToken" value="@ViewBag.LoginToken" type ="hidden" />
-                        <input type="text" id="username" name="username" autocomplete="off" />
-                        <input type="password" id="password" name="password" />
-                        <input type="button" id="btnLogin" value="@Resources.Labels.Sign_In" />
-
-                        <div class="bestview">
-                        </div>
-                    </form>
+                <div class="secure">
                 </div>
             </div>
+            <div class="auth">
+                <form action="@Url.Content("~/UserLogin/Index")" method="POST" id="frmLogin" name="frmLogin">
+                @Html.AntiForgeryToken()
+                <input id="loginToken" name="loginToken" value="@ViewBag.LoginToken" type ="hidden" />
+                <input type="text" id="username" name="username" autocomplete="off" />
+                <input type="password" id="password" name="password" />
+                <input type="button" id="btnLogin" value="@Resources.Labels.Sign_In" 
+                    onclick="LoginManager.doLogin();"/>
+                <div class="bestview">
+                </div>
+                </form>
+            </div>
         </div>
-    
-    
-    @Scripts.Render("~/Areas/User/LogInScripts")
+    </div>
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/JQuery/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/ShareScripts/SharedScriptManager.js"></script>
+    <script type="text/javascript" src="~/Scripts/CryptoJS.js"></script>
+    <script type="text/javascript" src="~/Areas/User/LogIn/Scripts/LogInManager.js"></script>
 </body>
 </html>

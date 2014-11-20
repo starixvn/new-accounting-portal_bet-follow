@@ -29,12 +29,6 @@ namespace Fanex.BetFollow.Module.UserLogIn.AppStart
         /// <param name="bundles">The bundles.</param>
         private static void RegisterBundles_UserLogIn(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/Areas/User/LogInScripts").Include(
-                "~/Scripts/JQuery/jquery-1.8.2.js",
-                "~/Scripts/CryptoJS.js",
-                "~/Scripts/ShareScripts/SharedScriptManager.js",
-                "~/Areas/User/LogIn/Scripts/LogInManager.js"));
-
             bundles.AddAndInclude(
                 "~/Areas/User/LogInStyles",
                 "~/Areas/User/LogIn/Styles/login.less");

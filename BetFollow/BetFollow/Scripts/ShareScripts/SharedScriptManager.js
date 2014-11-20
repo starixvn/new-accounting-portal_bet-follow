@@ -56,3 +56,4 @@ var SharedScriptManager = function () {
 };
 
 sharedScriptManager = new SharedScriptManager();
+
