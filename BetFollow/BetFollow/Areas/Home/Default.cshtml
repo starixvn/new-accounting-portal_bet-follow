@@ -48,13 +48,17 @@
             </div>
         </div>
     </div>
+    <div id="divErrorPoup" class="selector" style="display: none;">
+    </div>
     <div id="div-resultpopup" class="selector display-none">
     </div>
     @Scripts.Render("~/Views/CommonScripts")
     <script type="text/javascript" src="~/Scripts/ShareScripts/RecheckIn.js"></script>
     @Scripts.Render("~/Views/HomeScripts")
     <script language="javascript" type="text/javascript">
+        var accUrlDefault = '@Fanex.BetFollow.Infrastructure.Services.AppSetting.LoginLink';
         window.rootUrl = '@Url.Content("~")';
+        jQuery.curCSS = jQuery.css;  
         menuManager.initPage();
     </script>
 </body>

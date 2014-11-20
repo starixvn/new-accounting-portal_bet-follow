@@ -3,8 +3,13 @@
 var recheckIn;
 var RecheckIn = function () {
     var self = this;
+    self.RecheckinXHR = null;
     self.udpateOnlineStatus = function () {
-        $.ajax({
+        if (self.RecheckinXHR != null) {
+            self.RecheckinXHR.abort();
+        }
+
+        self.RecheckinXHR = $.ajax({
             type: "POST",
             url: window.rootUrl + "UserLogin/CheckUserOnlineStatus",
             contentType: "application/json; charset=utf-8",
@@ -22,9 +27,13 @@ var RecheckIn = function () {
                     self.openConfirmPopup();
                     return false;
                 }
-            }, error: function () {
+            },
+            error: function () {
                 self.openConfirmPopup();
                 return false;
+            },
+            complete: function () {
+                self.RecheckinXHR = null;
             }
         });
     };
@@ -40,19 +49,22 @@ var RecheckIn = function () {
             resizable: false,
             modal: true,
             title: 'Alert',
+            position: [300, 120],
             close: function (event, ui) {
-                top.location.href = accUrlDefault;
+                window.location.href = accUrlDefault;
             },
             buttons: [
                 {
                     text: "OK",
                     click: function () {
-                        top.location.href = accUrlDefault;
+                        window.location.href = accUrlDefault;
                         $(this).dialog("close");
                     }
                 }
             ]
         });
+
+        $(".ui-dialog-buttonpane .ui-button-text").html("OK");
         return false;
     }
 };
