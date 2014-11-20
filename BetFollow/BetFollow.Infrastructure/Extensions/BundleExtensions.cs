@@ -8,7 +8,7 @@
 // </history>
 // --------------------------------------------------------------------------
 
-namespace BetFollow.Infrastructure.Extensions
+namespace Fanex.BetFollow.Infrastructure.Extensions
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Web.Optimization;

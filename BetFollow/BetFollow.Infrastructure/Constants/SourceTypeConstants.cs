@@ -7,7 +7,7 @@
 //   <change who="Louis.Nguyen" date="2012.10.18">Created</change>
 // </history>
 
-namespace BetFollow.Infrastructure.Constants
+namespace Fanex.BetFollow.Infrastructure.Constants
 {
     /// <summary>
     /// Source Type Constants.

@@ -7,11 +7,11 @@
 //   <change who="Louis.Nguyen" date="2012.12.07">Created</change>
 // </history>
 
-namespace BetFollow.AutoFollowBet.Criteria
+namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
 {
     using System.Collections;
-    using BetFollow.Infrastructure.Helpers;
-    using BetFollow.Infrastructure.Services;
+    using Fanex.BetFollow.Infrastructure.Helpers;
+    using Fanex.BetFollow.Infrastructure.Services;
 
     /// <summary>
     /// Delete Auto Follow Bet Criteria.

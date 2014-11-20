@@ -7,7 +7,7 @@
 //   <change who="bobby.nguyen" date="2011.11.01">Created</change>
 // </history>
 
-namespace BetFollow.Infrastructure.Helpers
+namespace Fanex.BetFollow.Infrastructure.Helpers
 {
     using System;
     using System.Web;

@@ -7,13 +7,13 @@
 //   <change who="Louis.Nguyen" date="2012.12.07">Created</change>
 // </history>
 
-namespace BetFollow.AutoFollowBet.Services
+namespace Fanex.BetFollow.Module.AutoFollowBet.Services
 {
     using System.Collections.Generic;
-    using BetFollow.AutoFollowBet.Criteria;
-    using BetFollow.AutoFollowBet.Entities;
-    using BetFollow.AutoFollowBet.Models;
-    using BetFollow.Infrastructure.Models;
+    using Fanex.BetFollow.Infrastructure.Models;
+    using Fanex.BetFollow.Module.AutoFollowBet.Criteria;
+    using Fanex.BetFollow.Module.AutoFollowBet.Entities;
+    using Fanex.BetFollow.Module.AutoFollowBet.Models;
 
     public interface IAutoFollowBetService
     {

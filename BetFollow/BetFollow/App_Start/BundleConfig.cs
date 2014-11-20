@@ -8,12 +8,12 @@
 // </history>
 // --------------------------------------------------------------------------
 
-namespace BetFollow
+namespace Fanex.BetFollow.Website
 {
     using System.Web.Optimization;
-    using BetFollow.AutoFollowBet.AppStart;
-    using BetFollow.Infrastructure.Extensions;
-    using BetFollow.UserLogIn.AppStart;
+    using Fanex.BetFollow.Infrastructure.Extensions;
+    using Fanex.BetFollow.Module.AutoFollowBet.AppStart;
+    using Fanex.BetFollow.Module.UserLogIn.AppStart;
 
     /// <summary>
     /// Bundle Config.

@@ -7,11 +7,11 @@
 //   <change who="" date="2012.12.07">Created</change>
 // </history>
 
-namespace BetFollow.Controllers
+namespace Fanex.BetFollow.Controllers
 {
     using System.Web.Mvc;
-    using BetFollow.Infrastructure.Controllers;
-    using BetFollow.Infrastructure.Services;
+    using Fanex.BetFollow.Infrastructure.Controllers;
+    using Fanex.BetFollow.Infrastructure.Services;
 
     /// <summary>
     /// Home Controller.

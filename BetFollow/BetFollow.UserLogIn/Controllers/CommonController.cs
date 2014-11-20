@@ -7,15 +7,15 @@
 //   <change who="Louis.Nguyen" date="2012.12.07">Created</change>
 // </history>
 
-namespace BetFollow.UserLogIn.Controllers
+namespace Fanex.BetFollow.Module.UserLogIn.Controllers
 {
     using System.Web.Mvc;
     using System.Web.Security;
-    using BetFollow.Infrastructure.Constants;
-    using BetFollow.Infrastructure.Controllers;
-    using BetFollow.Infrastructure.Models;
-    using BetFollow.Infrastructure.Services;
-    using BetFollow.UserLogIn.Resources;
+    using Fanex.BetFollow.Infrastructure.Constants;
+    using Fanex.BetFollow.Infrastructure.Controllers;
+    using Fanex.BetFollow.Infrastructure.Models;
+    using Fanex.BetFollow.Infrastructure.Services;
+    using Fanex.BetFollow.Module.UserLogIn.Resources;
     using Fanex.NAP.Core.Configuration;
     using Fanex.NAP.Core.Service.Impl;
     using Fanex.NAP.Core.Service.Interface;

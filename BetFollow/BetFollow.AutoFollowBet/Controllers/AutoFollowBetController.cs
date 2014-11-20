@@ -7,13 +7,13 @@
 //   <change who="Louis.Nguyen" date="2012.12.07">Created</change>
 // </history>
 
-namespace BetFollow.AutoFollowBet.Controllers
+namespace Fanex.BetFollow.Module.AutoFollowBet.Controllers
 {
     using System.Web.Mvc;
-    using BetFollow.AutoFollowBet.Criteria;
-    using BetFollow.AutoFollowBet.Services;
-    using BetFollow.Infrastructure.Constants;
-    using BetFollow.Infrastructure.Controllers;
+    using Fanex.BetFollow.Infrastructure.Constants;
+    using Fanex.BetFollow.Infrastructure.Controllers;
+    using Fanex.BetFollow.Module.AutoFollowBet.Criteria;
+    using Fanex.BetFollow.Module.AutoFollowBet.Services;
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Web.Attribute;
 

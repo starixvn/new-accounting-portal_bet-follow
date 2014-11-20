@@ -8,10 +8,10 @@
 // </history>
 // --------------------------------------------------------------------------
 
-namespace BetFollow.UserLogIn.AppStart
+namespace Fanex.BetFollow.Module.UserLogIn.AppStart
 {
     using System.Web.Optimization;
-    using BetFollow.Infrastructure.Extensions;
+    using Fanex.BetFollow.Infrastructure.Extensions;
 
     /// <summary>
     /// User Log In Bundles.

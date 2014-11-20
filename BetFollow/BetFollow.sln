@@ -5,11 +5,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{E2F4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSite", "WebSite", "{84D5E646-F1E6-48B7-AC3F-4198138B1F9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetFollow", "BetFollow\BetFollow.csproj", "{4E2366DA-A834-48E9-9565-5028A1DF6B36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetFollow.Website", "BetFollow\Fanex.BetFollow.Website.csproj", "{4E2366DA-A834-48E9-9565-5028A1DF6B36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetFollow.UserLogIn", "BetFollow.UserLogIn\BetFollow.UserLogIn.csproj", "{471911C7-2268-44DB-889A-CA79A129F4DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetFollow.Module.UserLogIn", "BetFollow.UserLogIn\Fanex.BetFollow.Module.UserLogIn.csproj", "{471911C7-2268-44DB-889A-CA79A129F4DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetFollow.Infrastructure", "BetFollow.Infrastructure\BetFollow.Infrastructure.csproj", "{C894E19A-EA73-4AD6-BB8B-39226D932740}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetFollow.Infrastructure", "BetFollow.Infrastructure\Fanex.BetFollow.Infrastructure.csproj", "{C894E19A-EA73-4AD6-BB8B-39226D932740}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{8E86CF58-9D17-4A70-ABD0-526D31EA7ABC}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysi
 		CodeAnalysis\FxCopDictionary.xml = CodeAnalysis\FxCopDictionary.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetFollow.AutoFollowBet", "BetFollow.AutoFollowBet\BetFollow.AutoFollowBet.csproj", "{74172D6D-9CC6-4DD7-B087-14D1F82024E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetFollow.Module.AutoFollowBet", "BetFollow.AutoFollowBet\Fanex.BetFollow.Module.AutoFollowBet.csproj", "{74172D6D-9CC6-4DD7-B087-14D1F82024E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

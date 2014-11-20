@@ -7,7 +7,7 @@
 //   <change who="" date="2012.12.07">Created</change>
 // </history>
 
-namespace BetFollow.Infrastructure.Services
+namespace Fanex.BetFollow.Infrastructure.Services
 {
     using System.Collections.Generic;
     using Fanex.NAP.Core.Business;

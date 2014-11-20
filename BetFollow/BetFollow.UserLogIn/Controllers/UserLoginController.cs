@@ -4,7 +4,7 @@
 // </copyright>
 // ----------------------------------------------------------------------- 
 
-namespace BetFollow.UserLogIn.Controllers
+namespace Fanex.BetFollow.Module.UserLogIn.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -15,10 +15,10 @@ namespace BetFollow.UserLogIn.Controllers
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
-    using BetFollow.Infrastructure.Controllers;
-    using BetFollow.Infrastructure.Helpers;
-    using BetFollow.Infrastructure.Services;
-    using BetFollow.UserLogIn.Resources;
+    using Fanex.BetFollow.Infrastructure.Controllers;
+    using Fanex.BetFollow.Infrastructure.Helpers;
+    using Fanex.BetFollow.Infrastructure.Services;
+    using Fanex.BetFollow.Module.UserLogIn.Resources;
     using Fanex.Common;
     using Fanex.NAP.Core.Configuration;
     using Fanex.NAP.Core.Criteria.User;

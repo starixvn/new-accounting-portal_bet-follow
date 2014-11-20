@@ -8,10 +8,10 @@
 // </history>
 // --------------------------------------------------------------------------
 
-namespace BetFollow.AutoFollowBet.AppStart
+namespace Fanex.BetFollow.Module.AutoFollowBet.AppStart
 {
     using System.Web.Optimization;
-    using BetFollow.Infrastructure.Extensions;
+    using Fanex.BetFollow.Infrastructure.Extensions;
 
     /// <summary>
     /// Auto Follow Bet Bundles.

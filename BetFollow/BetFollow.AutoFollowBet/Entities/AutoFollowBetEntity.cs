@@ -7,7 +7,7 @@
 //   <change who="Franklin.Nguyen" date="2014.18.08">Created</change>
 // </history>
 
-namespace BetFollow.AutoFollowBet.Entities
+namespace Fanex.BetFollow.Module.AutoFollowBet.Entities
 {
     using System.Collections.Generic;
 

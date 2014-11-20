@@ -7,11 +7,11 @@
 //   <change who="Louis.Nguyen" date="2012.12.07">Created</change>
 // </history>
 
-namespace BetFollow.Infrastructure.Controllers
+namespace Fanex.BetFollow.Infrastructure.Controllers
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using BetFollow.Infrastructure.Services;
+    using Fanex.BetFollow.Infrastructure.Services;
     using Fanex.NAP.Core.Business;
     using Fanex.NAP.Core.Configuration;
     using Fanex.NAP.Core.Model.ValueObject;
