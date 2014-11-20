@@ -516,7 +516,7 @@ var autoFollowBet = {
                 <td rowspan="' + numberChildRow + '" class="td-labelfollower col120"><div class="col120 c labelfollower">' + followInfo.Follower + '</div></td>\
                 <td rowspan="' + numberChildRow + '" class="col70 c"><div class="col70 c ' + (followInfo.BAStatus ? "checkStatus" : "") + '"></div></td>\
                 <td rowspan="' + numberChildRow + '" class="col70 c"><div class="col70 c ' + (followInfo.IsAgent ? "checkStatus" : "") + '"></div></td>\
-                <td rowspan="' + numberChildRow + '"><div class="col60 c">\
+                <td rowspan="' + numberChildRow + '"><div class="col70 c">\
                     <img class="editcontrol editicon" src="'
                      + autoFollowBet.CachedData.editIcon + '" onclick="autoFollowBet.beginEditFollowInfo(' + rowId + ')"\
                      title="' + viewResources.Edit + '" />\
@@ -527,7 +527,7 @@ var autoFollowBet = {
                      + autoFollowBet.CachedData.undoIcon + '" onclick="autoFollowBet.undoEditFollowInfo(' + rowId + ')"\
                      title="' + viewResources.Cancel + '" />\
                  </div></td>\
-                 <td rowspan="' + numberChildRow + '"><div class="col60 c">\
+                 <td rowspan="' + numberChildRow + '"><div class="col50 c">\
                     <img class="deleteicon editicon" src="'
                      + autoFollowBet.CachedData.deleteIcon + '" onclick="autoFollowBet.deleteFollowInfo(' + rowId + ')"\
                      title="' + viewResources.Delete + '" />\
