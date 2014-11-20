@@ -1,5 +1,6 @@
 ﻿@{
-    ViewBag.Title = Resources.Labels.Follow_Bet_System;
+    ViewBag.Title = Resources.Labels.Follow_Bet_System; 
+    string redirectUrl = ViewBag.RedirectUrl;
 }
 <!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -57,6 +58,7 @@
     @Scripts.Render("~/Views/HomeScripts")
     <script language="javascript" type="text/javascript">
         var accUrlDefault = '@Fanex.BetFollow.Infrastructure.Services.AppSetting.LoginLink';
+        var redirectUrl = '@redirectUrl';
         window.rootUrl = '@Url.Content("~")';
         jQuery.curCSS = jQuery.css;  
         menuManager.initPage();

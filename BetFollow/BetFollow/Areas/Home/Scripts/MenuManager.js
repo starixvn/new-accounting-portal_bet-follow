@@ -2,7 +2,6 @@
 var menuManager;
 var MenuManager = function () {
     var self = this;
-    var self = this;
     self.Enums = {
     };
     self.DOMElements = {
@@ -13,6 +12,11 @@ var MenuManager = function () {
     self.initPage = function () {
         self.cacheDOMElements();
         self.bindEvents();
+        if (redirectUrl && redirectUrl.replace('~/', '').length) {
+            $("#centerFr").attr({
+                src: window.rootUrl + redirectUrl.replace('~/', '')
+            });
+        }
     };
     self.cacheDOMElements = function () {
         self.DOMElements.RightContent = $(".rightcontent");
