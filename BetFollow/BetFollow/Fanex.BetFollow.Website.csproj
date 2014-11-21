@@ -153,6 +153,7 @@
   <ItemGroup>
     <Content Include="Areas\AutoFollowBet\ManageList\Scripts\ManageListController.js" />
     <Content Include="Content\site\Images\checked-icon.png" />
+    <Content Include="Content\site\Images\logo-bf.png" />
     <Content Include="Content\site\Images\Save.png" />
     <Content Include="Content\site\Images\undo.png" />
     <Content Include="Areas\Home\Scripts\MenuManager.js" />
@@ -229,7 +230,6 @@
     <Content Include="Content\site\Images\list-muti-select.png" />
     <Content Include="Content\site\Images\loading-icon2.gif" />
     <Content Include="Content\site\Images\loading100x100.gif" />
-    <Content Include="Content\site\Images\logo-crm.png" />
     <Content Include="Content\site\Images\minus-plus-icn.png" />
     <Content Include="Content\site\Images\next-pre-icon-cal.png" />
     <Content Include="Content\site\Images\ResultMessage\sprites-image.png" />
