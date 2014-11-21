@@ -35,6 +35,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Controllers
             _autoFollowBetService = new AutoFollowBetService();
         }
 
+        [NapAuth(FunctionKey = FunctionPermissions.AutoFollowBet, Policy = Constant.Policy.Read)]
         public ActionResult Index()
         {
             return View("~/Areas/AutoFollowBet/ManageList/Index.cshtml");
