@@ -51,10 +51,10 @@ var autoFollowBet = {
     CachedData: {
         FollowTypes: null,
         FollowedCustomerList: null,
-        editIcon: '/Content/site/Images/icn_edit.png',
-        saveIcon: '/Content/site/Images/Save.png',
-        undoIcon: '/Content/site/Images/undo.png',
-        deleteIcon: '/Content/site/Images/icn_del.png',
+        editIcon: '../Content/site/Images/icn_edit.png',
+        saveIcon: '../Content/site/Images/Save.png',
+        undoIcon: '../Content/site/Images/undo.png',
+        deleteIcon: '../Content/site/Images/icn_del.png',
         getListInfoParams: {
             Username: null,
             Follower: null,
