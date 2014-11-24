@@ -62,7 +62,7 @@ namespace Fanex.BetFollow.Module.UserLogIn.Controllers
 
         public ActionResult ErrorPage()
         {
-            return View("~/Areas/Common/ErrorPage.cshtml");
+            return View("~/Areas/User/Common/ErrorPage.cshtml");
         }
 
         /// <summary>
