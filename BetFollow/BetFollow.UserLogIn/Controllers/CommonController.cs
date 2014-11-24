@@ -86,7 +86,7 @@ namespace Fanex.BetFollow.Module.UserLogIn.Controllers
             ViewBag.UmtFrom = downTime.From;
             ViewBag.UmtTo = downTime.To;
 
-            return View();
+            return View("~/Areas/User/Common/Offline.cshtml");
         }
     }
 }
