@@ -49,7 +49,7 @@ namespace Fanex.BetFollow.Module.UserLogIn.Controllers
             switch (previousHttpMethod)
             {
                 case HttpMethodConstants.Get:
-                    return View("~/Views/Common/AccessDenied.cshtml");
+                    return View("~/Areas/User/Common/AccessDenied.cshtml");
                 default:
                     var errorInfo = new ResultModel
                     {
