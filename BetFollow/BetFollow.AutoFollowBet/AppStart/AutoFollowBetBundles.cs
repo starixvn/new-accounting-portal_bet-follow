@@ -32,9 +32,9 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.AppStart
             bundles.Add(new ScriptBundle("~/Areas/AutoFollowBet/ManageListScripts").Include(
                 "~/Areas/AutoFollowBet/ManageList/Scripts/ManageListController.js"));
 
-            bundles.AddAndInclude(
-                "~/Areas/AutoFollowBet/ManageListStyles",
-                "~/Areas/AutoFollowBet/ManageList/Styles/ManageList.less");
+            bundles.Add(new StyleBundle(
+                "~/Areas/AutoFollowBet/ManageListStyles").Include(
+                "~/Areas/AutoFollowBet/ManageList/Styles/ManageList.less"));
         }
     }
 }

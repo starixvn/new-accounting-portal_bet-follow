@@ -85,12 +85,12 @@ namespace Fanex.BetFollow.Website
                 "~/Scripts/BlockUI/jquery.blockUI.1.33.js",
                 "~/Scripts/BlockUI/BlockUI.js",
                 "~/Scripts/ShareScripts/SharedScriptManager.js"));
-            bundles.AddAndInclude(
-                "~/site/common",
+            bundles.Add(new StyleBundle(
+                "~/site/common").Include(
                 "~/content/bootstrap/css/bootstrap.css",
                 "~/Content/site/common.less",
                 "~/Content/site/Message.less",
-                "~/Scripts/JQuery/UI/css/custom-theme/jquery-ui-1.8.10.custom.css");
+                "~/Scripts/JQuery/UI/css/custom-theme/jquery-ui-1.8.10.custom.css"));
         }
 
         private static void RegisterBundles_Home(BundleCollection bundles)
@@ -98,19 +98,18 @@ namespace Fanex.BetFollow.Website
             bundles.Add(new ScriptBundle("~/Views/HomeScripts").Include(
                 "~/Areas/Home/Scripts/MenuManager.js"));
 
-            bundles.AddAndInclude(
-                "~/Views/HomeStyles",
+            bundles.Add(new StyleBundle("~/Views/HomeStyles").Include(                
                 "~/Content/site/ui-darkness/jquery-ui-1.8.14.custom.css",
                 "~/Areas/Home/Styles/default.less",
-                "~/Content/site/customizeJqueryUI.less");
+                "~/Content/site/customizeJqueryUI.less"));
         }
 
         private static void RegisterBundles_MultiSelect(BundleCollection bundles)
         {
-            bundles.AddAndInclude(
-                "~/Styles/FanexMultipleSelect",
+            bundles.Add(new StyleBundle(
+                "~/Styles/FanexMultipleSelect").Include(
                 "~/Scripts/MultipleSelect/fanex.multiSelect.css",
-                "~/Content/site/customizeMultiSelect.less");
+                "~/Content/site/customizeMultiSelect.less"));
 
             bundles.Add(new ScriptBundle("~/Scripts/FanexMultipleSelect").Include(
                 "~/Scripts/MultipleSelect/fanex.multiSelect.js"));
@@ -122,11 +121,11 @@ namespace Fanex.BetFollow.Website
         /// <param name="bundles">The bundles.</param>
         private static void RegisterBundles_FanexGrid(BundleCollection bundles)
         {
-            bundles.AddAndInclude(
-                "~/Styles/FanexGridStyles",
+            bundles.Add(new StyleBundle(
+                "~/Styles/FanexGridStyles").Include(
                 "~/Scripts/Pager/pagination.css",
                 "~/Scripts/FanexGrid/table.css",
-                "~/Scripts/FanexGrid/reportgrid.css");
+                "~/Scripts/FanexGrid/reportgrid.css"));
 
             bundles.Add(new ScriptBundle("~/Scripts/FanexGridScripts").Include(
                 "~/Scripts/FanexGrid/gridscroller.js",

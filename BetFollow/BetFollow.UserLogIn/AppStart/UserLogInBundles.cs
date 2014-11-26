@@ -29,9 +29,9 @@ namespace Fanex.BetFollow.Module.UserLogIn.AppStart
         /// <param name="bundles">The bundles.</param>
         private static void RegisterBundles_UserLogIn(BundleCollection bundles)
         {
-            bundles.AddAndInclude(
-                "~/Areas/User/LogInStyles",
-                "~/Areas/User/LogIn/Styles/login.less");
+            bundles.Add(new StyleBundle(
+                "~/Areas/User/LogInStyles").Include(
+                "~/Areas/User/LogIn/Styles/login.less"));
         }
     }
 }
