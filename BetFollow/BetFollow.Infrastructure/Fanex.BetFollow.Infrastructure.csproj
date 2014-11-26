@@ -88,7 +88,6 @@
     <Compile Include="Constants\HttpMethodConstants.cs" />
     <Compile Include="Constants\SourceTypeConstants.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Extensions\BundleExtensions.cs" />
     <Compile Include="Extensions\SessionExtension.cs" />
     <Compile Include="Helpers\IPHelper.cs" />
     <Compile Include="Helpers\LogExtensions.cs" />
