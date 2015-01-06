@@ -63,17 +63,44 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Controllers
 
         [HttpPost]
         [NapAuth(FunctionKey = FunctionPermissions.AutoFollowBet, Policy = Constant.Policy.Host)]
-        public JsonResult DeleteAutoFollowedBetCustomer(DeleteAutoFollowedBetCustomerCriteria criteria)
+        public JsonResult DeleteAutoFollowedBetCustomer(DeleteAutoFollowedBetCustomersCriteria criteria)
         {
-            var result = _autoFollowBetService.DeleteAutoFollowedBetCustomer(criteria);
+            criteria.Usernames = criteria.Username;
+            object result = criteria.Usernames.Contains(",") ? _autoFollowBetService.DeleteAutoFollowedBetCustomers(criteria) :
+                _autoFollowBetService.DeleteAutoFollowedBetCustomer(criteria) as object;
             return Json(result);
         }
 
         [HttpPost]
         [NapAuth(FunctionKey = FunctionPermissions.AutoFollowBet, Policy = Constant.Policy.Host)]
-        public JsonResult AddAutoFollowedBetCustomer(AddAutoFollowedBetCustomerCriteria criteria)
+        public JsonResult AddAutoFollowedBetCustomer(AddAutoFollowedBetCustomersCriteria criteria)
         {
-            var result = _autoFollowBetService.AddAutoFollowedBetCustomer(criteria);
+            criteria.Usernames = criteria.Username;
+            object result = criteria.Username.Contains(",") ? _autoFollowBetService.AddAutoFollowedBetCustomers(criteria) :
+                _autoFollowBetService.AddAutoFollowedBetCustomer(criteria) as object;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [NapAuth(FunctionKey = FunctionPermissions.AutoFollowBet, Policy = Constant.Policy.Host)]
+        public JsonResult DeleteAutoFollowedBetCustomers(DeleteAutoFollowedBetCustomersCriteria criteria)
+        {
+            var result = _autoFollowBetService.DeleteAutoFollowedBetCustomers(criteria);
+            return Json(result);
+        }
+
+        [HttpPost]
+        [NapAuth(FunctionKey = FunctionPermissions.AutoFollowBet, Policy = Constant.Policy.Host)]
+        public JsonResult AddAutoFollowedBetCustomers(AddAutoFollowedBetCustomersCriteria criteria)
+        {
+            var result = _autoFollowBetService.AddAutoFollowedBetCustomers(criteria);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CheckAutoFollowedBetCustomer(CheckAutoFollowedBetCustomerCriteria criteria)
+        {
+            var result = _autoFollowBetService.CheckAutoFollowedBetCustomer(criteria);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

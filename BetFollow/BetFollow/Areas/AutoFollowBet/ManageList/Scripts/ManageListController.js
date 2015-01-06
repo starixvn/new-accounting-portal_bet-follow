@@ -15,7 +15,12 @@ var autoFollowBet = {
         addNewFollowedCustomerDialog: null,
         buttonAddNewFollowedCustomer: null,
         reportGridPagination: null,
-        dropdownCustomer: null
+        dropdownCustomer: null,
+        addCustomerButton: null,
+        username: null,
+        userList: null,
+        checkAll: null,
+        deleteAll: null
     },
     followTypeEnums: {
         LiveStatus: 0,
@@ -85,7 +90,7 @@ var autoFollowBet = {
             Followed1stOverUnder: null
         },
         gridHeight: $(window).height() - 180,
-        gridWidth: 1112,
+        gridWidth: 1159,
         pageIndex: 0,
         totalItems: 0,
         pageSize: 50,
@@ -98,12 +103,18 @@ var autoFollowBet = {
         autoFollowBet.Tables.addNewFollowedCustomerDialog.dialog({
             title: viewResources.Add_New_Followed_Customer,
             autoOpen: false,
-            height: 200,
-            width: 600,
+            height: 365,
+            width: 770,
             modal: true
         });
 
+        autoFollowBet.Tables.addCustomerButton = $('#addCust');
+        autoFollowBet.Tables.username = $('#textbox-username-addnewdialog');
+        autoFollowBet.Tables.userList = $('#custList');
+        autoFollowBet.Tables.checkAll = $('#chkAll');
+        autoFollowBet.Tables.deleteAll = $('#button-removefollowedcustomer');
         autoFollowBet.bindingEvent();
+        autoFollowBet.Tables.TextboxUsername.focus();
     },
     cacheDOMElement: function () {
         autoFollowBet.Tables.TextboxUsername = $("#textbox-username");
@@ -258,6 +269,91 @@ var autoFollowBet = {
         autoFollowBet.Tables.buttonSubmit_AddDialog.click(function () {
             autoFollowBet.addNewFollowedCustomer();
         });
+
+        autoFollowBet.Tables.addCustomerButton.unbind('click');
+        autoFollowBet.Tables.addCustomerButton.bind('click', function () {
+            autoFollowBet.insertNewFollowedCustomer();
+        });
+
+        autoFollowBet.Tables.username.unbind('keypress');
+        autoFollowBet.Tables.username.bind('keypress', function (event) {
+            if ((event.keyCode && event.keyCode == 13) || (event.which && event.which == 13)) {
+                autoFollowBet.insertNewFollowedCustomer();
+            }
+        });
+
+        autoFollowBet.Tables.checkAll.unbind('click');
+        autoFollowBet.Tables.checkAll.bind('click', function () {
+            var checkboxes = $('.tbl-body-scroll').find('input[name=chkDel]');
+            if (this.checked) {
+                $(checkboxes).each(function (index, item) {
+                    item.checked = true;
+                });
+            }
+            else {
+                $(checkboxes).each(function (index, item) {
+                    item.checked = false;
+                });
+            }
+        });
+
+        autoFollowBet.Tables.deleteAll.unbind('click');
+        autoFollowBet.Tables.deleteAll.bind('click', function () {
+            autoFollowBet.blockUI();
+
+            var checkboxes = $('.tbl-body-scroll').find('input[name=chkDel]');
+            var allUnchecked = true;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    allUnchecked = false;
+                    break;
+                }
+            };
+
+            if (allUnchecked) {
+                alert('No user to delete, please select at least 1 user to delete');
+            }
+            else {
+                autoFollowBet.deleteFollowInfoMult();
+            }
+
+            autoFollowBet.unblockUI();
+        });
+
+        autoFollowBet.Tables.TextboxUsername.unbind('keypress');
+        autoFollowBet.Tables.TextboxUsername.bind('keypress', function (event) {
+            if ((event.keyCode && event.keyCode == 13) ||
+                (event.which && event.which == 13)) {
+                autoFollowBet.GetAutoFollowedBet();
+            }
+        });
+
+        autoFollowBet.Tables.TextboxFollower.unbind('keypress');
+        autoFollowBet.Tables.TextboxFollower.bind('keypress', function (event) {
+            if ((event.keyCode && event.keyCode == 13) ||
+                (event.which && event.which == 13)) {
+                autoFollowBet.GetAutoFollowedBet();
+            }
+        });
+    },
+    bindDeleteCheckbox: function (checkbox) {
+        var checkboxes = $('.tbl-body-scroll').find('input[name=chkDel]');
+        if (checkbox.checked) {
+            var checkAll = true;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) {
+                    checkAll = false;
+                    break;
+                }
+            }
+
+            if (checkAll) {
+                $('#chkAll').attr('checked', true);
+                return;
+            }
+        }
+
+        $('#chkAll').attr('checked', false);
     },
     GetAutoFollowedBet: function () {
         autoFollowBet.blockUI();
@@ -532,6 +628,7 @@ var autoFollowBet = {
                      + autoFollowBet.CachedData.deleteIcon + '" onclick="autoFollowBet.deleteFollowInfo(' + rowId + ')"\
                      title="' + viewResources.Delete + '" />\
                  </div></td>\
+                 <td rowspan="' + numberChildRow + '" class="col50 c"><input type="checkbox" id="chk_' + rowId + '" name="chkDel" onclick="autoFollowBet.bindDeleteCheckbox(this)" /></td>\
                 </tr>';
             }
             else {
@@ -592,6 +689,7 @@ var autoFollowBet = {
         };
 
         autoFollowBet.Tables.reportGridPagination.pagination(totalItem, pagingOption);
+        autoFollowBet.Tables.checkAll.attr('checked', false);
     },
     pageSelectCallback: function (pageIndex, itemsPerPage, jq) {
         var maxPage = (itemsPerPage == 0 ? 0 : Math.ceil(autoFollowBet.CachedData.totalItems / itemsPerPage));
@@ -655,9 +753,12 @@ var autoFollowBet = {
         var iconEdit = rowInfo.find('.editicon');
         var iconSave = rowInfo.find('.saveicon');
         var iconUndo = rowInfo.find('.undoicon');
+        var iconDel = rowInfo.find('#chk_' + rowId);
         iconEdit.hide();
+        iconDel.hide();
         iconSave.show()
         iconUndo.show();
+
         var rate = rowInfo.find('.labelrate').html();
         var tdLabelRate = rowInfo.find('.td-labelrate');
 
@@ -678,9 +779,11 @@ var autoFollowBet = {
         var iconEdit = rowInfo.find('.editicon');
         var iconSave = rowInfo.find('.saveicon');
         var iconUndo = rowInfo.find('.undoicon');
+        var iconDel = rowInfo.find('#chk_' + rowId);
         iconSave.hide();
         iconUndo.hide();
         iconEdit.show();
+        iconDel.show();
 
         var tdLabelRate = rowInfo.find('.td-labelrate');
         tdLabelRate.html('<div class="col80 c labelrate">' + followInfo.Rate + '</div>');
@@ -880,9 +983,12 @@ var autoFollowBet = {
         var iconEdit = rowInfo.find('.editicon');
         var iconSave = rowInfo.find('.saveicon');
         var iconUndo = rowInfo.find('.undoicon');
+        var iconDel = rowInfo.find('#chk_' + rowId);
+
         iconSave.hide()
         iconUndo.hide();
         iconEdit.show();
+        iconDel.show();
 
         var tdLabelRate = rowInfo.find('.td-labelrate');
         tdLabelRate.html('<div class="col80 c labelrate">' + autoFollowBet.CachedData.updateInfoParams.Rate + '</div>');
@@ -924,6 +1030,38 @@ var autoFollowBet = {
             autoFollowBet.unblockUI,
             true);
     },
+    deleteFollowInfoMult: function () {
+        autoFollowBet.blockUI();
+        var followInfos = '';
+        var isDelete = confirm(viewResources.Warning_Admin_AutoFollowBetManagement_DeleteFollowInfo);
+        if (!isDelete) {
+            autoFollowBet.unblockUI();
+            return;
+        }
+
+        var rowIds = [];
+        var checkboxes = $('.tbl-body-scroll').find('input[name=chkDel]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                followInfos += autoFollowBet.CachedData.FollowedCustomerList[i].UserName + ',';
+                rowIds.push(i);
+            }
+        };
+
+        var postParams = {
+            Username: followInfos.substring(0, followInfos.length - 1),
+            RowIds: rowIds
+        };
+
+        autoFollowBet.CachedData.deleteInfoParams = postParams;
+        autoFollowBet.callAjax(this,
+            window.rootUrl + "AutoFollowBet/DeleteAutoFollowedBetCustomer",
+            postParams,
+            autoFollowBet.renderDeleteFollowInfoResultMult,
+            autoFollowBet.renderDeleteFollowInfoResultMult,
+            autoFollowBet.unblockUI,
+            true);
+    },
     renderDeleteFollowInfoResult: function (rs) {
         var rowId = autoFollowBet.CachedData.deleteInfoParams.RowId;
         if (rs == null) {
@@ -951,6 +1089,60 @@ var autoFollowBet = {
             sharedScriptManager.hideMessage("errormessage");
         }, 3000);
     },
+    renderDeleteFollowInfoResultMult: function (rs) {
+        var rowIds = autoFollowBet.CachedData.deleteInfoParams.RowIds;
+        if (rs == null) {
+            sharedScriptManager.showMessage("errormessage", viewResources.NoPermission, sharedScriptManager.Enums.MessageType.Error);
+            return;
+        }
+
+        var successAll = true;
+        var strMessage = '';
+        var deletedItems = 0;
+
+        for (var k = 0; k < rs.length; k++) {
+            var code = rs[k].Code;
+            var message = rs[k].Message;
+
+            var username = autoFollowBet.CachedData.FollowedCustomerList[rowIds[k]].UserName;
+
+            if (code != 0) {
+                successAll = false;
+                strMessage += message + '<br />';
+            }
+            else {
+                strMessage += '<div style="color: blue">Deleted \'' + username + '\' successfully</div><br />';
+                ++deletedItems;
+            }
+        }
+
+        if (successAll) {
+            sharedScriptManager.showMessage("errormessage", viewResources.Success_Admin_AutoFollowBetManagement_DeleteFollowInfo, sharedScriptManager.Enums.MessageType.Success);
+        }
+        else {
+            sharedScriptManager.showMessage("errormessage", strMessage, sharedScriptManager.Enums.MessageType.Error);
+        }
+
+        for (var i = 0; i < rs.length; i++) {
+            if (rs[i].Code == 0) {
+                autoFollowBet.CachedData.FollowedCustomerList[rowIds[i]].IsDeleted = true;
+                var rowInfo = $(".followInfo_" + rowIds[i]);
+                rowInfo.remove();
+            }
+        }
+
+        autoFollowBet.CachedData.totalItems = autoFollowBet.CachedData.totalItems - deletedItems;
+        if (autoFollowBet.CachedData.totalItems <= autoFollowBet.CachedData.pageIndex * autoFollowBet.CachedData.pageSize) {
+            autoFollowBet.CachedData.pageIndex = autoFollowBet.CachedData.pageIndex - 1;
+        }
+
+        autoFollowBet.initPager(autoFollowBet.CachedData.totalItems, autoFollowBet.CachedData.pageSize, autoFollowBet.CachedData.pageIndex);
+        autoFollowBet.pagingFollowBetResult();
+        var t = setTimeout(function () {
+            if (successAll)
+                sharedScriptManager.hideMessage("errormessage");
+        }, 3000);
+    },
     ShowAddNewFollowedCustomerDialog: function () {
         var followTypeEnums = autoFollowBet.followTypeEnums;
         autoFollowBet.Tables.resultMessage_AddDialog.addClass("display-none");
@@ -960,12 +1152,70 @@ var autoFollowBet = {
         autoFollowBet.Tables.addNewFollowedCustomerDialog.removeClass("display-none").dialog("open");
         $('#dropdown-live-odds-adddialog').val('0');
         $('#dropdown-nonelive-odds-adddialog').val('0');
+        $('#custList').html('');
 
         var dialog = $(".ui-dialog");
         dialog.css({
             left: ($(window).width() - dialog.width()) / 2,
             top: ($(window).height() - dialog.height()) / 2
         });
+    },
+    insertNewFollowedCustomer: function () {
+        if (autoFollowBet.Tables.username.val() == '') {
+            sharedScriptManager.showMessage("resultmessage-adddialog", viewResources.Error_Admin_AutoFollowBetManagement_Username_Empty, sharedScriptManager.Enums.MessageType.Error);
+            autoFollowBet.Tables.username.focus();
+
+            return;
+        }
+
+        var users = $('.cust');
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].children.length > 0) {
+                if (autoFollowBet.Tables.username.val() == users[i].children[0].title) {
+                    sharedScriptManager.showMessage("resultmessage-adddialog", viewResources.AlreadyAdded, sharedScriptManager.Enums.MessageType.Error);
+                    autoFollowBet.Tables.username.focus();
+
+                    return;
+                }
+            }
+        }
+
+        sharedScriptManager.hideMessage("resultmessage-adddialog");
+        var user = autoFollowBet.Tables.username.val();
+        var postParams = {
+            Username: user
+        };
+
+        autoFollowBet.blockUI();
+        autoFollowBet.callAjax(this,
+            window.rootUrl + "AutoFollowBet/CheckAutoFollowedBetCustomer",
+            postParams,
+            autoFollowBet.renderCheckUsername,
+            autoFollowBet.renderCheckUsername,
+            autoFollowBet.unblockUI,
+            true);
+    },
+    renderCheckUsername: function (rs) {
+        if (rs == null) {
+            sharedScriptManager.showMessage("resultmessage-adddialog", viewResources.NoPermission, sharedScriptManager.Enums.MessageType.Error);
+            return;
+        }
+
+        if (rs.Code != 0) {
+            sharedScriptManager.showMessage("resultmessage-adddialog", rs.Message, sharedScriptManager.Enums.MessageType.Error);
+            return;
+        }
+
+        var user = autoFollowBet.Tables.username.val();
+        var subUser = user.length >= 20 ? (user.substring(0, 17) + '...') : user;
+        var customer = '<div class="cust" ondblclick="autoFollowBet.removeNewFollowedCustomer(this.children[1])"><div class="cust-info" title="' + user + '">' + subUser +
+            '</div><div class="cust-info-del" onclick="autoFollowBet.removeNewFollowedCustomer(this)" title="Remove">&nbsp;</div></div><div style="clear: both"></div>';
+        $(autoFollowBet.Tables.userList).append(customer);
+        autoFollowBet.Tables.username.val('');
+        autoFollowBet.Tables.username.focus();
+    },
+    removeNewFollowedCustomer: function (div) {
+        $(div).parent().remove();
     },
     addNewFollowedCustomer: function () {
         autoFollowBet.blockUI();
@@ -985,8 +1235,22 @@ var autoFollowBet = {
     },
     getAddInfoParams: function () {
         var followTypeEnums = autoFollowBet.followTypeEnums;
+        var users = $('.cust');
+        var isMult = users.length > 0;
+        var usernames = autoFollowBet.Tables.textboxUsername_AddDialog.val();
+
+        if (isMult) {
+            usernames = '';
+            var len = users.length;
+            for (var i = 0; i < len; i++) {
+                usernames += users[i].children[0].title + ',';
+            }
+
+            usernames = usernames.substring(0, usernames.length - 1);
+        }
+
         return {
-            Username: autoFollowBet.Tables.textboxUsername_AddDialog.val(),
+            Username: usernames,
             Rate: autoFollowBet.Tables.textboxRate_AddDialog.val(),
             LiveOdds: autoFollowBet.Tables.dropdownAddLiveOdds.val(),
             NoneLiveOdds: autoFollowBet.Tables.dropdownAddNoneLiveOdds.val(),
@@ -1061,19 +1325,54 @@ var autoFollowBet = {
     },
     renderAddFollowInfoResult: function (rs) {
         var maxMessageWidth = 367;
+        var addedItems = 0;
         if (rs == null) {
             sharedScriptManager.showMessage("resultmessage-adddialog", viewResources.NoPermission, sharedScriptManager.Enums.MessageType.Error);
             return;
         }
 
-        if (parseInt(rs.Code) != 0) {
-            sharedScriptManager.showMessage("resultmessage-adddialog", rs.Message, sharedScriptManager.Enums.MessageType.Error);
-            return;
+        if (rs.length > 0) {
+            var message = '';
+            var users = $('.cust');
+            var successAll = true;
+
+            for (var i = 0; i < rs.length; i++) {
+                if (rs[i].Code != 0) {
+                    successAll = false;
+                    message += rs[i].Message + '<br />';
+                }
+                else {
+                    ++addedItems;
+                    message += '<div style="color: blue">Added \'' + users[i].children[0].title + '\' successfully</div><br />';
+                }
+            }
+
+            if (successAll) {
+                sharedScriptManager.showMessage("resultmessage-adddialog", viewResources.Success_Admin_AutoFollowBetManagement_AddFollowInfo, sharedScriptManager.Enums.MessageType.Success);
+                var t = setTimeout(function () {
+                    sharedScriptManager.hideMessage("resultmessage-adddialog");
+                }, 3000);
+            }
+            else {
+                sharedScriptManager.showMessage("resultmessage-adddialog", message, sharedScriptManager.Enums.MessageType.Error);
+            }
+        }
+        else {
+            if (parseInt(rs.Code) != 0) {
+                sharedScriptManager.showMessage("resultmessage-adddialog", rs.Message, sharedScriptManager.Enums.MessageType.Error);
+            }
+            else {
+                ++addedItems;
+                sharedScriptManager.showMessage("resultmessage-adddialog", viewResources.Success_Admin_AutoFollowBetManagement_AddFollowInfo, sharedScriptManager.Enums.MessageType.Success);
+                var t = setTimeout(function () {
+                    sharedScriptManager.hideMessage("resultmessage-adddialog");
+                }, 3000);
+            }
         }
 
-        sharedScriptManager.showMessage("resultmessage-adddialog", viewResources.Success_Admin_AutoFollowBetManagement_AddFollowInfo, sharedScriptManager.Enums.MessageType.Success);
-        var t = setTimeout(function () {
-            sharedScriptManager.hideMessage("resultmessage-adddialog");
-        }, 3000);
+        $('#custList').html('');
+
+        if (addedItems > 0)
+            autoFollowBet.GetAutoFollowedBet();
     }
 };

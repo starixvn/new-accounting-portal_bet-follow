@@ -91,6 +91,10 @@
                     <input id="button-addnewfollowedcustomer" type="button" value="  " name="btnAdd"
                         class="btnAdd" title="@Labels.Add_Exist_Customer" />
                 </div>
+                <div class="btngroup">
+                    <input id="button-removefollowedcustomer" type="button" value="  "
+                        class="btnDel" title="@Labels.Delete" />
+                </div>
             </div>
             <div class="content-header clearfix">
                 <div class="header-scroll">
@@ -166,6 +170,11 @@
                                     @Labels.Delete
                                 </div>
                             </td>
+                            <td class="title2">
+                                <div class="c" style="width: 44px">
+                                    <input type="checkbox" id="chkAll" />
+                                </div>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -196,190 +205,196 @@
                 <div>
                 </div>
             </div>
-            <table>
-                <tr>
-                    <td>
-                        <div class="col60 r">
-                            @Labels.Username
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col150">
-                            <input id="textbox-username-addnewdialog" type="text" maxlength="50" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col40 r">
-                            @Labels.Rate
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col90">
-                            <input id="textbox-rate-addnewdialog" type="text" maxlength="4" class="c" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col60 r">
-                            @Labels.Follower
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col120">
-                            <input id="textbox-follower-addnewdialog" type="text" maxlength="50" class="c" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <table class="filter-adddialog addAutoFollowBetForm">
-                            <tr>
-                                <td class="title2">
-                                    <div class="col100 c">
-                                    </div>
-                                </td>
-                                <td class="title2">
-                                    <div class="col100 c">
-                                        (+/-)@Labels.Odds
-                                    </div>
-                                </td>
-                                <td class="title2">
-                                    <div class="col60 c">
-                                        @Labels.HDP
-                                    </div>
-                                </td>
-                                <td class="title2">
-                                    <div class="col60 c">
-                                        @Labels._1st_HDP
-                                    </div>
-                                </td>
-                                <td class="title2">
-                                    <div class="col60 c">
-                                        @Labels.Symbol_OU
-                                    </div>
-                                </td>
-                                <td class="title2">
-                                    <div class="col60 c">
-                                        @Labels.Symbol_1stOU
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="followedNoneLive">
-                                <td>
-                                    <div class="col100 c">
-                                        @Labels.Non_Live</div>
-                                </td>
-                                <td>
-                                    <div class="col100 c">
-                                        <select id="dropdown-nonelive-odds-adddialog" class="ddlNoneLiveOdds">
-                                            <option value="0.1">0.1</option>
-                                            <option value="0.09">0.09</option>
-                                            <option value="0.08">0.08</option>
-                                            <option value="0.07">0.07</option>
-                                            <option value="0.06">0.06</option>
-                                            <option value="0.05">0.05</option>
-                                            <option value="0.04">0.04</option>
-                                            <option value="0.03">0.03</option>
-                                            <option value="0.02">0.02</option>
-                                            <option value="0.01">0.01</option>
-                                            <option value="0" selected="selected">0</option>
-                                            <option value="-0.01">-0.01</option>
-                                            <option value="-0.02">-0.02</option>
-                                            <option value="-0.03">-0.03</option>
-                                            <option value="-0.04">-0.04</option>
-                                            <option value="-0.05">-0.05</option>
-                                            <option value="-0.06">-0.06</option>
-                                            <option value="-0.07">-0.07</option>
-                                            <option value="-0.08">-0.08</option>
-                                            <option value="-0.09">-0.09</option>
-                                            <option value="-0.1">-0.1</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col60 c">
-                                        <input class="hdpstatus chkBox" type="checkbox" checked="checked" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col60 c">
-                                        <input class="_1sthdpstatus chkBox" type="checkbox" checked="checked" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col60 c">
-                                        <input class="overunderstatus chkBox" type="checkbox" checked="checked" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col60 c">
-                                        <input class="_1stoverunderstatus chkBox" type="checkbox" checked="checked" />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="followedLive">
-                                <td>
-                                    <div class="col100 c">
-                                        @Labels.Live</div>
-                                </td>
-                                <td>
-                                    <div class="col100 c">
-                                        <select id="dropdown-live-odds-adddialog" class="ddlLiveOdds">
-                                            <option value="0.1">0.1</option>
-                                            <option value="0.09">0.09</option>
-                                            <option value="0.08">0.08</option>
-                                            <option value="0.07">0.07</option>
-                                            <option value="0.06">0.06</option>
-                                            <option value="0.05">0.05</option>
-                                            <option value="0.04">0.04</option>
-                                            <option value="0.03">0.03</option>
-                                            <option value="0.02">0.02</option>
-                                            <option value="0.01">0.01</option>
-                                            <option value="0" selected="selected">0</option>
-                                            <option value="-0.01">-0.01</option>
-                                            <option value="-0.02">-0.02</option>
-                                            <option value="-0.03">-0.03</option>
-                                            <option value="-0.04">-0.04</option>
-                                            <option value="-0.05">-0.05</option>
-                                            <option value="-0.06">-0.06</option>
-                                            <option value="-0.07">-0.07</option>
-                                            <option value="-0.08">-0.08</option>
-                                            <option value="-0.09">-0.09</option>
-                                            <option value="-0.1">-0.1</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col60 c">
-                                        <input class="hdpstatus chkBox" type="checkbox" checked="checked" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col60 c">
-                                        <input class="_1sthdpstatus chkBox" type="checkbox" checked="checked" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col60 c">
-                                        <input class="overunderstatus chkBox" type="checkbox" checked="checked" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col60 c">
-                                        <input class="_1stoverunderstatus chkBox" type="checkbox" checked="checked" />
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        <div class="c">
-                            <input id="buttonsubmit-addnewdialog" type="button" value="@Labels.Add_New" class="btn" />
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <div>               
+                <table>
+                    <tr>
+                        <td>
+                            <div class="col60 r">
+                                @Labels.Username
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col172">
+                                <div style="float: left"><input id="textbox-username-addnewdialog" type="text" maxlength="50" /></div><span title="@Labels.AddCustomer" id="addCust" class="add-cust">&nbsp;</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col40 r">
+                                @Labels.Rate
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col90">
+                                <input id="textbox-rate-addnewdialog" type="text" maxlength="4" class="c" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col60 r">
+                                @Labels.Follower
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col120">
+                                <input id="textbox-follower-addnewdialog" type="text" maxlength="50" class="c" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <div id="custList" class="cust-list"></div>
+                        </td>
+                        <td colspan="5" valign="top" align="left">
+                            <table class="filter-adddialog addAutoFollowBetForm">
+                                <tr>
+                                    <td class="title2">
+                                        <div class="col100 c">
+                                        </div>
+                                    </td>
+                                    <td class="title2">
+                                        <div class="col100 c">
+                                            (+/-)@Labels.Odds
+                                        </div>
+                                    </td>
+                                    <td class="title2">
+                                        <div class="col60 c">
+                                            @Labels.HDP
+                                        </div>
+                                    </td>
+                                    <td class="title2">
+                                        <div class="col60 c">
+                                            @Labels._1st_HDP
+                                        </div>
+                                    </td>
+                                    <td class="title2">
+                                        <div class="col60 c">
+                                            @Labels.Symbol_OU
+                                        </div>
+                                    </td>
+                                    <td class="title2">
+                                        <div class="col60 c">
+                                            @Labels.Symbol_1stOU
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="followedNoneLive">
+                                    <td>
+                                        <div class="col100 c">
+                                            @Labels.Non_Live</div>
+                                    </td>
+                                    <td>
+                                        <div class="col100 c">
+                                            <select id="dropdown-nonelive-odds-adddialog" class="ddlNoneLiveOdds">
+                                                <option value="0.1">0.1</option>
+                                                <option value="0.09">0.09</option>
+                                                <option value="0.08">0.08</option>
+                                                <option value="0.07">0.07</option>
+                                                <option value="0.06">0.06</option>
+                                                <option value="0.05">0.05</option>
+                                                <option value="0.04">0.04</option>
+                                                <option value="0.03">0.03</option>
+                                                <option value="0.02">0.02</option>
+                                                <option value="0.01">0.01</option>
+                                                <option value="0" selected="selected">0</option>
+                                                <option value="-0.01">-0.01</option>
+                                                <option value="-0.02">-0.02</option>
+                                                <option value="-0.03">-0.03</option>
+                                                <option value="-0.04">-0.04</option>
+                                                <option value="-0.05">-0.05</option>
+                                                <option value="-0.06">-0.06</option>
+                                                <option value="-0.07">-0.07</option>
+                                                <option value="-0.08">-0.08</option>
+                                                <option value="-0.09">-0.09</option>
+                                                <option value="-0.1">-0.1</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col60 c">
+                                            <input class="hdpstatus chkBox" type="checkbox" checked="checked" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col60 c">
+                                            <input class="_1sthdpstatus chkBox" type="checkbox" checked="checked" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col60 c">
+                                            <input class="overunderstatus chkBox" type="checkbox" checked="checked" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col60 c">
+                                            <input class="_1stoverunderstatus chkBox" type="checkbox" checked="checked" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="followedLive">
+                                    <td>
+                                        <div class="col100 c">
+                                            @Labels.Live</div>
+                                    </td>
+                                    <td>
+                                        <div class="col100 c">
+                                            <select id="dropdown-live-odds-adddialog" class="ddlLiveOdds">
+                                                <option value="0.1">0.1</option>
+                                                <option value="0.09">0.09</option>
+                                                <option value="0.08">0.08</option>
+                                                <option value="0.07">0.07</option>
+                                                <option value="0.06">0.06</option>
+                                                <option value="0.05">0.05</option>
+                                                <option value="0.04">0.04</option>
+                                                <option value="0.03">0.03</option>
+                                                <option value="0.02">0.02</option>
+                                                <option value="0.01">0.01</option>
+                                                <option value="0" selected="selected">0</option>
+                                                <option value="-0.01">-0.01</option>
+                                                <option value="-0.02">-0.02</option>
+                                                <option value="-0.03">-0.03</option>
+                                                <option value="-0.04">-0.04</option>
+                                                <option value="-0.05">-0.05</option>
+                                                <option value="-0.06">-0.06</option>
+                                                <option value="-0.07">-0.07</option>
+                                                <option value="-0.08">-0.08</option>
+                                                <option value="-0.09">-0.09</option>
+                                                <option value="-0.1">-0.1</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col60 c">
+                                            <input class="hdpstatus chkBox" type="checkbox" checked="checked" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col60 c">
+                                            <input class="_1sthdpstatus chkBox" type="checkbox" checked="checked" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col60 c">
+                                            <input class="overunderstatus chkBox" type="checkbox" checked="checked" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col60 c">
+                                            <input class="_1stoverunderstatus chkBox" type="checkbox" checked="checked" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" style="border: none !important">
+                                        <div class="c" style="margin-top: 20px">
+                                            <input id="buttonsubmit-addnewdialog" type="button" value="@Labels.Submit" class="btn" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>                    
+                </table>
+            </div>            
         </div>
     </div>
     @Scripts.Render("~/Views/CommonScripts")
@@ -423,7 +438,8 @@
             Error_Admin_AutoFollowBetManagement_Username_Empty:'@Labels.Error_Admin_AutoFollowBetManagement_Username_Empty',
             Success_Admin_AutoFollowBetManagement_AddFollowInfo: '@Labels.Success_Admin_AutoFollowBetManagement_AddFollowInfo',
             Error_Admin_AutoFollowBetManagement_InvalidFollower_Empty:'@Labels.Error_Admin_AutoFollowBetManagement_InvalidFollower_Empty',
-            NoPermission: '@Labels.NoPermission'
+            NoPermission: '@Labels.NoPermission',
+            AlreadyAdded: '@Labels.AlreadyAdded'
         };
     </script>
 </body>

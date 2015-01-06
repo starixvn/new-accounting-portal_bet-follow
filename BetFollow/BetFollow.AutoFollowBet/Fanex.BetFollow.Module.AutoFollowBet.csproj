@@ -68,6 +68,9 @@
     <Compile Include="AppStart\AutoFollowBetBundles.cs" />
     <Compile Include="Controllers\AutoFollowBetController.cs" />
     <Compile Include="Criteria\AddAutoFollowedBetCustomerCriteria.cs" />
+    <Compile Include="Criteria\AddAutoFollowedBetCustomersCriteria.cs" />
+    <Compile Include="Criteria\CheckAutoFollowedBetCustomerCriteria.cs" />
+    <Compile Include="Criteria\DeleteAutoFollowedBetCustomersCriteria.cs" />
     <Compile Include="Criteria\DeleteAutoFollowedBetCustomerCriteria.cs" />
     <Compile Include="Criteria\GetAutoFollowedBetCustomerCriteria.cs" />
     <Compile Include="Criteria\UpdateAutoFollowedBetCustomerCriteria.cs" />
@@ -90,6 +93,7 @@
     <EmbeddedResource Include="Resources\Labels.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

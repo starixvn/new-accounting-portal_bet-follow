@@ -97,6 +97,15 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Customer.
+        /// </summary>
+        public static string AddCustomer {
+            get {
+                return ResourceManager.GetString("AddCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         public static string Agent {
@@ -111,6 +120,15 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         public static string All {
             get {
                 return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This username is already added into the list.
+        /// </summary>
+        public static string AlreadyAdded {
+            get {
+                return ResourceManager.GetString("AlreadyAdded", resourceCulture);
             }
         }
         
@@ -412,6 +430,15 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Customer.
+        /// </summary>
+        public static string RemoveCustomer {
+            get {
+                return ResourceManager.GetString("RemoveCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -439,7 +466,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member is added successfully!.
+        ///   Looks up a localized string similar to Added successfully!.
         /// </summary>
         public static string Success_Admin_AutoFollowBetManagement_AddFollowInfo {
             get {
@@ -448,7 +475,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member is deleted successfully!.
+        ///   Looks up a localized string similar to Deleted successfully!.
         /// </summary>
         public static string Success_Admin_AutoFollowBetManagement_DeleteFollowInfo {
             get {
@@ -457,7 +484,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Member is updated successfully!.
+        ///   Looks up a localized string similar to Updated successfully!.
         /// </summary>
         public static string Success_Admin_AutoFollowBetManagement_UpdateFollowInfo {
             get {
@@ -493,7 +520,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete followed member?.
+        ///   Looks up a localized string similar to Are you sure you want to delete followed member(s)?.
         /// </summary>
         public static string Warning_Admin_AutoFollowBetManagement_DeleteFollowInfo {
             get {
