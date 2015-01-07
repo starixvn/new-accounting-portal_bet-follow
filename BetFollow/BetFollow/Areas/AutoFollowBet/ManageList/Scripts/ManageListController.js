@@ -1355,11 +1355,13 @@ var autoFollowBet = {
             }
             else {
                 sharedScriptManager.showMessage("resultmessage-adddialog", message, sharedScriptManager.Enums.MessageType.Error);
+                return;
             }
         }
         else {
             if (parseInt(rs.Code) != 0) {
                 sharedScriptManager.showMessage("resultmessage-adddialog", rs.Message, sharedScriptManager.Enums.MessageType.Error);
+                return;
             }
             else {
                 ++addedItems;
