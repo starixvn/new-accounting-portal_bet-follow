@@ -311,7 +311,7 @@ var autoFollowBet = {
             };
 
             if (allUnchecked) {
-                alert('No user to delete, please select at least 1 user to delete');
+                alert(viewResources.NoUserToDelete);
             }
             else {
                 autoFollowBet.deleteFollowInfoMult();

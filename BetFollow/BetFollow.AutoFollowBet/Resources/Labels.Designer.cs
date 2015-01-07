@@ -412,6 +412,15 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No user to delete, please select at least 1 user to delete.
+        /// </summary>
+        public static string NoUserToDelete {
+            get {
+                return ResourceManager.GetString("NoUserToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Odds.
         /// </summary>
         public static string Odds {

@@ -273,4 +273,7 @@
   <data name="AlreadyAdded" xml:space="preserve">
     <value>This username is already added into the list</value>
   </data>
+  <data name="NoUserToDelete" xml:space="preserve">
+    <value>No user to delete, please select at least 1 user to delete</value>
+  </data>
 </root>
