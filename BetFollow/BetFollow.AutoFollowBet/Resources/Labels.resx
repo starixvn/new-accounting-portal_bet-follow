@@ -199,7 +199,7 @@
     <value>Please select at least one Over Under status</value>
   </data>
   <data name="Error_Admin_AutoFollowBetManagement_Username_Empty" xml:space="preserve">
-    <value>Please input username!</value>
+    <value>Please input username and add into the list below!</value>
   </data>
   <data name="No_Info" xml:space="preserve">
     <value>There is no information available.</value>

@@ -1075,9 +1075,8 @@ var autoFollowBet = {
         }
 
         sharedScriptManager.showMessage("errormessage", viewResources.Success_Admin_AutoFollowBetManagement_DeleteFollowInfo, sharedScriptManager.Enums.MessageType.Success);
-        var rowInfo = $(".followInfo_" + rowId);
-        rowInfo.remove();
-        autoFollowBet.CachedData.FollowedCustomerList[rowId].IsDeleted = true;
+        autoFollowBet.GetAutoFollowedBet();
+
         autoFollowBet.CachedData.totalItems = autoFollowBet.CachedData.totalItems - 1;
         if (autoFollowBet.CachedData.totalItems <= autoFollowBet.CachedData.pageIndex * autoFollowBet.CachedData.pageSize) {
             autoFollowBet.CachedData.pageIndex = autoFollowBet.CachedData.pageIndex - 1;
@@ -1111,7 +1110,7 @@ var autoFollowBet = {
                 strMessage += message + '<br />';
             }
             else {
-                strMessage += '<div style="color: blue">Deleted \'' + username + '\' successfully</div><br />';
+                strMessage += '<font style="color: #b2c671">Deleted \'' + username + '\' successfully</font><br />';
                 ++deletedItems;
             }
         }
@@ -1125,9 +1124,8 @@ var autoFollowBet = {
 
         for (var i = 0; i < rs.length; i++) {
             if (rs[i].Code == 0) {
-                autoFollowBet.CachedData.FollowedCustomerList[rowIds[i]].IsDeleted = true;
-                var rowInfo = $(".followInfo_" + rowIds[i]);
-                rowInfo.remove();
+                autoFollowBet.GetAutoFollowedBet();
+                break;
             }
         }
 
@@ -1237,7 +1235,7 @@ var autoFollowBet = {
         var followTypeEnums = autoFollowBet.followTypeEnums;
         var users = $('.cust');
         var isMult = users.length > 0;
-        var usernames = autoFollowBet.Tables.textboxUsername_AddDialog.val();
+        var usernames = '';
 
         if (isMult) {
             usernames = '';
@@ -1326,6 +1324,7 @@ var autoFollowBet = {
     renderAddFollowInfoResult: function (rs) {
         var maxMessageWidth = 367;
         var addedItems = 0;
+        var successAll = true;
         if (rs == null) {
             sharedScriptManager.showMessage("resultmessage-adddialog", viewResources.NoPermission, sharedScriptManager.Enums.MessageType.Error);
             return;
@@ -1334,7 +1333,6 @@ var autoFollowBet = {
         if (rs.length > 0) {
             var message = '';
             var users = $('.cust');
-            var successAll = true;
 
             for (var i = 0; i < rs.length; i++) {
                 if (rs[i].Code != 0) {
@@ -1343,7 +1341,7 @@ var autoFollowBet = {
                 }
                 else {
                     ++addedItems;
-                    message += '<div style="color: blue">Added \'' + users[i].children[0].title + '\' successfully</div><br />';
+                    message += '<font style="color: #b2c671">Added \'' + users[i].children[0].title + '\' successfully</font><br />';
                 }
             }
 
@@ -1355,13 +1353,11 @@ var autoFollowBet = {
             }
             else {
                 sharedScriptManager.showMessage("resultmessage-adddialog", message, sharedScriptManager.Enums.MessageType.Error);
-                return;
             }
         }
         else {
             if (parseInt(rs.Code) != 0) {
                 sharedScriptManager.showMessage("resultmessage-adddialog", rs.Message, sharedScriptManager.Enums.MessageType.Error);
-                return;
             }
             else {
                 ++addedItems;
@@ -1372,7 +1368,8 @@ var autoFollowBet = {
             }
         }
 
-        $('#custList').html('');
+        if (successAll)
+            $('#custList').html('');
 
         if (addedItems > 0)
             autoFollowBet.GetAutoFollowedBet();

@@ -313,7 +313,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please input username!.
+        ///   Looks up a localized string similar to Please input username and add into the list below!.
         /// </summary>
         public static string Error_Admin_AutoFollowBetManagement_Username_Empty {
             get {
