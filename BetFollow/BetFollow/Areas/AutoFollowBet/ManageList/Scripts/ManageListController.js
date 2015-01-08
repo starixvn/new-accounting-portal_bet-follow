@@ -1074,16 +1074,9 @@ var autoFollowBet = {
             return;
         }
 
-        sharedScriptManager.showMessage("errormessage", viewResources.Success_Admin_AutoFollowBetManagement_DeleteFollowInfo, sharedScriptManager.Enums.MessageType.Success);
         autoFollowBet.GetAutoFollowedBet();
-
-        autoFollowBet.CachedData.totalItems = autoFollowBet.CachedData.totalItems - 1;
-        if (autoFollowBet.CachedData.totalItems <= autoFollowBet.CachedData.pageIndex * autoFollowBet.CachedData.pageSize) {
-            autoFollowBet.CachedData.pageIndex = autoFollowBet.CachedData.pageIndex - 1;
-        }
-
-        autoFollowBet.initPager(autoFollowBet.CachedData.totalItems, autoFollowBet.CachedData.pageSize, autoFollowBet.CachedData.pageIndex);
-        autoFollowBet.pagingFollowBetResult();
+        sharedScriptManager.showMessage("errormessage", viewResources.Success_Admin_AutoFollowBetManagement_DeleteFollowInfo, sharedScriptManager.Enums.MessageType.Success);
+                
         var t = setTimeout(function () {
             sharedScriptManager.hideMessage("errormessage");
         }, 3000);
@@ -1115,6 +1108,9 @@ var autoFollowBet = {
             }
         }
 
+        if (deletedItems > 0 || rs.Code == 0)
+            autoFollowBet.GetAutoFollowedBet();        
+
         if (successAll) {
             sharedScriptManager.showMessage("errormessage", viewResources.Success_Admin_AutoFollowBetManagement_DeleteFollowInfo, sharedScriptManager.Enums.MessageType.Success);
         }
@@ -1122,20 +1118,6 @@ var autoFollowBet = {
             sharedScriptManager.showMessage("errormessage", strMessage, sharedScriptManager.Enums.MessageType.Error);
         }
 
-        for (var i = 0; i < rs.length; i++) {
-            if (rs[i].Code == 0) {
-                autoFollowBet.GetAutoFollowedBet();
-                break;
-            }
-        }
-
-        autoFollowBet.CachedData.totalItems = autoFollowBet.CachedData.totalItems - deletedItems;
-        if (autoFollowBet.CachedData.totalItems <= autoFollowBet.CachedData.pageIndex * autoFollowBet.CachedData.pageSize) {
-            autoFollowBet.CachedData.pageIndex = autoFollowBet.CachedData.pageIndex - 1;
-        }
-
-        autoFollowBet.initPager(autoFollowBet.CachedData.totalItems, autoFollowBet.CachedData.pageSize, autoFollowBet.CachedData.pageIndex);
-        autoFollowBet.pagingFollowBetResult();
         var t = setTimeout(function () {
             if (successAll)
                 sharedScriptManager.hideMessage("errormessage");
@@ -1368,7 +1350,7 @@ var autoFollowBet = {
             }
         }
 
-        if (successAll)
+        if ((successAll || addedItems > 0) && rs.Code != 103)
             $('#custList').html('');
 
         if (addedItems > 0)
