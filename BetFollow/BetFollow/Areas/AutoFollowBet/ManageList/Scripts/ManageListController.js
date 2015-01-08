@@ -103,7 +103,7 @@ var autoFollowBet = {
         autoFollowBet.Tables.addNewFollowedCustomerDialog.dialog({
             title: viewResources.Add_New_Followed_Customer,
             autoOpen: false,
-            height: 365,
+            height: 400,
             width: 770,
             modal: true
         });
@@ -1110,7 +1110,7 @@ var autoFollowBet = {
                 strMessage += message + '<br />';
             }
             else {
-                strMessage += '<font style="color: #b2c671">Deleted \'' + username + '\' successfully</font><br />';
+                strMessage += '<font style="color: #4f7307">Deleted \'' + username + '\' successfully</font><br />';
                 ++deletedItems;
             }
         }
@@ -1341,7 +1341,7 @@ var autoFollowBet = {
                 }
                 else {
                     ++addedItems;
-                    message += '<font style="color: #b2c671">Added \'' + users[i].children[0].title + '\' successfully</font><br />';
+                    message += '<font style="color: #4f7307">Added \'' + users[i].children[0].title + '\' successfully</font><br />';
                 }
             }
 
