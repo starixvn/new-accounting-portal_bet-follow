@@ -199,22 +199,22 @@
     <value>Please select at least one Over Under status</value>
   </data>
   <data name="Error_Admin_AutoFollowBetManagement_Username_Empty" xml:space="preserve">
-    <value>Please input username!</value>
+    <value>Please input username and add into the list below!</value>
   </data>
   <data name="No_Info" xml:space="preserve">
     <value>There is no information available.</value>
   </data>
   <data name="Success_Admin_AutoFollowBetManagement_AddFollowInfo" xml:space="preserve">
-    <value>Member is added successfully!</value>
+    <value>Added successfully!</value>
   </data>
   <data name="Success_Admin_AutoFollowBetManagement_DeleteFollowInfo" xml:space="preserve">
-    <value>Member is deleted successfully!</value>
+    <value>Deleted successfully!</value>
   </data>
   <data name="Success_Admin_AutoFollowBetManagement_UpdateFollowInfo" xml:space="preserve">
-    <value>Member is updated successfully!</value>
+    <value>Updated successfully!</value>
   </data>
   <data name="Warning_Admin_AutoFollowBetManagement_DeleteFollowInfo" xml:space="preserve">
-    <value>Are you sure you want to delete followed member?</value>
+    <value>Are you sure you want to delete followed member(s)?</value>
   </data>
   <data name="Both" xml:space="preserve">
     <value>Both</value>
@@ -263,5 +263,17 @@
   </data>
   <data name="Add_New" xml:space="preserve">
     <value>Add New</value>
+  </data>
+  <data name="AddCustomer" xml:space="preserve">
+    <value>Add Customer</value>
+  </data>
+  <data name="RemoveCustomer" xml:space="preserve">
+    <value>Remove Customer</value>
+  </data>
+  <data name="AlreadyAdded" xml:space="preserve">
+    <value>This username is already added into the list</value>
+  </data>
+  <data name="NoUserToDelete" xml:space="preserve">
+    <value>No user to delete, please select at least 1 user to delete</value>
   </data>
 </root>

@@ -7,5 +7,8 @@
     <Setting Key="Admin_AutoFollowBetManagement_Delete" SpName="Acc_AutoFollowBetDelCustomer" DbName="DBTXN.CustDB.bodbAdminNet"/>
     <Setting Key="Admin_AutoFollowBetManagement_Update" SpName="Acc_AutoFollowBetUpdRate" DbName="DBTXN.CustDB.bodbAdminNet"/>
     <Setting Key="Admin_AutoFollowBetManagement_Add" SpName="Acc_AutoFollowBetInsCustomer" DbName="DBTXN.CustDB.bodbAdminNet"/>
+    <Setting Key="Admin_AutoFollowBetManagement_Add_Mult" SpName="Acc_AutoFollowBetInsMultipleCustomer" DbName="DBTXN.CustDB.bodbAdminNet"/>
+    <Setting Key="Admin_AutoFollowBetManagement_Delete_Mult" SpName="Acc_AutoFollowBetDelMultipleCustomer" DbName="DBTXN.CustDB.bodbAdminNet"/>
+    <Setting Key="Admin_AutoFollowBetManagement_Check" SpName="Acc_AutoFollowBetCustomerChecking" DbName="DBTXN.CustDB.bodbAdminNet"/>    
   </Function>
 </Functions>

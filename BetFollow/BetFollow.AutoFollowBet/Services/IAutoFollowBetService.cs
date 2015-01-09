@@ -26,5 +26,11 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
         ResultModel DeleteAutoFollowedBetCustomer(DeleteAutoFollowedBetCustomerCriteria criteria);
         
         ResultModel AddAutoFollowedBetCustomer(AddAutoFollowedBetCustomerCriteria criteria);
+
+        List<ResultModel> DeleteAutoFollowedBetCustomers(DeleteAutoFollowedBetCustomersCriteria criteria);
+
+        List<ResultModel> AddAutoFollowedBetCustomers(AddAutoFollowedBetCustomersCriteria criteria);
+
+        ResultModel CheckAutoFollowedBetCustomer(CheckAutoFollowedBetCustomerCriteria criteria);
     }
 }

@@ -202,5 +202,74 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
                 throw;
             }
         }
+
+        /// <summary>
+        /// Deletes multiple the automatic followed bet customers.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The automatic followed bet customer.</returns>
+        public List<ResultModel> DeleteAutoFollowedBetCustomers(DeleteAutoFollowedBetCustomersCriteria criteria)
+        {
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    return null;
+                }
+
+                return _autoFollowBetAccess.DeleteAutoFollowedBetCustomers(criteria);
+            }
+            catch (Exception ex)
+            {
+                LogExtensions.ExceptionHandler(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Adds multiple the automatic followed bet customers.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The automatic followed bet customer.</returns>
+        public List<ResultModel> AddAutoFollowedBetCustomers(AddAutoFollowedBetCustomersCriteria criteria)
+        {
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    return null;
+                }
+
+                return _autoFollowBetAccess.AddAutoFollowedBetCustomers(criteria);
+            }
+            catch (Exception ex)
+            {
+                LogExtensions.ExceptionHandler(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Checks followed bet customer.
+        /// </summary>
+        /// <param name="criteria">Follow bet customer info.</param>
+        /// <returns>ResultModel object.</returns>
+        public ResultModel CheckAutoFollowedBetCustomer(CheckAutoFollowedBetCustomerCriteria criteria)
+        {
+            try
+            {
+                if (!criteria.IsValid())
+                {
+                    return null;
+                }
+
+                return _autoFollowBetAccess.CheckAutoFollowedBetCustomer(criteria);
+            }
+            catch (Exception ex)
+            {
+                LogExtensions.ExceptionHandler(ex);
+                throw;
+            }
+        }
     }
 }

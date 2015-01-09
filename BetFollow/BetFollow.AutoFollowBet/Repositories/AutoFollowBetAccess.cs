@@ -143,5 +143,82 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Repositories
 
             return dataTable.AsEnumerable().ToList();
         }
+
+        /// <summary>
+        /// Deletes multiple the automatic followed bet customers.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The automatic followed bet customer.</returns>
+        public List<ResultModel> DeleteAutoFollowedBetCustomers(DeleteAutoFollowedBetCustomersCriteria criteria)
+        {
+            var results = new List<ResultModel>();
+            using (var databaseContext = new ObjectDb(criteria.SettingKey()))
+            {
+                databaseContext.AssignParamValues(criteria.StoreProcedureParams());
+                databaseContext.ExecuteNonQuery();
+
+                var codes = databaseContext.GetParameterValue("ErrCode").ToString().Split(';');
+                var messages = databaseContext.GetParameterValue("ErrMsg").ToString().Split(';');
+
+                for (int i = 0; i < codes.Length; i++)
+                {
+                    var result = new ResultModel();
+                    result.Message = Converter.ToString2(messages[i]);
+                    result.Code = Converter.ToInt(codes[i]);
+
+                    results.Add(result);
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Adds multiple the automatic followed bet customers.
+        /// </summary>
+        /// <param name="criteria">The criteria.</param>
+        /// <returns>The automatic followed bet customer.</returns>
+        public List<ResultModel> AddAutoFollowedBetCustomers(AddAutoFollowedBetCustomersCriteria criteria)
+        {
+            var results = new List<ResultModel>();
+            using (var databaseContext = new ObjectDb(criteria.SettingKey()))
+            {
+                databaseContext.AssignParamValues(criteria.StoreProcedureParams());
+                databaseContext.ExecuteNonQuery();
+
+                var codes = databaseContext.GetParameterValue("ErrCode").ToString().Split(';');
+                var messages = databaseContext.GetParameterValue("ErrMsg").ToString().Split(';');
+
+                for (int i = 0; i < codes.Length; i++)
+                {
+                    var result = new ResultModel();
+                    result.Message = Converter.ToString2(messages[i]);
+                    result.Code = Converter.ToInt(codes[i]);
+
+                    results.Add(result);
+                }                
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Checks followed bet customer.
+        /// </summary>
+        /// <param name="criteria">Follow bet customer info.</param>
+        /// <returns>ResultModel object.</returns>
+        public ResultModel CheckAutoFollowedBetCustomer(CheckAutoFollowedBetCustomerCriteria criteria)
+        {
+            var result = new ResultModel();
+            using (var databaseContext = new ObjectDb(criteria.SettingKey()))
+            {
+                databaseContext.AssignParamValues(criteria.StoreProcedureParams());
+                databaseContext.ExecuteNonQuery();
+                result.Message = Converter.ToString2(databaseContext.GetParameterValue("ErrMsg"));
+                result.Code = Converter.ToInt(databaseContext.GetParameterValue("ErrCode"));
+            }
+
+            return result;
+        }
     }
 }
