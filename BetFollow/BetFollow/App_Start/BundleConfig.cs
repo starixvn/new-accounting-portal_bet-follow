@@ -88,6 +88,8 @@ namespace Fanex.BetFollow.Website
             bundles.Add(new StyleBundle(
                 "~/site/common").Include(
                 "~/content/bootstrap/css/bootstrap.css",
+                "~/Content/site/variables.less",
+                "~/Content/site/mixins.less",
                 "~/Content/site/common.less",
                 "~/Content/site/Message.less",
                 "~/Scripts/JQuery/UI/css/custom-theme/jquery-ui-1.8.10.custom.css"));
