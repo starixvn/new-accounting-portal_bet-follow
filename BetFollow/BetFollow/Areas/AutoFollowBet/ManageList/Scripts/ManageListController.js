@@ -1350,7 +1350,7 @@ var autoFollowBet = {
             }
         }
 
-        if ((successAll || addedItems > 0) && rs.Code != 103)
+        if (addedItems > 0)
             $('#custList').html('');
 
         if (addedItems > 0)
