@@ -93,7 +93,6 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
         {
             List<AutoFollowBetEntity> result = new List<AutoFollowBetEntity>();
             var rawData = _autoFollowBetAccess.GetAutoFollowBet(criteria);
-
             var autoFollowBetGroups = rawData.GroupBy(
                 x => new
                 {
@@ -104,6 +103,9 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
                     Follower = x.Field<string>("Follower"),
                     IsAgent = x.Field<int>("IsAgent")
                 }).ToList();
+            criteria.TotalItems = autoFollowBetGroups.Count;
+            autoFollowBetGroups = autoFollowBetGroups.Count > criteria.PageSize ? 
+                autoFollowBetGroups.Skip(criteria.CurrentPage * criteria.PageSize).Take(criteria.PageSize).ToList() : autoFollowBetGroups;
 
             foreach (var group in autoFollowBetGroups)
             {
@@ -116,7 +118,6 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
                     Follower = Converter.ToString2(group.Key.Follower),
                     IsAgent = Convert.ToBoolean(group.Key.IsAgent)
                 };
-
                 foreach (var item in group)
                 {
                     AutoFollowBetDetail autoFollowBetDetail = new AutoFollowBetDetail
@@ -128,10 +129,12 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
                         FollowedOverUnder = Convert.ToBoolean(item.Field<bool>("Follow3")),
                         FollowedFirstHalfOverUnder = Convert.ToBoolean(item.Field<bool>("Follow8"))
                     };
-
                     autoFollowBet.AutoFollowBetDetail.Add(autoFollowBetDetail);
                 }
 
+                autoFollowBet.PageSize = criteria.PageSize;
+                autoFollowBet.TotalItems = criteria.TotalItems;
+                autoFollowBet.CurrentPage = criteria.CurrentPage;
                 result.Add(autoFollowBet);
             }
 

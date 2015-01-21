@@ -365,8 +365,8 @@ var autoFollowBet = {
             return;
         }
 
-        autoFollowBet.CachedData.pageIndex = 0;
-        autoFollowBet.CachedData.pageSize = 50;
+//        autoFollowBet.CachedData.pageIndex = 0;
+//        autoFollowBet.CachedData.pageSize = 50;
         autoFollowBet.callAjax(this,
             window.rootUrl + "AutoFollowBet/AutoFollowedBetCustomers",
             postParams,
@@ -387,7 +387,9 @@ var autoFollowBet = {
             _1stHDP: autoFollowBet.Get1stHDPParam(),
             OverUnder: autoFollowBet.GetOverUnderParam(),
             _1stOverUnder: autoFollowBet.Get1stOverUnderParam(),
-            IsAgent: autoFollowBet.Tables.dropdownCustomer.val()
+            IsAgent: autoFollowBet.Tables.dropdownCustomer.val(),
+            PageSize: autoFollowBet.CachedData.pageSize,
+            CurrentPage: autoFollowBet.CachedData.pageIndex
         };
     },
     GetLiveStatusParam: function () {
@@ -529,7 +531,9 @@ var autoFollowBet = {
         autoFollowBet.CachedData.FollowedCustomerList = result;
         var arr = [];
         var rowHTML;
-        autoFollowBet.CachedData.totalItems = (result && result.length > 0 ? result.length : 0);
+        autoFollowBet.CachedData.pageSize = result[0].PageSize;
+        autoFollowBet.CachedData.pageIndex = result[0].CurrentPage;
+        autoFollowBet.CachedData.totalItems = result[0].TotalItems;
         if (autoFollowBet.CachedData.totalItems) {
             var resultLength = result.length;
             var indexRange = autoFollowBet.getIndexRange(autoFollowBet.CachedData.pageIndex);
@@ -537,9 +541,7 @@ var autoFollowBet = {
             var isEvenRow = true;
             for (var i = 0; i < resultLength; i++) {
                 var followInfo = result[i];
-                if (!followInfo.IsDeleted &&
-                    indexRange.startIndex <= rowIndex &&
-                    rowIndex <= indexRange.endIndex) {
+                if (!followInfo.IsDeleted) {
                     rowHTML = autoFollowBet.renderFollowBetRow(rowIndex, isEvenRow, followInfo);
                     arr.push(rowHTML);
                     isEvenRow = !isEvenRow;
@@ -701,6 +703,8 @@ var autoFollowBet = {
         return false;
     },
     pagingFollowBetResult: function () {
+        autoFollowBet.GetAutoFollowedBet();
+        /*
         var arr = [];
         var rowHTML;
 
@@ -744,7 +748,7 @@ var autoFollowBet = {
             autoFollowBet.Tables.reportGridPagination.html('&nbsp;');
             autoFollowBet.Tables.reportGrid.removeClass("hidden")
                 .reRenderScroller(autoFollowBet.CachedData.gridWidth, autoFollowBet.CachedData.gridHeight, true);
-        }
+        }*/
     },
     beginEditFollowInfo: function (rowId) {
         var followInfo = autoFollowBet.CachedData.FollowedCustomerList[rowId];
@@ -1076,7 +1080,7 @@ var autoFollowBet = {
 
         autoFollowBet.GetAutoFollowedBet();
         sharedScriptManager.showMessage("errormessage", viewResources.Success_Admin_AutoFollowBetManagement_DeleteFollowInfo, sharedScriptManager.Enums.MessageType.Success);
-                
+
         var t = setTimeout(function () {
             sharedScriptManager.hideMessage("errormessage");
         }, 3000);
@@ -1109,7 +1113,7 @@ var autoFollowBet = {
         }
 
         if (deletedItems > 0 || rs.Code == 0)
-            autoFollowBet.GetAutoFollowedBet();        
+            autoFollowBet.GetAutoFollowedBet();
 
         if (successAll) {
             sharedScriptManager.showMessage("errormessage", viewResources.Success_Admin_AutoFollowBetManagement_DeleteFollowInfo, sharedScriptManager.Enums.MessageType.Success);
