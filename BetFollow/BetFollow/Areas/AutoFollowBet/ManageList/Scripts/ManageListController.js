@@ -365,8 +365,8 @@ var autoFollowBet = {
             return;
         }
 
-//        autoFollowBet.CachedData.pageIndex = 0;
-//        autoFollowBet.CachedData.pageSize = 50;
+        //        autoFollowBet.CachedData.pageIndex = 0;
+        //        autoFollowBet.CachedData.pageSize = 50;
         autoFollowBet.callAjax(this,
             window.rootUrl + "AutoFollowBet/AutoFollowedBetCustomers",
             postParams,
@@ -531,9 +531,9 @@ var autoFollowBet = {
         autoFollowBet.CachedData.FollowedCustomerList = result;
         var arr = [];
         var rowHTML;
-        autoFollowBet.CachedData.pageSize = result[0].PageSize;
-        autoFollowBet.CachedData.pageIndex = result[0].CurrentPage;
-        autoFollowBet.CachedData.totalItems = result[0].TotalItems;
+        autoFollowBet.CachedData.pageSize = result.length > 0 ? result[0].PageSize : 50;
+        autoFollowBet.CachedData.pageIndex = result.length > 0 ? result[0].CurrentPage : 0;
+        autoFollowBet.CachedData.totalItems =  result.length > 0 ? result[0].TotalItems : 0;
         if (autoFollowBet.CachedData.totalItems) {
             var resultLength = result.length;
             var indexRange = autoFollowBet.getIndexRange(autoFollowBet.CachedData.pageIndex);
@@ -710,44 +710,44 @@ var autoFollowBet = {
 
         var report = autoFollowBet.CachedData.FollowedCustomerList;
         if (autoFollowBet.CachedData.totalItems) {
-            var resultLength = report.length;
-            var indexRange = autoFollowBet.getIndexRange(autoFollowBet.CachedData.pageIndex);
-            var rowIndex = 0;
-            var isEvenRow = true;
-            var showItemIndex = 0;
-            for (var i = 0; i < resultLength; i++) {
-                var followInfo = report[i];
-                if (!followInfo.IsDeleted &&
-                    indexRange.startIndex <= showItemIndex &&
-                    showItemIndex <= indexRange.endIndex) {
-                    rowHTML = autoFollowBet.renderFollowBetRow(rowIndex, isEvenRow, followInfo);
-                    arr.push(rowHTML);
-                    isEvenRow = !isEvenRow;
+        var resultLength = report.length;
+        var indexRange = autoFollowBet.getIndexRange(autoFollowBet.CachedData.pageIndex);
+        var rowIndex = 0;
+        var isEvenRow = true;
+        var showItemIndex = 0;
+        for (var i = 0; i < resultLength; i++) {
+        var followInfo = report[i];
+        if (!followInfo.IsDeleted &&
+        indexRange.startIndex <= showItemIndex &&
+        showItemIndex <= indexRange.endIndex) {
+        rowHTML = autoFollowBet.renderFollowBetRow(rowIndex, isEvenRow, followInfo);
+        arr.push(rowHTML);
+        isEvenRow = !isEvenRow;
 
-                }
+        }
 
-                if (!followInfo.IsDeleted) {
-                    showItemIndex++;
-                }
+        if (!followInfo.IsDeleted) {
+        showItemIndex++;
+        }
 
-                rowIndex++;
-            }
+        rowIndex++;
+        }
 
-            autoFollowBet.Tables.reportGridBody.html(arr.join(''));
-            autoFollowBet.Tables.reportGrid.removeClass("hidden")
-                                           .reRenderScroller(autoFollowBet.CachedData.gridWidth, autoFollowBet.CachedData.gridHeight, true);
-            autoFollowBet.initPager(autoFollowBet.CachedData.totalItems, autoFollowBet.CachedData.pageSize, autoFollowBet.CachedData.pageIndex);
+        autoFollowBet.Tables.reportGridBody.html(arr.join(''));
+        autoFollowBet.Tables.reportGrid.removeClass("hidden")
+        .reRenderScroller(autoFollowBet.CachedData.gridWidth, autoFollowBet.CachedData.gridHeight, true);
+        autoFollowBet.initPager(autoFollowBet.CachedData.totalItems, autoFollowBet.CachedData.pageSize, autoFollowBet.CachedData.pageIndex);
         }
         else {
-            var rowHTML = '<tr>\
-                                <td colspan="11" style="border-right: 0px none">\
-                                    <div class="c b" style="width: 1030px">' + viewResources.No_Info + '</div>\
-                                </td>\
-                            </tr>';
-            autoFollowBet.Tables.reportGridBody.html(rowHTML);
-            autoFollowBet.Tables.reportGridPagination.html('&nbsp;');
-            autoFollowBet.Tables.reportGrid.removeClass("hidden")
-                .reRenderScroller(autoFollowBet.CachedData.gridWidth, autoFollowBet.CachedData.gridHeight, true);
+        var rowHTML = '<tr>\
+        <td colspan="11" style="border-right: 0px none">\
+        <div class="c b" style="width: 1030px">' + viewResources.No_Info + '</div>\
+        </td>\
+        </tr>';
+        autoFollowBet.Tables.reportGridBody.html(rowHTML);
+        autoFollowBet.Tables.reportGridPagination.html('&nbsp;');
+        autoFollowBet.Tables.reportGrid.removeClass("hidden")
+        .reRenderScroller(autoFollowBet.CachedData.gridWidth, autoFollowBet.CachedData.gridHeight, true);
         }*/
     },
     beginEditFollowInfo: function (rowId) {
