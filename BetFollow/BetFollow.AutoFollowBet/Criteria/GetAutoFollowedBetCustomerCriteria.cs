@@ -45,6 +45,12 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
 
         public string IsAgent { get; set; }
 
+        public int PageSize { get; set; }
+
+        public int TotalItems { get; set; }
+
+        public int CurrentPage { get; set; }
+
         /// <summary>
         /// Gets the store procedure parameters.
         /// </summary>

@@ -21,6 +21,12 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Entities
             AutoFollowBetDetail = new List<AutoFollowBetDetail>();
         }
 
+        public int CurrentPage { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int TotalItems { get; set; }
+
         public string UserName { get; set; }
 
         public bool Source { get; set; }
