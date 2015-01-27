@@ -533,7 +533,9 @@ var autoFollowBet = {
         var rowHTML;
         autoFollowBet.CachedData.pageSize = result.length > 0 ? result[0].PageSize : 50;
         autoFollowBet.CachedData.pageIndex = result.length > 0 ? result[0].CurrentPage : 0;
-        autoFollowBet.CachedData.totalItems =  result.length > 0 ? result[0].TotalItems : 0;
+        autoFollowBet.CachedData.pageIndex = autoFollowBet.CachedData.pageIndex > (result[0].TotalItems / autoFollowBet.CachedData.pageSize) ? 0 : autoFollowBet.CachedData.pageIndex;
+
+        autoFollowBet.CachedData.totalItems = result.length > 0 ? result[0].TotalItems : 0;
         if (autoFollowBet.CachedData.totalItems) {
             var resultLength = result.length;
             var indexRange = autoFollowBet.getIndexRange(autoFollowBet.CachedData.pageIndex);
@@ -576,7 +578,7 @@ var autoFollowBet = {
         }
 
         return {
-            startIndex: startIndex,
+            startIndex: startIndex > endIndex ? 1 : startIndex,
             endIndex: endIndex
         };
     },
