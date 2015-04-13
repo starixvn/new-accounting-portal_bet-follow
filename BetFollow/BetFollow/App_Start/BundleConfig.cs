@@ -42,7 +42,7 @@ namespace Fanex.BetFollow.Website
                         "~/Scripts/modernizr-*"));
 
             var siteCss = new StyleBundle("~/Content/css").Include("~/Content/site.css");
-            siteCss.Transforms.Add(new CssTransformer());
+            siteCss.Transforms.Add(new StyleTransformer());
             bundles.Add(siteCss);
 
 
@@ -59,7 +59,7 @@ namespace Fanex.BetFollow.Website
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css");
-            baseCss.Transforms.Add(new CssTransformer());
+            baseCss.Transforms.Add(new StyleTransformer());
             bundles.Add(baseCss);
 
             RegisterBundles_Bootstrap(bundles);
@@ -99,7 +99,7 @@ namespace Fanex.BetFollow.Website
                 "~/Content/site/common.less",
                 "~/Content/site/Message.less",
                 "~/Scripts/JQuery/UI/css/custom-theme/jquery-ui-1.8.10.custom.css");
-            commonCss.Transforms.Add(new CssTransformer());
+            commonCss.Transforms.Add(new StyleTransformer());
 
             bundles.Add(commonCss);
         }
@@ -117,7 +117,7 @@ namespace Fanex.BetFollow.Website
                 "~/Content/site/ui-darkness/jquery-ui-1.8.14.custom.css",
                 "~/Areas/Home/Styles/default.less",
                 "~/Content/site/customizeJqueryUI.less");
-            homeCss.Transforms.Add(new CssTransformer());
+            homeCss.Transforms.Add(new StyleTransformer());
             bundles.Add(homeCss);
         }
 
@@ -126,7 +126,7 @@ namespace Fanex.BetFollow.Website
             var multiSelectCss = new StyleBundle("~/Styles/FanexMultipleSelect").Include(
                 "~/Scripts/MultipleSelect/fanex.multiSelect.css",
                 "~/Content/site/customizeMultiSelect.less");
-            multiSelectCss.Transforms.Add(new CssTransformer());
+            multiSelectCss.Transforms.Add(new StyleTransformer());
             bundles.Add(multiSelectCss);
 
             bundles.Add(new ScriptBundle("~/Scripts/FanexMultipleSelect").Include(
@@ -143,7 +143,7 @@ namespace Fanex.BetFollow.Website
                 "~/Scripts/Pager/pagination.css",
                 "~/Scripts/FanexGrid/table.css",
                 "~/Scripts/FanexGrid/reportgrid.css");
-            fanexCss.Transforms.Add(new CssTransformer());
+            fanexCss.Transforms.Add(new StyleTransformer());
             bundles.Add(fanexCss);
 
             bundles.Add(new ScriptBundle("~/Scripts/FanexGridScripts").Include(
