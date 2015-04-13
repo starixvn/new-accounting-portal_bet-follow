@@ -13,4 +13,5 @@ bin
 /BetFollow.UserLogIn/*.Cache
 /BetFollow/*.Cache
 /BetFollow.suo
-/packages
+/*packages
+*.GhostDoc.xml

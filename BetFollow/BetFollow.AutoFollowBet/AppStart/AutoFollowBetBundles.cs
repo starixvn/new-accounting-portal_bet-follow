@@ -34,7 +34,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.AppStart
 
             var manageListCss = new StyleBundle("~/Areas/AutoFollowBet/ManageListStyles")
                 .Include("~/Areas/AutoFollowBet/ManageList/Styles/ManageList.less");
-            manageListCss.Transforms.Add(new CssTransformer());
+            manageListCss.Transforms.Add(new StyleTransformer());
             bundles.Add(manageListCss);
         }
     }

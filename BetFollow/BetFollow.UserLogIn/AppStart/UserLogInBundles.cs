@@ -35,7 +35,7 @@ namespace Fanex.BetFollow.Module.UserLogIn.AppStart
             var css = new StyleBundle(
                 "~/Areas/User/LogInStyles").Include(
                     "~/Areas/User/LogIn/Styles/login.less");
-            css.Transforms.Add(new CssTransformer());
+            css.Transforms.Add(new StyleTransformer());
            
             bundles.Add(css);
         }
