@@ -22,30 +22,34 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
     {
         public string Username { get; set; }
 
-        public decimal Rate { get; set; }
-
-        public decimal LiveOdds { get; set; }
-
-        public decimal NoneLiveOdds { get; set; }
-
-        public bool FollowedLiveHDP { get; set; }
-
-        public bool FollowedNoneLiveHDP { get; set; }
-
-        public bool FollowedLive1stHDP { get; set; }
-
-        public bool FollowedNoneLive1stHDP { get; set; }
-
-        public bool FollowedLiveOverUnder { get; set; }
-
-        public bool FollowedNoneLiveOverUnder { get; set; }
-
-        public bool FollowedLive1stOverUnder { get; set; }
-
-        public bool FollowedNoneLive1stOverUnder { get; set; }
-
         public string Follower { get; set; }
 
+        // Hdp
+        public decimal Rate { get; set; }
+
+        public decimal NonLiveOdds { get; set; }
+        public bool NonLiveHdp { get; set; }
+        public bool NonLive1StHdp { get; set; }
+        public bool NonLiveOverUnder { get; set; }
+        public bool NonLive1StOverUnder { get; set; }
+
+        public decimal LiveOdds { get; set; }
+        public bool LiveHdp { get; set; }
+        public bool Live1StHdp { get; set; }
+        public bool LiveOverUnder { get; set; }
+        public bool Live1StOverUnder { get; set; }
+
+        // 1x2
+        public decimal Rate1X2 { get; set; }
+
+        public decimal NonLiveOdds1X2 { get; set; }
+        public bool NonLive1X2 { get; set; }
+        public bool NonLive1St1X2 { get; set; }
+ 
+        public decimal LiveOdds1X2 { get; set; }
+        public bool Live1X2 { get; set; }
+        public bool Live1St1X2 { get; set; }
+ 
         public int EditorId
         {
             get
@@ -54,7 +58,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
             }
         }
 
-        public string IP
+        public string Ip
         {
             get
             {
@@ -69,33 +73,57 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
         public Hashtable StoreProcedureParams()
         {
             var storeProcedureParams = new Hashtable();
-            storeProcedureParams.Add("username", Username ?? string.Empty);
+            // Username or usernames
+            AddUserNameParam(storeProcedureParams);
+
+            // Rate
             storeProcedureParams.Add("rate", Rate);
+            storeProcedureParams.Add("rate2", Rate1X2);
+
+            // Odds
             storeProcedureParams.Add("liveodds", LiveOdds);
-            storeProcedureParams.Add("nonliveodds", NoneLiveOdds);
-            storeProcedureParams.Add("livehdp", FollowedLiveHDP);
-            storeProcedureParams.Add("nonlivehdp", FollowedNoneLiveHDP);
-            storeProcedureParams.Add("live1sthdp", FollowedLive1stHDP);
-            storeProcedureParams.Add("nonlive1sthdp", FollowedNoneLive1stHDP);
-            storeProcedureParams.Add("liveou", FollowedLiveOverUnder);
-            storeProcedureParams.Add("nonliveou", FollowedNoneLiveOverUnder);
-            storeProcedureParams.Add("live1stou", FollowedLive1stOverUnder);
-            storeProcedureParams.Add("nonlive1stou", FollowedNoneLive1stOverUnder);
+            storeProcedureParams.Add("nonliveodds", NonLiveOdds);
+            storeProcedureParams.Add("liveodds2", LiveOdds1X2);
+            storeProcedureParams.Add("nonliveodds2", NonLiveOdds1X2);
+
+            storeProcedureParams.Add("livehdp", LiveHdp);
+            storeProcedureParams.Add("nonlivehdp", NonLiveHdp);
+
+            storeProcedureParams.Add("live1sthdp", Live1StHdp);
+            storeProcedureParams.Add("nonlive1sthdp", NonLive1StHdp);
+
+            storeProcedureParams.Add("liveou", LiveOverUnder);
+            storeProcedureParams.Add("nonliveou", NonLiveOverUnder);
+
+            storeProcedureParams.Add("live1stou", Live1StOverUnder);
+            storeProcedureParams.Add("nonlive1stou", NonLive1StOverUnder);
+
+            storeProcedureParams.Add("live1x2", Live1X2);
+            storeProcedureParams.Add("nonlive1x2", NonLive1X2);
+
+            storeProcedureParams.Add("live1st1x2", Live1St1X2);
+            storeProcedureParams.Add("nonlive1st1x2", NonLive1St1X2);
+
             storeProcedureParams.Add("follower", Follower ?? string.Empty);
             storeProcedureParams.Add("userid", EditorId);
-            storeProcedureParams.Add("ip", IP);
+            storeProcedureParams.Add("ip", Ip);
             storeProcedureParams.Add("errcode", 0);
             storeProcedureParams.Add("errmsg", string.Empty);
 
             return storeProcedureParams;
         }
 
-        public string SettingKey()
+        public virtual void AddUserNameParam(Hashtable storeProcedureParams)
+        {
+            storeProcedureParams.Add("username", Username ?? string.Empty);
+        }
+
+        public virtual string SettingKey()
         {
             return "Admin_AutoFollowBetManagement_Add";
         }
 
-        public bool IsValid()
+        public virtual bool IsValid()
         {
             var rateConfig = Admin_AutoFollowBetSection.Instance.Configs["Rate"];
             return !string.IsNullOrEmpty(Username) &&

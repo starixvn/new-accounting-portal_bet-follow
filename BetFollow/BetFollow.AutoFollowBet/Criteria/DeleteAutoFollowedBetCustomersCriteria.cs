@@ -18,12 +18,12 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
     /// </summary>
     public class DeleteAutoFollowedBetCustomersCriteria : DeleteAutoFollowedBetCustomerCriteria
     {
-        public string Usernames { get; set; }
+        public string UserFollowerPairs { get; set; }
 
         public new Hashtable StoreProcedureParams()
         {
             var storeProcedureParams = new Hashtable();
-            storeProcedureParams.Add("strusername", Usernames);
+            storeProcedureParams.Add("strusername", UserFollowerPairs);
 
             storeProcedureParams.Add("userid", EditorId);
             storeProcedureParams.Add("ip", IP);

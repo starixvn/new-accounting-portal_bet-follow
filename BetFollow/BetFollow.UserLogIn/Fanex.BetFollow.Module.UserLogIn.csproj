@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BundleTransformer.Core">
+      <HintPath>..\Dependencies\Net4\BundleTransformer.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Caching">
       <HintPath>..\Dependencies\Fanex\Fanex.Caching.dll</HintPath>
     </Reference>

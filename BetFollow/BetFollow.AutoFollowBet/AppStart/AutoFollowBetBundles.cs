@@ -11,7 +11,7 @@
 namespace Fanex.BetFollow.Module.AutoFollowBet.AppStart
 {
     using System.Web.Optimization;
-    using Fanex.BetFollow.Infrastructure.Extensions;
+    using BundleTransformer.Core.Transformers;
 
     /// <summary>
     /// Auto Follow Bet Bundles.
@@ -32,9 +32,10 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.AppStart
             bundles.Add(new ScriptBundle("~/Areas/AutoFollowBet/ManageListScripts").Include(
                 "~/Areas/AutoFollowBet/ManageList/Scripts/ManageListController.js"));
 
-            bundles.Add(new StyleBundle(
-                "~/Areas/AutoFollowBet/ManageListStyles").Include(
-                "~/Areas/AutoFollowBet/ManageList/Styles/ManageList.less"));
+            var manageListCss = new StyleBundle("~/Areas/AutoFollowBet/ManageListStyles")
+                .Include("~/Areas/AutoFollowBet/ManageList/Styles/ManageList.less");
+            manageListCss.Transforms.Add(new CssTransformer());
+            bundles.Add(manageListCss);
         }
     }
 }

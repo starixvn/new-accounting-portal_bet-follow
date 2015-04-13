@@ -63,11 +63,9 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Controllers
 
         [HttpPost]
         [NapAuth(FunctionKey = FunctionPermissions.AutoFollowBet, Policy = Constant.Policy.Host)]
-        public JsonResult DeleteAutoFollowedBetCustomer(DeleteAutoFollowedBetCustomersCriteria criteria)
+        public JsonResult DeleteAutoFollowedBetCustomer(DeleteAutoFollowedBetCustomerCriteria criteria)
         {
-            criteria.Usernames = criteria.Username;
-            object result = criteria.Usernames.Contains(",") ? _autoFollowBetService.DeleteAutoFollowedBetCustomers(criteria) :
-                _autoFollowBetService.DeleteAutoFollowedBetCustomer(criteria) as object;
+            var result = _autoFollowBetService.DeleteAutoFollowedBetCustomer(criteria);
             return Json(result);
         }
 

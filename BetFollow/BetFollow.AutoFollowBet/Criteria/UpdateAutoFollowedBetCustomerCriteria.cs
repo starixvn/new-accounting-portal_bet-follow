@@ -24,27 +24,45 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
 
         public string Follower { get; set; }
 
+        public string OrgFollower { get; set; }
+
+        // HDP
         public decimal Rate { get; set; }
 
         public decimal LiveOdds { get; set; }
 
-        public int FollowedLiveHDP { get; set; }
+        public decimal NonLiveOdds { get; set; }
 
-        public int FollowedLive1stHDP { get; set; }
+        public int FollowedLiveHdp { get; set; }
+
+        public int FollowedLive1StHdp { get; set; }
 
         public int FollowedLiveOverUnder { get; set; }
 
-        public int FollowedLive1stOverUnder { get; set; }
+        public int FollowedLive1StOverUnder { get; set; }
 
-        public decimal NoneLiveOdds { get; set; }
+        public int FollowedNonLiveHdp { get; set; }
 
-        public int FollowedNoneLiveHDP { get; set; }
+        public int FollowedNonLive1StHdp { get; set; }
 
-        public int FollowedNoneLive1stHDP { get; set; }
+        public int FollowedNonLiveOverUnder { get; set; }
 
-        public int FollowedNoneLiveOverUnder { get; set; }
+        public int FollowedNonLive1StOverUnder { get; set; }
 
-        public int FollowedNoneLive1stOverUnder { get; set; }
+        // 1X2
+        public decimal Rate1X2 { get; set; }
+
+        public decimal LiveOdds1X2 { get; set; }
+
+        public decimal NonLiveOdds1X2 { get; set; }
+
+        public int FollowedLive1X2 { get; set; }
+
+        public int FollowedNonLive1X2 { get; set; }
+
+        public int FollowedLive1St1X2 { get; set; }
+
+        public int FollowedNonLive1St1X2 { get; set; }
 
         public int EditorId
         {
@@ -68,25 +86,37 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
         /// <returns>The store procedure parameters.</returns>
         public Hashtable StoreProcedureParams()
         {
-            var storeProcedureParams = new Hashtable();
-            storeProcedureParams.Add("username", Username ?? string.Empty);
-            storeProcedureParams.Add("rate", Rate);
-            storeProcedureParams.Add("liveodds", LiveOdds);
-            storeProcedureParams.Add("nonliveodds", NoneLiveOdds);
-            storeProcedureParams.Add("livehdp", FollowedLiveHDP);
-            storeProcedureParams.Add("nonlivehdp", FollowedNoneLiveHDP);
-            storeProcedureParams.Add("live1sthdp", FollowedLive1stHDP);
-            storeProcedureParams.Add("nonlive1sthdp", FollowedNoneLive1stHDP);
-            storeProcedureParams.Add("liveou", FollowedLiveOverUnder);
-            storeProcedureParams.Add("nonliveou", FollowedNoneLiveOverUnder);
-            storeProcedureParams.Add("live1stou", FollowedLive1stOverUnder);
-            storeProcedureParams.Add("nonlive1stou", FollowedNoneLive1stOverUnder);
-            storeProcedureParams.Add("follower", Follower ?? string.Empty);
+            var storeProcedureParams = new Hashtable
+            {
+                {"username", Username ?? string.Empty},
+                {"follower", Follower ?? string.Empty},
+                {"originalFollower", OrgFollower ?? string.Empty},
+                // HDP
+                {"rate", Rate},
+                {"liveodds", LiveOdds},
+                {"nonliveodds", NonLiveOdds},
+                {"livehdp", FollowedLiveHdp},
+                {"nonlivehdp", FollowedNonLiveHdp},
+                {"live1sthdp", FollowedLive1StHdp},
+                {"nonlive1sthdp", FollowedNonLive1StHdp},
+                {"liveou", FollowedLiveOverUnder},
+                {"nonliveou", FollowedNonLiveOverUnder},
+                {"live1stou", FollowedLive1StOverUnder},
+                {"nonlive1stou", FollowedNonLive1StOverUnder},
+                // 1X2
+                {"Rate2", Rate1X2},
+                {"LiveOdds2", LiveOdds1X2},
+                {"NonLiveOdds2", NonLiveOdds1X2},
+                {"Live1X2", FollowedLive1X2},
+                {"NonLive1X2", FollowedNonLive1X2},
+                {"Live1St1X2", FollowedLive1St1X2},
+                {"NonLive1St1X2", FollowedNonLive1St1X2},
 
-            storeProcedureParams.Add("userid", EditorId);
-            storeProcedureParams.Add("ip", IP);
-            storeProcedureParams.Add("errcode", 0);
-            storeProcedureParams.Add("errmsg", string.Empty);
+                {"userid", EditorId},
+                {"ip", IP},
+                {"errcode", 0},
+                {"errmsg", string.Empty}
+            };
 
             return storeProcedureParams;
         }

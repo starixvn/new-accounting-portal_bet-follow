@@ -16,6 +16,9 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Entities
     {
         public bool FollowedLive { get; set; }
 
+        // HDP
+        public decimal Rate { get; set; }
+
         public decimal Odds { get; set; }
 
         public bool FollowedHandicap { get; set; }
@@ -25,5 +28,14 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Entities
         public bool FollowedOverUnder { get; set; }
 
         public bool FollowedFirstHalfOverUnder { get; set; }
+
+        // 1X2
+        public decimal Rate1X2 { get; set; }
+
+        public decimal Odds1X2 { get; set; }
+
+        public bool Followed1X2 { get; set; }
+
+        public bool Followed1St1X2 { get; set; }
     }
 }

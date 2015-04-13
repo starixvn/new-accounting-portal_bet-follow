@@ -98,7 +98,7 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
                 {
                     Username = x.Field<string>("username"),
                     Source = x.Field<byte>("src"),
-                    Rate = x.Field<decimal>("Rate"),
+                    // Rate = x.Field<decimal>("Rate"),
                     BaStatus = x.Field<int>("IsBA"),
                     Follower = x.Field<string>("Follower"),
                     IsAgent = x.Field<int>("IsAgent")
@@ -113,8 +113,8 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
                 {
                     UserName = Converter.ToString2(group.Key.Username),
                     Source = Convert.ToBoolean(group.Key.Source),
-                    Rate = Converter.ToDecimal(group.Key.Rate),
-                    BAStatus = Convert.ToBoolean(group.Key.BaStatus),
+                    //Rate = Converter.ToDecimal(group.Key.Rate),
+                    BaStatus = Convert.ToBoolean(group.Key.BaStatus),
                     Follower = Converter.ToString2(group.Key.Follower),
                     IsAgent = Convert.ToBoolean(group.Key.IsAgent)
                 };
@@ -122,12 +122,20 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Services
                 {
                     AutoFollowBetDetail autoFollowBetDetail = new AutoFollowBetDetail
                     {
-                        Odds = Converter.ToDecimal(item.Field<decimal>("Odds")),
                         FollowedLive = Convert.ToBoolean(item.Field<byte>("FollowLive")),
+                        // HDP
+                        Rate = Converter.ToDecimal(item.Field<decimal>("Rate")),
+                        Odds = Converter.ToDecimal(item.Field<decimal>("Odds")),
                         FollowedHandicap = Convert.ToBoolean(item.Field<bool>("Follow1")),
                         FollowedFirstHalfHandicap = Convert.ToBoolean(item.Field<bool>("Follow7")),
                         FollowedOverUnder = Convert.ToBoolean(item.Field<bool>("Follow3")),
-                        FollowedFirstHalfOverUnder = Convert.ToBoolean(item.Field<bool>("Follow8"))
+                        FollowedFirstHalfOverUnder = Convert.ToBoolean(item.Field<bool>("Follow8")),
+                        // 1X2
+                        Rate1X2 = Converter.ToDecimal(item.Field<decimal>("Rate2")),
+                        Odds1X2 = Converter.ToDecimal(item.Field<decimal>("Odds2")),
+                        Followed1X2 = Convert.ToBoolean(item.Field<bool>("Follow5")),
+                        Followed1St1X2 = Convert.ToBoolean(item.Field<bool>("Follow15"))
+
                     };
                     autoFollowBet.AutoFollowBetDetail.Add(autoFollowBetDetail);
                 }

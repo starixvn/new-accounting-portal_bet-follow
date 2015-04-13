@@ -35,6 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BundleTransformer.Core, Version=1.8.17.0, Culture=neutral, PublicKeyToken=973c344c93aac60d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Net4\BundleTransformer.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Less, Version=1.8.14.0, Culture=neutral, PublicKeyToken=973c344c93aac60d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Net4\BundleTransformer.Less.dll</HintPath>
+    </Reference>
     <Reference Include="dotless.Core">
       <HintPath>..\Dependencies\Net4\dotless.Core.dll</HintPath>
     </Reference>
@@ -189,7 +197,9 @@
     <Content Include="Areas\User\LogIn\Styles\Images\pattern6.png" />
     <Content Include="Areas\User\LogIn\Styles\Images\username.png" />
     <Content Include="Configurations\Dev.StoreProcedure\DBNAP.bodb_NAP.bodbAdminNet.xml" />
-    <Content Include="Configurations\Dev.StoreProcedure\DBTXN.CustDB.bodbAdminNet.xml" />
+    <Content Include="Configurations\Dev.StoreProcedure\DBTXN.CustDB.bodbAdminNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap\css\bootstrap-ie7.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
@@ -405,7 +415,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\ShareScripts\RecheckIn.js" />
     <Content Include="Scripts\ShareScripts\SharedScriptManager.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -479,7 +491,9 @@
     <Content Include="Areas\User\Common\Styles\UnderMaintenance.less" />
     <Content Include="Areas\User\LogIn\Styles\login.less" />
     <Content Include="ConnectionStrings.config" />
-    <Content Include="Configurations\Admin_AutoFollowBetSection.config" />
+    <Content Include="Configurations\Admin_AutoFollowBetSection.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -495,8 +509,12 @@
     <Content Include="Content\site\table.less" />
     <Content Include="Content\site\variables.less" />
     <Content Include="Web.Setting.config" />
-    <Content Include="ConnectionStrings.local.config" />
-    <Content Include="Web.local.config" />
+    <Content Include="ConnectionStrings.local.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.local.Debug.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -515,7 +533,9 @@
     <Content Include="ConnectionStrings.uat.config" />
     <Content Include="ConnectionStrings.pro.config" />
     <Content Include="Web.Setting.pro.config" />
-    <Content Include="Web.pro.config" />
+    <Content Include="Web.pro.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.pro.Debug.config">
       <DependentUpon>Web.pro.config</DependentUpon>
     </Content>
