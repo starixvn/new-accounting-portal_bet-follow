@@ -20,6 +20,8 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
     {
         public string Username { get; set; }
 
+        public string Follower { get; set; }
+
         public int EditorId
         {
             get
@@ -40,10 +42,15 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
 
         public string ErrorMessage { get; set; }
 
+        /// <summary>
+        /// Get store procedure parameters.
+        /// </summary>
+        /// <returns>Hash table.</returns>
         public Hashtable StoreProcedureParams()
         {
             var storeProcedureParams = new Hashtable();
             storeProcedureParams.Add("username", Username);
+            storeProcedureParams.Add("follower", Follower);
 
             storeProcedureParams.Add("userid", EditorId);
             storeProcedureParams.Add("ip", IP);

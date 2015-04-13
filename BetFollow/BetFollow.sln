@@ -14,7 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{8E86CF58-9D17-4A70-ABD0-526D31EA7ABC}"
 	ProjectSection(SolutionItems) = preProject
 		CodeAnalysis\CodeAnalysisConfiguration.xml = CodeAnalysis\CodeAnalysisConfiguration.xml
-		CodeAnalysis\FxCopDictionary.xml = CodeAnalysis\FxCopDictionary.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.BetFollow.Module.AutoFollowBet", "BetFollow.AutoFollowBet\Fanex.BetFollow.Module.AutoFollowBet.csproj", "{74172D6D-9CC6-4DD7-B087-14D1F82024E6}"

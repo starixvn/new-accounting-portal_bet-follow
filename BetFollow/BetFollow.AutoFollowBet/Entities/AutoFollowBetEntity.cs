@@ -31,11 +31,11 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Entities
 
         public bool Source { get; set; }
 
-        public decimal Rate { get; set; }
+        // public decimal Rate { get; set; }
 
         public string Follower { get; set; }
 
-        public bool BAStatus { get; set; }
+        public bool BaStatus { get; set; }
 
         public bool IsAgent { get; set; }
 

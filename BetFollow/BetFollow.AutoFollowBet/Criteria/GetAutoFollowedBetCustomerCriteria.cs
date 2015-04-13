@@ -19,36 +19,30 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
     {
         public string Username { get; set; }
 
-        public string Follower { get; set; }
-
-        public string BAStatus { get; set; }
+        public string IsAgent { get; set; }
 
         public string Source { get; set; }
 
+        public string BaStatus { get; set; }
+
+        // Follow Type
         public string LiveStatus { get; set; }
 
-        public string HDP { get; set; }
-
-        [SuppressMessage(
-            "Microsoft.Naming",
-            "CA1707:IdentifiersShouldNotContainUnderscores",
-            Justification = "Reviewed. Suppression is OK here.")]
-        public string _1stHDP { get; set; }
+        public string Hdp { get; set; }
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
+        public string _1StHdp { get; set; }
 
         public string OverUnder { get; set; }
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
+        public string _1StOverUnder { get; set; }
 
-        [SuppressMessage(
-            "Microsoft.Naming",
-            "CA1707:IdentifiersShouldNotContainUnderscores",
-            Justification = "Reviewed. Suppression is OK here.")]
-        public string _1stOverUnder { get; set; }
+        public string _1X2 { get; set; }
+        public string _1St1X2 { get; set; }
 
-        public string IsAgent { get; set; }
+        public string Follower { get; set; }
 
         public int PageSize { get; set; }
-
         public int TotalItems { get; set; }
-
         public int CurrentPage { get; set; }
 
         /// <summary>
@@ -57,17 +51,24 @@ namespace Fanex.BetFollow.Module.AutoFollowBet.Criteria
         /// <returns>The store procedure parameters.</returns>
         public Hashtable StoreProcedureParams()
         {
-            var storeProcedureParams = new Hashtable();
-            storeProcedureParams.Add("username", Username);
-            storeProcedureParams.Add("follower", Follower);
-            storeProcedureParams.Add("source", Source);
-            storeProcedureParams.Add("bastatus", BAStatus);
-            storeProcedureParams.Add("followlive", LiveStatus);
-            storeProcedureParams.Add("hdp", HDP);
-            storeProcedureParams.Add("1sthdp", _1stHDP);
-            storeProcedureParams.Add("ou", OverUnder);
-            storeProcedureParams.Add("1stou", _1stOverUnder);
-            storeProcedureParams.Add("isagent", IsAgent);
+            var storeProcedureParams = new Hashtable
+            {
+                {"username", Username},
+                {"isagent", IsAgent},
+                {"source", Source},
+                {"bastatus", BaStatus},
+                {"followlive", LiveStatus},
+                {"follower", Follower},
+                // HDP
+                {"hdp", Hdp},
+                {"1sthdp", _1StHdp},
+                {"ou", OverUnder},
+                {"1stou", _1StOverUnder},
+                // 1X2
+                {"1x2", _1X2},
+                {"1st1x2", _1St1X2}
+            };
+
             return storeProcedureParams;
         }
 

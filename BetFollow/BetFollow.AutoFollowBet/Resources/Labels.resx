@@ -169,13 +169,13 @@
     <value>No type found</value>
   </data>
   <data name="Error_Admin_AutoFollowBetManagement_1stHDPStatus_Empty" xml:space="preserve">
-    <value>Please select at least one 1st HDP status!</value>
+    <value>Please select at least one 1st Hdp status!</value>
   </data>
   <data name="Error_Admin_AutoFollowBetManagement_1stOverUnderStatus_Empty" xml:space="preserve">
     <value>Please select at least one 1st Over Under status!</value>
   </data>
   <data name="Error_Admin_AutoFollowBetManagement_HDPStatus_Empty" xml:space="preserve">
-    <value>Please select at least one HDP status!</value>
+    <value>Please select at least one Hdp status!</value>
   </data>
   <data name="Error_Admin_AutoFollowBetManagement_InvalidFollower_Empty" xml:space="preserve">
     <value>Please input follower!</value>
@@ -241,7 +241,7 @@
     <value>Add Exist Customer</value>
   </data>
   <data name="HDP" xml:space="preserve">
-    <value>HDP</value>
+    <value>Hdp</value>
   </data>
   <data name="Odds" xml:space="preserve">
     <value>Odds</value>
@@ -256,7 +256,7 @@
     <value>O/U</value>
   </data>
   <data name="_1st_HDP" xml:space="preserve">
-    <value>1st HDP</value>
+    <value>1st Hdp</value>
   </data>
   <data name="NoPermission" xml:space="preserve">
     <value>You don't have permission on this function!</value>
@@ -275,5 +275,17 @@
   </data>
   <data name="NoUserToDelete" xml:space="preserve">
     <value>No user to delete, please select at least 1 user to delete</value>
+  </data>
+  <data name="_1st_1x2" xml:space="preserve">
+    <value>1st 1x2</value>
+  </data>
+  <data name="_1x2" xml:space="preserve">
+    <value>1x2</value>
+  </data>
+  <data name="Error_Admin_AutoFollowBetManagement_1St1X2Status_Empty" xml:space="preserve">
+    <value>Please select at least one 1st 1x2 status!</value>
+  </data>
+  <data name="Error_Admin_AutoFollowBetManagement_1X2Status_Empty" xml:space="preserve">
+    <value>Please select at least one 1x2 status!</value>
   </data>
 </root>

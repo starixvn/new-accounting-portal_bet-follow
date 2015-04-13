@@ -8,6 +8,9 @@
 // </history>
 // --------------------------------------------------------------------------
 
+using BundleTransformer.Core.Orderers;
+using BundleTransformer.Core.Transformers;
+
 namespace Fanex.BetFollow.Module.UserLogIn.AppStart
 {
     using System.Web.Optimization;
@@ -29,9 +32,12 @@ namespace Fanex.BetFollow.Module.UserLogIn.AppStart
         /// <param name="bundles">The bundles.</param>
         private static void RegisterBundles_UserLogIn(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle(
+            var css = new StyleBundle(
                 "~/Areas/User/LogInStyles").Include(
-                "~/Areas/User/LogIn/Styles/login.less"));
+                    "~/Areas/User/LogIn/Styles/login.less");
+            css.Transforms.Add(new CssTransformer());
+           
+            bundles.Add(css);
         }
     }
 }
