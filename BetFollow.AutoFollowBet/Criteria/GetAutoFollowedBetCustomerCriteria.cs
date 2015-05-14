@@ -1,0 +1,90 @@
+﻿// --------------------------------------------------------------------------
+// <copyright file="GetAutoFollowedBetCustomerCriteria.cs" company="Nexcel Solutions Vietnam">
+// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// --------------------------------------------------------------------------
+// <history>
+//   <change who="Louis.Nguyen" date="2012.12.07">Created</change>
+// </history>
+
+namespace Fanex.BetFollow.AutoFollowBet.Criteria
+{
+    using System.Collections;
+    using System.Diagnostics.CodeAnalysis;
+
+    /// <summary>
+    /// Get Auto Follow BetCriteria.
+    /// </summary>
+    public class GetAutoFollowedBetCustomerCriteria
+    {
+        public string Username { get; set; }
+
+        public string IsAgent { get; set; }
+
+        public string Source { get; set; }
+
+        public string BAStatus { get; set; }
+
+        // Follow Type
+        public string LiveStatus { get; set; }
+
+        public string Hdp { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
+        public string _1STHDP { get; set; }
+
+        public string OverUnder { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
+        public string _1STOverUnder { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
+        public string _1X2 { get; set; }
+
+        [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
+        public string _1ST1X2 { get; set; }
+
+        public string Follower { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int TotalItems { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        /// <summary>
+        /// Gets the store procedure parameters.
+        /// </summary>
+        /// <returns>The store procedure parameters.</returns>
+        public Hashtable StoreProcedureParams()
+        {
+            var storeProcedureParams = new Hashtable
+            {
+                { "username", Username },
+                { "isagent", IsAgent },
+                { "source", Source },
+                { "bastatus", BAStatus },
+                { "followlive", LiveStatus },
+                { "follower", Follower },
+                { "hdp", Hdp },
+                { "1sthdp", _1STHDP },
+                { "ou", OverUnder },
+                { "1stou", _1STOverUnder },
+                { "1x2", _1X2 },
+                { "1st1x2", _1ST1X2 }
+            };
+
+            return storeProcedureParams;
+        }
+
+        public string SettingKey()
+        {
+            return "Admin_AutoFollowBetManagement_Select";
+        }
+
+        public bool IsValid()
+        {
+            return true;
+        }
+    }
+}

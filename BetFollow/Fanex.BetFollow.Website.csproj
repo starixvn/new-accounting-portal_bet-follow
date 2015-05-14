@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4E2366DA-A834-48E9-9565-5028A1DF6B36}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.BetFollow.Website</RootNamespace>
+    <AssemblyName>Fanex.BetFollow.Website</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BundleTransformer.Core, Version=1.8.17.0, Culture=neutral, PublicKeyToken=973c344c93aac60d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BundleTransformer.Core.1.9.52\lib\net40\BundleTransformer.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BundleTransformer.Less, Version=1.8.14.0, Culture=neutral, PublicKeyToken=973c344c93aac60d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BundleTransformer.Less.1.9.54\lib\net40\BundleTransformer.Less.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="dotless.Core">
+      <HintPath>..\packages\dotless.1.4.0.0\lib\dotless.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Caching">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.95\lib\net40\Fanex.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Core">
+      <HintPath>..\packages\Fanex.NAP.Core.1.0.0.2\lib\net40\Fanex.NAP.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.NAP.Framework">
+      <HintPath>..\packages\Fanex.NAP.Framework.1.0.0.3\lib\net40\Fanex.NAP.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="IBCFile">
+      <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Core, Version=1.2.4.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.2.4\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Msie, Version=1.2.5.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Msie.1.2.5\lib\net40\JavaScriptEngineSwitcher.Msie.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MsieJavaScriptEngine, Version=1.5.2.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsieJavaScriptEngine.1.5.2\lib\net40\MsieJavaScriptEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SPSRemoting">
+      <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="UMControllerLibrary">
+      <HintPath>..\packages\UMControllerLibrary.1.0.0\lib\net40\UMControllerLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Labels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\AutoFollowBet\ManageList\Scripts\ManageListController.js" />
+    <Content Include="Areas\User\LogIn\Images\UnderMaintenance.gif" />
+    <Content Include="Content\site\Images\checked-icon.png" />
+    <Content Include="Content\site\Images\logo-bf.png" />
+    <Content Include="Content\site\Images\Save.png" />
+    <Content Include="Content\site\Images\undo.png" />
+    <Content Include="Areas\Home\Scripts\MenuManager.js" />
+    <Content Include="Areas\Home\Styles\Images\Banner\bg_banner.jpg" />
+    <Content Include="Areas\Home\Styles\Images\Banner\bg_head_tb.jpg" />
+    <Content Include="Areas\Home\Styles\Images\Banner\bg_menu.jpg" />
+    <Content Include="Areas\Home\Styles\Images\Banner\down.gif" />
+    <Content Include="Areas\Home\Styles\Images\Banner\down_up.png" />
+    <Content Include="Areas\Home\Styles\Images\Banner\icn_user.png" />
+    <Content Include="Areas\Home\Styles\Images\Banner\in.gif" />
+    <Content Include="Areas\Home\Styles\Images\Banner\left_right.png" />
+    <Content Include="Areas\Home\Styles\Images\Banner\logo.jpg" />
+    <Content Include="Areas\Home\Styles\Images\Banner\L_main_btn.png" />
+    <Content Include="Areas\Home\Styles\Images\Banner\out.gif" />
+    <Content Include="Areas\Home\Styles\Images\Banner\right_left.png" />
+    <Content Include="Areas\Home\Styles\Images\Banner\R_main_btn.png" />
+    <Content Include="Areas\Home\Styles\Images\Banner\up.gif" />
+    <Content Include="Areas\Home\Styles\Images\Banner\up_down.png" />
+    <Content Include="Areas\Home\Styles\Images\br-arrow-ico.png" />
+    <Content Include="Areas\Home\Styles\Images\clock.png" />
+    <Content Include="Areas\Home\Styles\Images\home-ico.png" />
+    <Content Include="Areas\Home\Styles\Images\icon-logout.png" />
+    <Content Include="Areas\Home\Styles\Images\small-arrow-down.png" />
+    <Content Include="Areas\Home\Styles\Images\user.png" />
+    <Content Include="Areas\User\Common\404Error.htm" />
+    <Content Include="Areas\User\LogIn\Scripts\LogInManager.js" />
+    <Content Include="Areas\User\LogIn\Styles\Images\firefox_original.png" />
+    <Content Include="Areas\User\LogIn\Styles\Images\ie.png" />
+    <Content Include="Areas\User\LogIn\Styles\Images\lock.png" />
+    <Content Include="Areas\User\LogIn\Styles\Images\logo.png" />
+    <Content Include="Areas\User\LogIn\Styles\Images\password.png" />
+    <Content Include="Areas\User\LogIn\Styles\Images\pattern6.png" />
+    <Content Include="Areas\User\LogIn\Styles\Images\username.png" />
+    <Content Include="Configurations\Dev.StoreProcedure\DBNAP.bodb_NAP.bodbAdminNet.xml" />
+    <Content Include="Configurations\Dev.StoreProcedure\DBTXN.CustDB.bodbAdminNet.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\bootstrap\css\bootstrap-ie7.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\site\Images\accessDenied.gif" />
+    <Content Include="Content\site\Images\addnew-ico.png" />
+    <Content Include="Content\site\Images\ajax-loader.gif" />
+    <Content Include="Content\site\Images\back.png" />
+    <Content Include="Content\site\Images\bg-btn.jpg" />
+    <Content Include="Content\site\Images\bg_checkbox.jpg" />
+    <Content Include="Content\site\Images\bg_head_tb.jpg" />
+    <Content Include="Content\site\Images\calendar.png" />
+    <Content Include="Content\site\Images\chart_bar.png" />
+    <Content Include="Content\site\Images\close_16_16.gif" />
+    <Content Include="Content\site\Images\collapse-btn-hover.png" />
+    <Content Include="Content\site\Images\collapse-btn.png" />
+    <Content Include="Content\site\Images\delete-icon.png" />
+    <Content Include="Content\site\Images\error-icon.gif" />
+    <Content Include="Content\site\Images\error.png" />
+    <Content Include="Content\site\Images\excel.png" />
+    <Content Include="Content\site\Images\icn_add.png" />
+    <Content Include="Content\site\Images\icn_del.png" />
+    <Content Include="Content\site\Images\icn_edit.png" />
+    <Content Include="Content\site\Images\icn_view.png" />
+    <Content Include="Content\site\Images\ico-collapse-expanse-filter.png" />
+    <Content Include="Content\site\Images\ico-collapse.png" />
+    <Content Include="Content\site\Images\ico-expand.png" />
+    <Content Include="Content\site\Images\icon-arrow-down.png" />
+    <Content Include="Content\site\Images\icon-arrow-right.png" />
+    <Content Include="Content\site\Images\icon-expand.png" />
+    <Content Include="Content\site\Images\icon-search.png" />
+    <Content Include="Content\site\Images\icon-sprite.png" />
+    <Content Include="Content\site\Images\ico_warning.png" />
+    <Content Include="Content\site\Images\imgBg.png" />
+    <Content Include="Content\site\Images\list-muti-select.png" />
+    <Content Include="Content\site\Images\loading-icon2.gif" />
+    <Content Include="Content\site\Images\loading100x100.gif" />
+    <Content Include="Content\site\Images\minus-plus-icn.png" />
+    <Content Include="Content\site\Images\next-pre-icon-cal.png" />
+    <Content Include="Content\site\Images\ResultMessage\sprites-image.png" />
+    <Content Include="Content\site\Images\setting.png" />
+    <Content Include="Content\site\Images\sort-ico.png" />
+    <Content Include="Content\site\Images\sucess.png" />
+    <Content Include="Content\site\Images\TreeViewImg.gif" />
+    <Content Include="Content\site\Images\view-detail.png" />
+    <Content Include="Content\site\Images\warning.png" />
+    <Content Include="Content\site\Images\WebResource.axd.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_glass_20_555555_1x400.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_glass_40_0078a3_1x400.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_glass_40_f58400_1x400.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_gloss-wave_25_333333_500x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_gloss-wave_25_504e4e_500x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_gloss-wave_25_555855_500x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_inset-soft_25_000000_1x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_inset-soft_25_4b4444_1x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_inset-soft_25_726e6e_1x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_inset-soft_25_808080_1x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_inset-soft_25_9c9c9c_1x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-icons_a83300_256x240.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="Content\site\ui-darkness\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\site\ui-darkness\jquery-ui-1.8.14.custom.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\BlockUI\BlockUI.js" />
+    <Content Include="Scripts\BlockUI\jquery.blockUI.1.33.js" />
+    <Content Include="Scripts\CryptoJS.js" />
+    <Content Include="Scripts\FanexGrid\common.css" />
+    <Content Include="Scripts\FanexGrid\gridscroller.js" />
+    <Content Include="Scripts\FanexGrid\Images\report_check.png" />
+    <Content Include="Scripts\FanexGrid\Images\white-top-bottom.gif" />
+    <Content Include="Scripts\FanexGrid\reportgrid.css" />
+    <Content Include="Scripts\FanexGrid\table.css" />
+    <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.14.custom.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JQuery\jquery-1.8.2.js" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_flat_55_999999_40x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_glass_45_0078ae_1x400.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_glass_75_79c9ec_1x400.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-icons_0078ae_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-icons_056b93_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-icons_e0fdff_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-icons_f5e175_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\custom-theme\images\ui-icons_fcd113_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_flat_55_999999_40x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_glass_45_0078ae_1x400.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_glass_75_79c9ec_1x400.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-icons_0078ae_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-icons_056b93_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-icons_e0fdff_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-icons_f5e175_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\images\ui-icons_fcd113_256x240.png" />
+    <Content Include="Scripts\JQuery\UI\css\custom-theme\jquery-ui-1.8.10.custom.css" />
+    <Content Include="Scripts\JQuery\UI\css\ui-lightness\jquery-ui-1.8.10.custom.css" />
+    <Content Include="Scripts\JQuery\UI\jquery-ui-1.8.10.custom.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\MultipleSelect\fanex.multiSelect.css" />
+    <Content Include="Scripts\MultipleSelect\fanex.multiSelect.js" />
+    <Content Include="Scripts\MultipleSelect\images\BottomLine.png" />
+    <Content Include="Scripts\MultipleSelect\images\FirstNodeSpan.png" />
+    <Content Include="Scripts\MultipleSelect\images\MiddleLine.png" />
+    <Content Include="Scripts\MultipleSelect\images\NodeSpan.png" />
+    <Content Include="Scripts\MultipleSelect\images\PlusMinus.png" />
+    <Content Include="Scripts\MultipleSelect\images\sprites.png" />
+    <Content Include="Scripts\MultipleSelect\images\TopLine.png" />
+    <Content Include="Scripts\MultipleSelect\images\ui-icons_2e83ff_256x240-1.png" />
+    <Content Include="Scripts\MultipleSelect\images\ui-icons_2e83ff_256x240-2.png" />
+    <Content Include="Scripts\MultipleSelect\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\MultipleSelect\jquery.nextreeview.css" />
+    <Content Include="Scripts\MultipleSelect\jquery.nextreeview.js" />
+    <Content Include="Scripts\Pager\icon_page.gif" />
+    <Content Include="Scripts\Pager\jpager.js" />
+    <Content Include="Scripts\Pager\jpagergopage.js" />
+    <Content Include="Scripts\Pager\jquery.paginate.js" />
+    <Content Include="Scripts\Pager\paginate.css" />
+    <Content Include="Scripts\Pager\pagination.css" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\ShareScripts\RecheckIn.js" />
+    <Content Include="Scripts\ShareScripts\SharedScriptManager.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BetFollow.AutoFollowBet\Fanex.BetFollow.AutoFollowBet.csproj">
+      <Project>{74172D6D-9CC6-4DD7-B087-14D1F82024E6}</Project>
+      <Name>Fanex.BetFollow.AutoFollowBet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BetFollow.Infrastructure\Fanex.BetFollow.Infrastructure.csproj">
+      <Project>{C894E19A-EA73-4AD6-BB8B-39226D932740}</Project>
+      <Name>Fanex.BetFollow.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BetFollow.UserLogIn\Fanex.BetFollow.UserLogIn.csproj">
+      <Project>{471911C7-2268-44DB-889A-CA79A129F4DD}</Project>
+      <Name>Fanex.BetFollow.UserLogIn</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Home\Default.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\LogIn\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Common\ErrorPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Home\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Common\AccessDenied.cshtml" />
+    <Content Include="Areas\User\Common\Offline.cshtml" />
+    <Content Include="Areas\Home\_Menu.cshtml" />
+    <Content Include="Areas\Home\BlankPage.cshtml" />
+    <Content Include="Areas\AutoFollowBet\Web.config" />
+    <Content Include="Areas\AutoFollowBet\ManageList\Index.cshtml" />
+    <Content Include="Areas\AutoFollowBet\ManageList\Styles\ManageList.less" />
+    <Content Include="Areas\Home\Styles\default.less" />
+    <Content Include="Areas\User\Common\Styles\UnderMaintenance.less" />
+    <Content Include="Areas\User\LogIn\Styles\login.less" />
+    <Content Include="ConnectionStrings.config" />
+    <Content Include="Configurations\Admin_AutoFollowBetSection.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\site\common.less" />
+    <Content Include="Content\site\customizeFanexGrid.less" />
+    <Content Include="Content\site\customizeFanexGridV2.less" />
+    <Content Include="Content\site\customizeJqueryUI.less" />
+    <Content Include="Content\site\customizeMultiSelect.less" />
+    <Content Include="Content\site\Message.less" />
+    <Content Include="Content\site\mixins.less" />
+    <Content Include="Content\site\reportgrid.less" />
+    <Content Include="Content\site\resultMessage.less" />
+    <Content Include="Content\site\table.less" />
+    <Content Include="Content\site\variables.less" />
+    <Content Include="Web.Setting.config" />
+    <Content Include="ConnectionStrings.local.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.local.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Setting.local.config" />
+    <Content Include="Web.Setting.uat.config" />
+    <Content Include="Web.uat.config" />
+    <Content Include="ConnectionStrings.uat.config" />
+    <Content Include="ConnectionStrings.pro.config" />
+    <Content Include="Web.Setting.pro.config" />
+    <Content Include="Web.pro.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.master.config" />
+    <Content Include="Web.Setting.master.config" />
+    <Content Include="ConnectionStrings.master.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Labels.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConnectionStrings.kbt67.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.kbt67.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Setting.kbt67.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="deployment.ignore">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59179</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

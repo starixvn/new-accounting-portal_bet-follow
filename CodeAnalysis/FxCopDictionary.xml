@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<Dictionary>
+  <Words>
+    <Recognized />
+    <Unrecognized />
+    <Deprecated>
+      <Term>Username</Term>
+      <Term>SSO</Term>
+      <Term>Hdp</Term>
+      <Term>1st</Term>
+      <Term>st</Term>
+      <Term>ST</Term>
+      <Term>HDP</Term>
+      <Term>_1X2</Term>
+      <Term>_1ST</Term>
+      <Term>STHDP</Term>
+      <Term>_1ST1X2</Term>
+      
+    </Deprecated>
+    <Compound />
+    <DiscreteExceptions>
+      <Term />
+    </DiscreteExceptions>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>SSO</Acronym>
+      <Acronym>Hdp</Acronym>
+      <Acronym>1st</Acronym>
+      <Acronym>st</Acronym>
+      <Acronym>ST</Acronym>
+      <Acronym>HDP</Acronym>
+      <Acronym>_1X2</Acronym>
+      <Acronym>_1ST</Acronym>
+      <Acronym>STHDP</Acronym>
+      <Acronym>_1ST1X2</Acronym>
+      <Acronym>_1X2</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

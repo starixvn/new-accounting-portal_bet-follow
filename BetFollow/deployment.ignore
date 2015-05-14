@@ -1,0 +1,7 @@
+\\*.local.config
+\\*.master.config
+\\*.uat.config
+\\*.production.config
+\\*.kbt67.config
+\\*.pro.config
+\\logs
