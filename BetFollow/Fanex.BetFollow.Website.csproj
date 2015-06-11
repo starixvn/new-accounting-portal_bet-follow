@@ -186,6 +186,8 @@
   <ItemGroup>
     <Content Include="Areas\AutoFollowBet\ManageList\Scripts\ManageListController.js" />
     <Content Include="Areas\User\LogIn\Images\UnderMaintenance.gif" />
+    <Content Include="Configurations\Dev.StoreProcedure\DBCUST.CustDB.bodbAdminNet.xml" />
+    <Content Include="Configurations\Dev.StoreProcedure\DBNAP.bodb_NAP.bodbAdminNet.xml" />
     <Content Include="Content\site\Images\checked-icon.png" />
     <Content Include="Content\site\Images\logo-bf.png" />
     <Content Include="Content\site\Images\Save.png" />
@@ -221,10 +223,6 @@
     <Content Include="Areas\User\LogIn\Styles\Images\password.png" />
     <Content Include="Areas\User\LogIn\Styles\Images\pattern6.png" />
     <Content Include="Areas\User\LogIn\Styles\Images\username.png" />
-    <Content Include="Configurations\Dev.StoreProcedure\DBNAP.bodb_NAP.bodbAdminNet.xml" />
-    <Content Include="Configurations\Dev.StoreProcedure\DBTXN.CustDB.bodbAdminNet.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\bootstrap\css\bootstrap-ie7.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
