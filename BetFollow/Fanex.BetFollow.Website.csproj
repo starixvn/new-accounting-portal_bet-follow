@@ -553,13 +553,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConnectionStrings.kbt67.config" />
+    <Content Include="ConnectionStrings.BACKUPMNL.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.kbt67.config" />
+    <Content Include="Web.BACKUPMNL.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.Setting.kbt67.config" />
+    <Content Include="Web.Setting.BACKUPMNL.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="deployment.ignore">
