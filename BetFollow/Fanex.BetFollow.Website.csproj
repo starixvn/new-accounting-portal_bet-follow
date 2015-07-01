@@ -566,6 +566,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConnectionStrings.kbt67.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.kbt67.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Setting.kbt67.config" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
