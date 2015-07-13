@@ -541,9 +541,6 @@
     <Content Include="Web.pro.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.master.config" />
-    <Content Include="Web.Setting.master.config" />
-    <Content Include="ConnectionStrings.master.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Labels.resx">
@@ -565,15 +562,6 @@
     <Content Include="deployment.ignore">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ConnectionStrings.kbt67.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Web.kbt67.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Web.Setting.kbt67.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
