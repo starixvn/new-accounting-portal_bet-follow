@@ -11,17 +11,5 @@
     <Setting Key="Admin_AutoFollowBetManagement_Add_Mult" SpName="Acc_AutoFollowBetInsMultipleCustomer" DbName="DBCUST.CustDB.bodbAdminNet" />
     <Setting Key="Admin_AutoFollowBetManagement_Delete_Mult" SpName="Acc_AutoFollowBetDelMultipleCustomer" DbName="DBCUST.CustDB.bodbAdminNet" />
     <Setting Key="Admin_AutoFollowBetManagement_Check" SpName="Acc_AutoFollowBetCustomerChecking" DbName="DBCUST.CustDB.bodbAdminNet" />
-
-    <!---
-    <Setting Key="AutoFollowBetInsBACus" SpName="Acc_AutoFollowBetInsBACustomer_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="AutoFollowBetSelBACus" SpName="Acc_AutoFollowBetSelBACustomer_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Admin_AutoFollowBetManagement_Select" SpName="Acc_AutoFollowBetSelCustomer_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Admin_AutoFollowBetManagement_Delete" SpName="Acc_AutoFollowBetDelCustomer_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Admin_AutoFollowBetManagement_Update" SpName="Acc_AutoFollowBetUpdRate_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Admin_AutoFollowBetManagement_Add" SpName="Acc_AutoFollowBetInsCustomer_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Admin_AutoFollowBetManagement_Add_Mult" SpName="Acc_AutoFollowBetInsMultipleCustomer_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Admin_AutoFollowBetManagement_Delete_Mult" SpName="Acc_AutoFollowBetDelMultipleCustomer_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    <Setting Key="Admin_AutoFollowBetManagement_Check" SpName="Acc_AutoFollowBetCustomerChecking_xtest" DbName="DBCUST.CustDB.bodbAdminNet" />
-    -->
   </Function>
 </Functions>

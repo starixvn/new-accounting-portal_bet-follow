@@ -534,7 +534,9 @@
     </Content>
     <Content Include="Web.Setting.local.config" />
     <Content Include="Web.Setting.uat.config" />
-    <Content Include="Web.uat.config" />
+    <Content Include="Web.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ConnectionStrings.uat.config" />
     <Content Include="ConnectionStrings.pro.config" />
     <Content Include="Web.Setting.pro.config" />
