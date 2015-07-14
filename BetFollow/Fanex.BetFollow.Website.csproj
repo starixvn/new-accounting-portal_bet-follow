@@ -186,6 +186,8 @@
   <ItemGroup>
     <Content Include="Areas\AutoFollowBet\ManageList\Scripts\ManageListController.js" />
     <Content Include="Areas\User\LogIn\Images\UnderMaintenance.gif" />
+    <Content Include="Configurations\Dev.StoreProcedure\DBCUST.CustDB.bodbAdminNet.xml" />
+    <Content Include="Configurations\Dev.StoreProcedure\DBNAP.bodb_NAP.bodbAdminNet.xml" />
     <Content Include="Content\site\Images\checked-icon.png" />
     <Content Include="Content\site\Images\logo-bf.png" />
     <Content Include="Content\site\Images\Save.png" />
@@ -221,10 +223,6 @@
     <Content Include="Areas\User\LogIn\Styles\Images\password.png" />
     <Content Include="Areas\User\LogIn\Styles\Images\pattern6.png" />
     <Content Include="Areas\User\LogIn\Styles\Images\username.png" />
-    <Content Include="Configurations\Dev.StoreProcedure\DBNAP.bodb_NAP.bodbAdminNet.xml" />
-    <Content Include="Configurations\Dev.StoreProcedure\DBTXN.CustDB.bodbAdminNet.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\bootstrap\css\bootstrap-ie7.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
@@ -536,16 +534,15 @@
     </Content>
     <Content Include="Web.Setting.local.config" />
     <Content Include="Web.Setting.uat.config" />
-    <Content Include="Web.uat.config" />
+    <Content Include="Web.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ConnectionStrings.uat.config" />
     <Content Include="ConnectionStrings.pro.config" />
     <Content Include="Web.Setting.pro.config" />
     <Content Include="Web.pro.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.master.config" />
-    <Content Include="Web.Setting.master.config" />
-    <Content Include="ConnectionStrings.master.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Labels.resx">
@@ -555,13 +552,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConnectionStrings.kbt67.config" />
+    <Content Include="ConnectionStrings.BACKUPMNL.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.kbt67.config" />
+    <Content Include="Web.BACKUPMNL.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.Setting.kbt67.config" />
+    <Content Include="Web.Setting.BACKUPMNL.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="deployment.ignore">
