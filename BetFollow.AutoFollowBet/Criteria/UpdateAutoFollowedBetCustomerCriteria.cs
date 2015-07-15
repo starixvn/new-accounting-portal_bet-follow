@@ -35,15 +35,15 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
 
         public int FollowedLiveHdp { get; set; }
 
-        public int FollowedLive1STHDP { get; set; }
+        public int FollowedLive1StHdp { get; set; }
 
         public int FollowedLiveOverUnder { get; set; }
 
-        public int FollowedLive1STOverUnder { get; set; }
+        public int FollowedLive1StOverUnder { get; set; }
 
         public int FollowedNonLiveHdp { get; set; }
 
-        public int FollowedNonLive1STHDP { get; set; }
+        public int FollowedNonLive1StHdp { get; set; }
 
         public int FollowedNonLiveOverUnder { get; set; }
 
@@ -60,9 +60,9 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
 
         public int FollowedNonLive1X2 { get; set; }
 
-        public int FollowedLive1ST1X2 { get; set; }
+        public int FollowedLive1St1X2 { get; set; }
 
-        public int FollowedNonLive1ST1X2 { get; set; }
+        public int FollowedNonLive1St1X2 { get; set; }
 
         public int EditorId
         {
@@ -96,19 +96,19 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
                 { "nonliveodds", NonLiveOdds },
                 { "livehdp", FollowedLiveHdp },
                 { "nonlivehdp", FollowedNonLiveHdp },
-                { "live1sthdp", FollowedLive1STHDP },
-                { "nonlive1sthdp", FollowedNonLive1STHDP },
+                { "live1sthdp", FollowedLive1StHdp },
+                { "nonlive1sthdp", FollowedNonLive1StHdp },
                 { "liveou", FollowedLiveOverUnder },
                 { "nonliveou", FollowedNonLiveOverUnder },
-                { "live1stou", FollowedLive1STOverUnder },
+                { "live1stou", FollowedLive1StOverUnder },
                 { "nonlive1stou", FollowedNonLive1STOverUnder },
                 { "Rate2", Rate1X2 },
                 { "LiveOdds2", LiveOdds1X2 },
                 { "NonLiveOdds2", NonLiveOdds1X2 },
                 { "Live1X2", FollowedLive1X2 },
                 { "NonLive1X2", FollowedNonLive1X2 },
-                { "Live1St1X2", FollowedLive1ST1X2 },
-                { "NonLive1St1X2", FollowedNonLive1ST1X2 },
+                { "Live1St1X2", FollowedLive1St1X2 },
+                { "NonLive1St1X2", FollowedNonLive1St1X2 },
                 { "userid", EditorId },
                 { "ip", IP },
                 { "errcode", 0 },

@@ -112,7 +112,7 @@ namespace Fanex.BetFollow.AutoFollowBet.Services
                 {
                     UserName = Converter.ToString2(group.Key.Username),
                     Source = Convert.ToBoolean(group.Key.Source),
-                    BAStatus = Convert.ToBoolean(group.Key.BaStatus),
+                    BaStatus = Convert.ToBoolean(group.Key.BaStatus),
                     Follower = Converter.ToString2(group.Key.Follower),
                     IsAgent = Convert.ToBoolean(group.Key.IsAgent)
                 };

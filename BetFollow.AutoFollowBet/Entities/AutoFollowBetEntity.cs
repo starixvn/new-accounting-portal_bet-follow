@@ -33,7 +33,7 @@ namespace Fanex.BetFollow.AutoFollowBet.Entities
 
         public string Follower { get; set; }
 
-        public bool BAStatus { get; set; }
+        public bool BaStatus { get; set; }
 
         public bool IsAgent { get; set; }
 
