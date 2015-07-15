@@ -23,7 +23,7 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
 
         public string Source { get; set; }
 
-        public string BAStatus { get; set; }
+        public string BaStatus { get; set; }
 
         // Follow Type
         public string LiveStatus { get; set; }
@@ -31,18 +31,18 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
         public string Hdp { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
-        public string _1STHDP { get; set; }
+        public string _1StHdp { get; set; }
 
         public string OverUnder { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
-        public string _1STOverUnder { get; set; }
+        public string _1StOverUnder { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
         public string _1X2 { get; set; }
 
         [SuppressMessage("Microsoft.Naming", "CA1707:IdentifiersShouldNotContainUnderscores", Justification = "Reviewed. Suppression is OK here.")]
-        public string _1ST1X2 { get; set; }
+        public string _1St1X2 { get; set; }
 
         public string Follower { get; set; }
 
@@ -63,15 +63,15 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
                 { "username", Username },
                 { "isagent", IsAgent },
                 { "source", Source },
-                { "bastatus", BAStatus },
+                { "bastatus", BaStatus },
                 { "followlive", LiveStatus },
                 { "follower", Follower },
                 { "hdp", Hdp },
-                { "1sthdp", _1STHDP },
+                { "1sthdp", _1StHdp },
                 { "ou", OverUnder },
-                { "1stou", _1STOverUnder },
+                { "1stou", _1StOverUnder },
                 { "1x2", _1X2 },
-                { "1st1x2", _1ST1X2 }
+                { "1st1x2", _1St1X2 }
             };
 
             return storeProcedureParams;

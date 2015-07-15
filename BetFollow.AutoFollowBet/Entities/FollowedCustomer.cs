@@ -37,11 +37,11 @@ namespace Fanex.BetFollow.AutoFollowBet.Entities
 
         public int FollowedHDP { get; set; }
 
-        public int Followed1STHDP { get; set; }
+        public int Followed1stHDP { get; set; }
 
         public int FollowedOverUnder { get; set; }
 
-        public int Followed1STOverUnder { get; set; }
+        public int Followed1stOverUnder { get; set; }
 
         public bool IsFollowed { get; set; }
 

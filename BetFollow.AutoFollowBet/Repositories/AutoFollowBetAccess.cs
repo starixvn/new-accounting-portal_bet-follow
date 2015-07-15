@@ -12,9 +12,9 @@ namespace Fanex.BetFollow.AutoFollowBet.Repositories
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-    using Fanex.BetFollow.Infrastructure.Models;
     using Fanex.BetFollow.AutoFollowBet.Criteria;
     using Fanex.BetFollow.AutoFollowBet.Entities;
+    using Fanex.BetFollow.Infrastructure.Models;
     using Fanex.Common;
     using Fanex.Data;
 
@@ -56,9 +56,9 @@ namespace Fanex.BetFollow.AutoFollowBet.Repositories
                     SourceId = Converter.ToInt(row["src"]),
                     LiveStatus = Converter.ToInt(row["FollowLive"]),
                     FollowedHDP = Converter.ToInt(row["Follow1"]),
-                    Followed1STHDP = Converter.ToInt(row["Follow7"]),
+                    Followed1stHDP = Converter.ToInt(row["Follow7"]),
                     FollowedOverUnder = Converter.ToInt(row["Follow3"]),
-                    Followed1STOverUnder = Converter.ToInt(row["Follow8"]),
+                    Followed1stOverUnder = Converter.ToInt(row["Follow8"]),
                     Odds = (double)Converter.ToDecimal(row["odds"])
                 });
             }
@@ -196,7 +196,7 @@ namespace Fanex.BetFollow.AutoFollowBet.Repositories
                     result.Code = Converter.ToInt(codes[i]);
 
                     results.Add(result);
-                }                
+                }
             }
 
             return results;

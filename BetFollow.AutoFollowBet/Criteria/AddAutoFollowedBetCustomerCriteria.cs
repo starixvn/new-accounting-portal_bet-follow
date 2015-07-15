@@ -31,21 +31,21 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
 
         public bool NonLiveHdp { get; set; }
 
-        public bool NonLive1STHDP { get; set; }
+        public bool NonLive1StHdp { get; set; }
 
         public bool NonLiveOverUnder { get; set; }
 
-        public bool NonLive1STOverUnder { get; set; }
+        public bool NonLive1StOverUnder { get; set; }
 
         public decimal LiveOdds { get; set; }
 
         public bool LiveHdp { get; set; }
 
-        public bool Live1STHdp { get; set; }
+        public bool Live1StHdp { get; set; }
 
         public bool LiveOverUnder { get; set; }
 
-        public bool Live1STOverUnder { get; set; }
+        public bool Live1StOverUnder { get; set; }
 
         // 1x2
         public decimal Rate1X2 { get; set; }
@@ -54,14 +54,14 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
 
         public bool NonLive1X2 { get; set; }
 
-        public bool NonLive1ST1X2 { get; set; }
- 
+        public bool NonLive1St1X2 { get; set; }
+
         public decimal LiveOdds1X2 { get; set; }
 
         public bool Live1X2 { get; set; }
 
-        public bool Live1ST1X2 { get; set; }
- 
+        public bool Live1St1X2 { get; set; }
+
         public int EditorId
         {
             get
@@ -70,7 +70,7 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
             }
         }
 
-        public string IP
+        public string Ip
         {
             get
             {
@@ -100,24 +100,24 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
             storeProcedureParams.Add("livehdp", LiveHdp);
             storeProcedureParams.Add("nonlivehdp", NonLiveHdp);
 
-            storeProcedureParams.Add("live1sthdp", Live1STHdp);
-            storeProcedureParams.Add("nonlive1sthdp", NonLive1STHDP);
+            storeProcedureParams.Add("live1sthdp", Live1StHdp);
+            storeProcedureParams.Add("nonlive1sthdp", NonLive1StHdp);
 
             storeProcedureParams.Add("liveou", LiveOverUnder);
             storeProcedureParams.Add("nonliveou", NonLiveOverUnder);
 
-            storeProcedureParams.Add("live1stou", Live1STOverUnder);
-            storeProcedureParams.Add("nonlive1stou", NonLive1STOverUnder);
+            storeProcedureParams.Add("live1stou", Live1StOverUnder);
+            storeProcedureParams.Add("nonlive1stou", NonLive1StOverUnder);
 
             storeProcedureParams.Add("live1x2", Live1X2);
             storeProcedureParams.Add("nonlive1x2", NonLive1X2);
 
-            storeProcedureParams.Add("live1st1x2", Live1ST1X2);
-            storeProcedureParams.Add("nonlive1st1x2", NonLive1ST1X2);
+            storeProcedureParams.Add("live1st1x2", Live1St1X2);
+            storeProcedureParams.Add("nonlive1st1x2", NonLive1St1X2);
 
             storeProcedureParams.Add("follower", Follower ?? string.Empty);
             storeProcedureParams.Add("userid", EditorId);
-            storeProcedureParams.Add("ip", IP);
+            storeProcedureParams.Add("ip", Ip);
             storeProcedureParams.Add("errcode", 0);
             storeProcedureParams.Add("errmsg", string.Empty);
 
