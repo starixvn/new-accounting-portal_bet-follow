@@ -9,10 +9,6 @@
 
 namespace Fanex.BetFollow.AutoFollowBet.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
     using Fanex.BetFollow.AutoFollowBet.Criteria;
     using Fanex.BetFollow.AutoFollowBet.Entities;
     using Fanex.BetFollow.AutoFollowBet.Models;
@@ -21,6 +17,11 @@ namespace Fanex.BetFollow.AutoFollowBet.Services
     using Fanex.BetFollow.Infrastructure.Helpers;
     using Fanex.BetFollow.Infrastructure.Models;
     using Fanex.Common;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <summary>
     /// Auto Follow Bet Service.
@@ -84,11 +85,9 @@ namespace Fanex.BetFollow.AutoFollowBet.Services
             }
         }
 
-        /// <summary>
-        /// Gets the automatic followed bet customers.
-        /// </summary>
-        /// <param name="criteria">The criteria.</param>
-        /// <returns>The automatic followed bet customers.</returns>
+        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+            "SP2101:MethodMustNotContainMoreLinesThan",
+            Justification = "Reviewed. Suppression is OK here.")]
         public List<AutoFollowBetEntity> AutoFollowedBetCustomers(GetAutoFollowedBetCustomerCriteria criteria)
         {
             List<AutoFollowBetEntity> result = new List<AutoFollowBetEntity>();
@@ -103,8 +102,9 @@ namespace Fanex.BetFollow.AutoFollowBet.Services
                     IsAgent = x.Field<int>("IsAgent")
                 }).ToList();
             criteria.TotalItems = autoFollowBetGroups.Count;
-            autoFollowBetGroups = autoFollowBetGroups.Count > criteria.PageSize ?
-                autoFollowBetGroups.Skip(criteria.CurrentPage * criteria.PageSize).Take(criteria.PageSize).ToList() : autoFollowBetGroups;
+            autoFollowBetGroups = autoFollowBetGroups.Count > criteria.PageSize
+                ? autoFollowBetGroups.Skip(criteria.CurrentPage * criteria.PageSize).Take(criteria.PageSize).ToList()
+                : autoFollowBetGroups;
 
             foreach (var group in autoFollowBetGroups)
             {

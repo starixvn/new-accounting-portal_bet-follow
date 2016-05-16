@@ -1,21 +1,18 @@
 ﻿namespace Fanex.BetFollow.Website
 {
+    using Fanex.BetFollow.Website.AppStart;
+    using Fanex.Data.Configuration;
+    using ONEbook.UM.Filters;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-    using Fanex.BetFollow.Website.AppStart;
-    using Fanex.Data.Configuration;
 
-    /// <summary>
-    /// MVC Application.
-    /// For instructions on enabling IIS6 or IIS7 classic mode, 
-    /// visit http://go.microsoft.com/?LinkId=9394801.
-    /// </summary>
     public class MvcApplication : System.Web.HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new CheckUMFilter());
         }
 
         /// <summary>

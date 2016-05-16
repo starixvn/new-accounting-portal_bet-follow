@@ -53,7 +53,7 @@ namespace Fanex.BetFollow.Infrastructure.Controllers
 
             ViewFlags = new ViewFlags
             {
-                IsLive = this._environment.Equals(Constant.LIVE),
+                IsLive = this._environment.Equals(Constant.Live),
                 HasEditRight = false
             };
         }

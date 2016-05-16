@@ -9,20 +9,16 @@
 
 namespace Fanex.BetFollow.UserLogIn.Controllers
 {
-    using System.Web.Mvc;
-    using System.Web.Security;
     using Fanex.BetFollow.Infrastructure.Constants;
     using Fanex.BetFollow.Infrastructure.Controllers;
     using Fanex.BetFollow.Infrastructure.Models;
     using Fanex.BetFollow.Infrastructure.Services;
     using Fanex.BetFollow.UserLogIn.Resources;
-    using Fanex.NAP.Core.Configuration;
-    using Fanex.NAP.Core.Service.Impl;
-    using Fanex.NAP.Core.Service.Interface;
+    using ONEbook.UM.Services;
+    using ONEbook.UM.Services.Impl;
+    using System.Web.Mvc;
+    using System.Web.Security;
 
-    /// <summary>
-    /// Common Controller.
-    /// </summary>
     public class CommonController : BaseController
     {
         private readonly IMaintenanceService _maintenanceService;
@@ -71,17 +67,13 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         /// <returns>Return result.</returns>
         public ActionResult Offline()
         {
-            var isCheckUM = NapSettings.Settings.EnableCheckUM;
-            if (!isCheckUM)
+            var isDownTime = _maintenanceService.IsUnderMaintenance();
+            if (!isDownTime)
             {
                 FormsAuthentication.RedirectToLoginPage();
             }
 
-            var downTime = _maintenanceService.GetDowntimeInfo();
-            if (!downTime.IsDowntime)
-            {
-                FormsAuthentication.RedirectToLoginPage();
-            }
+            var downTime = _maintenanceService.GetUnderMaintenanceTime();
 
             ViewBag.UmtFrom = downTime.From;
             ViewBag.UmtTo = downTime.To;

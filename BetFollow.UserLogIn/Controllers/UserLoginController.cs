@@ -6,15 +6,6 @@
 
 namespace Fanex.BetFollow.UserLogIn.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Security.Cryptography;
-    using System.Text;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Security;
     using Fanex.BetFollow.Infrastructure.Controllers;
     using Fanex.BetFollow.Infrastructure.Helpers;
     using Fanex.BetFollow.Infrastructure.Services;
@@ -27,8 +18,16 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
     using Fanex.NAP.Core.Service.Interface;
     using Fanex.NAP.Core.Web;
     using Fanex.NAP.Core.Web.Auth;
-    using Fanex.NAP.Core.Web.Context;
     using Fanex.NAP.Core.Web.Session;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Security.Cryptography;
+    using System.Text;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Security;
 
     /// <summary>
     /// TODO: Update summary.
@@ -46,11 +45,10 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         private ICurrentSession _napCurrentSession;
         private IGroupService _napGroupService;
         private ISiteService _napSiteService;
-        private IMaintenanceService _maintenanceService;
         private HashAlgorithm _hashAlgorithm = new SHA1Managed();
 
         public UserLoginController()
-            : this(null, null, null, null, null, null)
+            : this(null, null, null, null, null)
         {
         }
 
@@ -59,8 +57,7 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
             IGroupService groupService,
             ISiteService siteService,
             IMenuItemService menuItemService,
-            ICurrentSession currentSession,
-            IMaintenanceService maintenanceService)
+            ICurrentSession currentSession)
         {
             _userNapService = userService ?? new UserService();
             _menuItemNapService = menuItemService ?? new MenuItemService();
@@ -68,7 +65,6 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
 
             _napGroupService = groupService ?? new GroupService();
             _napSiteService = siteService ?? new SiteService();
-            _maintenanceService = maintenanceService ?? new MaintenanceService();
         }
 
         public string FormToken
@@ -95,19 +91,6 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         /// <returns>Return view.</returns>
         public ActionResult Index()
         {
-            var isCheckUM = Fanex.NAP.Core.Configuration.NapSettings.Settings.EnableCheckUM;
-            if (!isCheckUM)
-            {
-                CreateNewToken();
-                return View(LogInViewURL);
-            }
-
-            var maintenanceInfo = _maintenanceService.GetDowntimeInfo();
-            if (maintenanceInfo.IsDowntime)
-            {
-                return RedirectToAction("Offline", "Common");
-            }
-
             CreateNewToken();
             return View(LogInViewURL);
         }
@@ -300,7 +283,7 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
                     Platform = CurrentContext.Platform
                 };
 
-                this._userNapService.UserSSOCheckIn(ref criteria);
+                this._userNapService.UserSSOCheckIn(criteria);
 
                 //// do SSO check-in
                 if (criteria.OnUserId != 0)
@@ -385,15 +368,6 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
                     return Json(new { ErrCode = 0 });
                 }
 
-                if (settings.EnableCheckUM)
-                {
-                    if (_maintenanceService.GetDowntimeInfo().IsDowntime)
-                    {
-                        ClearingLoginCookie();
-                        return Json(new { ErrCode = 3, ErrMsg = "UM" });
-                    }
-                }
-
                 var siteStatus = _napSiteService.GetStatusById(this.SiteId);
                 if (!siteStatus)
                 {
@@ -402,7 +376,7 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
                 }
 
                 UserReCheckInUserCriteria criteria = new UserReCheckInUserCriteria { OnUserId = _napCurrentSession.OnUserId };
-                _userNapService.ReUserCheckIn(ref criteria);
+                _userNapService.ReUserCheckIn(criteria);
                 if (criteria.IsKickedOut)
                 {
                     return Json(new { ErrCode = 1, ErrMsg = "Is kickout" });
@@ -433,8 +407,7 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         /// <param name="user">The user value.</param>
         private void CreateAuthInfo(User user)
         {
-            var currentDomain = CurrentContext.GetCurrentDomain();
-
+            var currentDomain = CurrentContext.CurrentDomain;
             var authInfo = new AuthInfo();
 
             authInfo.UserId = user.Id;
@@ -598,7 +571,7 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
                 Platform = CurrentContext.Platform
             };
 
-            _userNapService.UserCheckIn(ref criteria);
+            _userNapService.UserCheckIn(criteria);
 
             _napCurrentSession.Level = _userNapService.GetUserSiteLevel(user.Id, this.SiteId);
             _napCurrentSession.UserId = user.Id;
