@@ -15,3 +15,5 @@ bin
 /BetFollow.suo
 /*packages
 *.GhostDoc.xml
+.vs/config/applicationhost.config
+.vs/BetFollow/v14/.suo

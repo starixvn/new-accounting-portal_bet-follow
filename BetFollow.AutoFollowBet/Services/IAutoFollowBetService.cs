@@ -9,11 +9,11 @@
 
 namespace Fanex.BetFollow.AutoFollowBet.Services
 {
-    using System.Collections.Generic;
-    using Fanex.BetFollow.Infrastructure.Models;
     using Fanex.BetFollow.AutoFollowBet.Criteria;
     using Fanex.BetFollow.AutoFollowBet.Entities;
     using Fanex.BetFollow.AutoFollowBet.Models;
+    using Fanex.BetFollow.Infrastructure.Models;
+    using System.Collections.Generic;
 
     public interface IAutoFollowBetService
     {
@@ -24,7 +24,7 @@ namespace Fanex.BetFollow.AutoFollowBet.Services
         ResultModel UpdateAutoFollowedBetCustomer(UpdateAutoFollowedBetCustomerCriteria criteria);
 
         ResultModel DeleteAutoFollowedBetCustomer(DeleteAutoFollowedBetCustomerCriteria criteria);
-        
+
         ResultModel AddAutoFollowedBetCustomer(AddAutoFollowedBetCustomerCriteria criteria);
 
         List<ResultModel> DeleteAutoFollowedBetCustomers(DeleteAutoFollowedBetCustomersCriteria criteria);

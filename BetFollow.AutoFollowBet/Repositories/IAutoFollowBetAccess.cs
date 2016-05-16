@@ -9,11 +9,11 @@
 
 namespace Fanex.BetFollow.AutoFollowBet.Repositories
 {
-    using System.Collections.Generic;
-    using System.Data;
-    using Fanex.BetFollow.Infrastructure.Models;
     using Fanex.BetFollow.AutoFollowBet.Criteria;
     using Fanex.BetFollow.AutoFollowBet.Entities;
+    using Fanex.BetFollow.Infrastructure.Models;
+    using System.Collections.Generic;
+    using System.Data;
 
     public interface IAutoFollowBetAccess
     {
