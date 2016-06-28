@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="AutoFollowBetService.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="AutoFollowBetService.cs" >
+
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
