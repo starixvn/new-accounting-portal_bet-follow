@@ -120,7 +120,7 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         /// <returns>The log in result.</returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here."),
         SuppressMessage("Microsoft.Maintainability",
@@ -250,7 +250,7 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         /// <returns>The index page.</returns>
         [AllowAnonymous]
         [HttpGet]
-        [SuppressMessage("StyleCop.CSharp.Nexcel.NexcelCustomRules",
+        [SuppressMessage("StyleCop.CSharp.StylecopPlus.Rules",
             "SP2101:MethodMustNotContainMoreLinesThan",
             Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult SSO(string userId, string onuserid, string time, Uri redirectUrl = null)
