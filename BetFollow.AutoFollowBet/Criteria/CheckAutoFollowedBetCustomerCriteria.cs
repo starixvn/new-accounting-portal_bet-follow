@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="CheckAutoFollowedBetCustomerCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="CheckAutoFollowedBetCustomerCriteria.cs" >
+
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>

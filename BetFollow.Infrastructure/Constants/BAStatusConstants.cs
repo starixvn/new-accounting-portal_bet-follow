@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="BAStatusConstants.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="BAStatusConstants.cs" >
+
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>

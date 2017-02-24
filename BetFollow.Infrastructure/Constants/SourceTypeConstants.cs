@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="SourceTypeConstants.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="SourceTypeConstants.cs" >
+
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>

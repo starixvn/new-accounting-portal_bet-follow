@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------
-// <copyright file="FollowedCustomer.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// <copyright file="FollowedCustomer.cs" >
+
 // </copyright>
 // --------------------------------------------------------------------------
 // <history>
