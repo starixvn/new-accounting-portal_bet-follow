@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Functions>
+<Functions SiteName="NAP - Bet Follow">
   <Function Name="Admin-AutoFollowBet">
 
     <Setting Key="AutoFollowBetInsBACus" SpName="Acc_AutoFollowBetInsBACustomer" DbName="DBCUST.CustDB.bodbAdminNet" />
