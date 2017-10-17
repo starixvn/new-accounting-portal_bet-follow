@@ -1,11 +1,13 @@
 ﻿namespace Fanex.BetFollow.Website
 {
-    using Fanex.BetFollow.Website.AppStart;
-    using Fanex.Data.Configuration;
-    using ONEbook.UM.Filters;
+    using System;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using App_Start;
+    using Fanex.BetFollow.Website.AppStart;
+    using Fanex.Data.Configuration;
+    using ONEbook.UM.Filters;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -43,6 +45,12 @@
             RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DbSettingProviderManager.Current.Start();
+            FanexLogging.Register();
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            FanexLogging.HandleApplicationError(Server);
         }
     }
 }
