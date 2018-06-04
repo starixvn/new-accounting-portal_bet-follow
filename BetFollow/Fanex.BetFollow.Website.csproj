@@ -592,13 +592,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConnectionStrings.BACKUPMNL.config" />
+    <Content Include="ConnectionStrings.MNL.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.BACKUPMNL.config" />
+    <Content Include="Web.MNL.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.Setting.BACKUPMNL.config" />
+    <Content Include="Web.Setting.MNL.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="deployment.ignore">
