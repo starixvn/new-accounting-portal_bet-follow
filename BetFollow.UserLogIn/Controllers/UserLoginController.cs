@@ -1,24 +1,5 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="UserLoginController.cs" >
-// TODO: Update copyright text.
-// </copyright>
-// ----------------------------------------------------------------------- 
-
-namespace Fanex.BetFollow.UserLogIn.Controllers
+﻿namespace Fanex.BetFollow.UserLogIn.Controllers
 {
-    using Fanex.BetFollow.Infrastructure.Controllers;
-    using Fanex.BetFollow.Infrastructure.Helpers;
-    using Fanex.BetFollow.Infrastructure.Services;
-    using Fanex.BetFollow.UserLogIn.Resources;
-    using Fanex.Common;
-    using Fanex.NAP.Core.Configuration;
-    using Fanex.NAP.Core.Criteria.User;
-    using Fanex.NAP.Core.Model;
-    using Fanex.NAP.Core.Service.Impl;
-    using Fanex.NAP.Core.Service.Interface;
-    using Fanex.NAP.Core.Web;
-    using Fanex.NAP.Core.Web.Auth;
-    using Fanex.NAP.Core.Web.Session;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -28,61 +9,42 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
+    using Common;
+    using Common.Extensions;
+    using Fanex.BetFollow.Infrastructure.Controllers;
+    using Fanex.BetFollow.Infrastructure.Services;
+    using Fanex.NAP.Core.Service.Impl;
+    using Fanex.NAP.Core.Service.Interface;
+    using Fanex.NAP.Core.Web.Session;
+    using NAP.Core.Configuration;
+    using NAP.Core.Context;
+    using NAP.Core.Models;
+    using NAP.Core.Models.ParameterObject;
+    using NAP.Core.Web;
+    using NAP.Core.Web.Auth;
+    using NAP.Core.Web.Context;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [SuppressMessage("Microsoft.Maintainability",
         "CA1502:AvoidExcessiveComplexity",
         Justification = "Reviewed. Suppression is OK here.")]
     public class UserLoginController : BaseController
     {
-        private const string FormTokenName = "__SecureFormToken";
         private const string LogInViewURL = "~/Areas/User/LogIn/Index.cshtml";
         private readonly int _timeExipration = 30;
-        private IUserService _userNapService;
-        private IMenuItemService _menuItemNapService;
-        private ICurrentSession _napCurrentSession;
-        private IGroupService _napGroupService;
-        private ISiteService _napSiteService;
-        private HashAlgorithm _hashAlgorithm = new SHA1Managed();
+        private readonly ISecurityService securityService;
+        private readonly IUserService userService;
+        private readonly ICurrentSession currentSession;
+        private readonly IGroupService groupService;
+        private readonly ICurrentContext currentContext;
+        private readonly HashAlgorithm hashAlgorithm = new SHA256Managed();
 
         public UserLoginController()
-            : this(null, null, null, null, null)
         {
-        }
-
-        public UserLoginController(
-            IUserService userService,
-            IGroupService groupService,
-            ISiteService siteService,
-            IMenuItemService menuItemService,
-            ICurrentSession currentSession)
-        {
-            _userNapService = userService ?? new UserService();
-            _menuItemNapService = menuItemService ?? new MenuItemService();
-            _napCurrentSession = currentSession ?? new CurrentSession();
-
-            _napGroupService = groupService ?? new GroupService();
-            _napSiteService = siteService ?? new SiteService();
-        }
-
-        public string FormToken
-        {
-            get
-            {
-                if (Session[FormTokenName] == null)
-                {
-                    return string.Empty;
-                }
-
-                return Session[FormTokenName].ToString();
-            }
-
-            set
-            {
-                Session[FormTokenName] = value;
-            }
+            userService = new UserService();
+            currentSession = new CurrentSession();
+            securityService = new SecurityService();
+            groupService = new GroupService();
+            currentContext = new CurrentContext();
         }
 
         /// <summary>
@@ -91,7 +53,6 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         /// <returns>Return view.</returns>
         public ActionResult Index()
         {
-            CreateNewToken();
             return View(LogInViewURL);
         }
 
@@ -129,115 +90,91 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         SuppressMessage("Microsoft.Maintainability",
             "CA1502:AvoidExcessiveComplexity",
             Justification = "Reviewed. Suppression is OK here.")]
-        public ActionResult Index(string username, string password, string loginToken)
+        public ActionResult Index(string username, string password, string returnUrl)
         {
-            try
+            if (!username.IsNullOrTrimEmpty() && !password.IsNullOrTrimEmpty())
             {
-                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                var user = userService.Get(username.Trim());
+                if (user != null)
                 {
-                    ViewBag.Message = Labels.LogIn_InvalidInput;
-                    CreateNewToken();
-                    return View(LogInViewURL);
-                }
+                    var hashPassword = GetHash(user.Password);
 
-                var user = _userNapService.GetByUsername(username.Trim()) as Fanex.NAP.Core.Model.User;
-                if (user == null)
-                {
+                    if (password == hashPassword)
+                    {
+                        if (CheckUserSitePermission(user))
+                        {
+                            // Check in user.
+                            CheckIn(user);
+                            CreateUserMenu(user);
+                            CreateAuthInfo(user);
+
+                            var redirectUrl = string.IsNullOrEmpty(returnUrl) ||
+                                              returnUrl.IndexOf("Logout", StringComparison.CurrentCultureIgnoreCase) >=
+                                              0
+                                ? FormsAuthentication.DefaultUrl
+                                : returnUrl;
+                            return Redirect(redirectUrl);
+                        }
+                        // logging-in user belongs to no site
+                        ViewBag.Message = ViewResources.You_have_no_authorization;
+                    }
+                    else
+                    {
+                        // wrong password
+                        ViewBag.Message = ViewResources.Invalid_Username_or_Password;
+                    }
+
                     ViewBag.Message = ViewResources.Invalid_Username_or_Password;
-                    CreateNewToken();
-                    return View(LogInViewURL);
-                }
-
-                if (!CheckValidToken(loginToken))
-                {
-                    ViewBag.Message = Labels.Login_SessionTimeout;
-                    CreateNewToken();
-                    return View(LogInViewURL);
-                }
-
-                // use exactly the same way we create hash value at client side
-                string hashPassword = SHA256(user.Password + loginToken);
-                //// password = Cryptography.CfsEnCode(password);
-                if (password != hashPassword)
-                {
-                    ViewBag.Message = ViewResources.Invalid_Username_or_Password;
-                    CreateNewToken();
                     return View(LogInViewURL);
                 }
                 else
                 {
-                    //// Form token can be used only one time                
-                    ClearToken();
-
-                    var group = user.Group == null ? null : _napGroupService.GetById(user.Group.Id);
-
-                    //// gets all sites of logging-in user
-                    var siteLevelList = _napSiteService.GetSiteLevelByUser(user.Id, Environment);
-                    if ((group != null && !group.IsActive) ||
-                        !siteLevelList.Where(x => x.IsActive).Any())
-                    {
-                        //// user account was suspended on all sites
-                        if (siteLevelList.Count() > 0)
-                        {
-                            ViewBag.Message = ViewResources.Your_account_was_suspended;
-                        }
-                        else
-                        {
-                            //// logging-in user belongs to no site
-                            ViewBag.Message = ViewResources.You_have_no_authorization;
-                        }
-
-                        return View(LogInViewURL);
-                    }
-
-                    AssignUserPermissionToSession(username, user);
-
-                    if (AppSession.CurrentUserMenu == null ||
-                        !AppSession.CurrentUserMenu.Where(m => m.Parent == null).Any())
-                    {
-                        //// user has no menu permission
-                        DoSignOut();
-                        ViewBag.Message = Labels.You_have_no_menu_permission;
-                        return View(LogInViewURL);
-                    }
-
-                    if (!this.IsSiteLogin)
-                    {
-                        //// user has access to multiple sites
-                        if (siteLevelList.Count() > 1)
-                        {
-                            return RedirectToAction("Site", "UserSite");
-                        }
-
-                        return RedirectToAction("GoToSite", "UserSite", new { id = siteLevelList.First().Site.Id });
-                    }
-
-                    //// checks if logging-in user is active on this site
-                    bool userIsActiveOnThisSite = false;
-                    foreach (var siteLevel in siteLevelList)
-                    {
-                        if (siteLevel.Site.Id == this.SiteId && siteLevel.IsActive)
-                        {
-                            userIsActiveOnThisSite = true;
-                            break;
-                        }
-                    }
-
-                    if (!userIsActiveOnThisSite)
-                    {
-                        DoSignOut();
-                        ViewBag.Message = ViewResources.Your_account_was_suspended;
-                        return View(LogInViewURL);
-                    }
-
-                    return Redirect(FormsAuthentication.DefaultUrl);
+                    // user doesn't exist
+                    ViewBag.Message = ViewResources.Invalid_Username_or_Password;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                LogExtensions.ExceptionHandler(ex);
-                throw;
+                ViewBag.Message = "Invalid input!";
             }
+
+            return View();
+        }
+
+        private bool CheckUserSitePermission(User user)
+        {
+            var group = user.Group == null ? null : groupService.Get(user.Group.Id);
+            var siteLevelList = userService.GetSiteLevel(user.Id, NapSettings.Settings.Environment);
+            // gets all sites of logging-in user
+
+            return (group == null || group.IsActive) &&
+                   siteLevelList.Any(x => x.Site.Id == NapSettings.Settings.SiteId && x.IsActive);
+        }
+
+        private void CheckIn(User user)
+        {
+            // check-in user
+            var loginParameter = new LoginParameter
+            {
+                UserId = user.Id,
+                SiteId = NapSettings.Settings.SiteId,
+                NetSessionId = Session.SessionID,
+                Ip = currentContext.IP,
+                LoginDate = DateTime.Now,
+                BrowserName = currentContext.BrowserName,
+                CountryCode = currentContext.CountryCode,
+                Domain = currentContext.DomainName,
+                Platform = currentContext.Platform
+            };
+
+            var onUserId = securityService.Login(loginParameter);
+
+            // saves user session
+            currentSession.Level = userService.GetUserLevel(user.Id, NapSettings.Settings.SiteId);
+            currentSession.UserId = user.Id;
+            currentSession.Username = user.Username;
+            currentSession.OnUserId = onUserId;
+            currentSession.SessionId = Session.SessionID;
         }
 
         /// <summary>
@@ -257,18 +194,16 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         {
             Session.Clear();
 
-            string currentTime = this._userNapService.UserSSOGetTime();
-            TimeSpan expiration = new TimeSpan();
-
+            var currentTime = securityService.GetTime();
             userId = Cryptography.CfsDeCrypt(userId.Replace(" ", "+"));
             onuserid = Cryptography.CfsDeCrypt(onuserid.Replace(" ", "+"));
             time = Cryptography.CfsDeCrypt(time.Replace(" ", "+"));
-            expiration = Convert.ToDateTime(currentTime) - Convert.ToDateTime(time);
+            var expiration = Convert.ToDateTime(currentTime) - Convert.ToDateTime(time);
 
-            if (expiration.TotalSeconds <= this._timeExipration)
+            if (expiration.TotalSeconds <= _timeExipration)
             {
                 //// do SSO check-in
-                var criteria = new UserSSOCheckInUserCriteria
+                var criteria = new SSOLoginParameter
                 {
                     UserId = Convert.ToInt32(userId),
                     SiteId = SiteId,
@@ -283,44 +218,29 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
                     Platform = CurrentContext.Platform
                 };
 
-                this._userNapService.UserSSOCheckIn(criteria);
+                criteria.OnUserId = securityService.SSOLogin(criteria);
 
                 //// do SSO check-in
                 if (criteria.OnUserId != 0)
                 {
-                    var user = _userNapService.GetById(criteria.UserId) as User;
+                    var user = userService.Get(criteria.UserId);
 
                     //// saves user session & auth info
-                    this._napCurrentSession.UserId = user.Id;
-                    this._napCurrentSession.Username = user.Username;
-                    this._napCurrentSession.OnUserId = criteria.OnUserId;
-                    this._napCurrentSession.SessionId = Session.SessionID.ToString();
-                    this._napCurrentSession.Level = this._userNapService.GetUserSiteLevel(user.Id, this.SiteId);
+                    currentSession.UserId = user.Id;
+                    currentSession.Username = user.Username;
+                    currentSession.OnUserId = criteria.OnUserId;
+                    currentSession.SessionId = Session.SessionID.ToString();
+                    currentSession.Level = userService.GetUserLevel(user.Id, NapSettings.Settings.SiteId);
 
                     AppSession.CurrentUser = user;
-
-                    AppSession.RoleAccess = GetRoleAccess((new FunctionService()).GetByUserAndSiteIncludeGroup(
-                        user.Id,
-                        NapSettings.Settings.SiteId,
-                        NapSettings.Settings.Environment));
-
-                    if (this.SiteId != 0)
-                    {
-                        _napCurrentSession.MenuItemList = this._menuItemNapService.GetByUserAndSiteIncludeGroup(
-                            user.Id,
-                            SiteId,
-                            NapSettings.Settings.Environment,
-                            true) as IList<MenuItem>;
-                        AppSession.CurrentUserMenu = _napCurrentSession.MenuItemList;
-                    }
-
+                    CreateUserMenu(user);
                     CreateAuthInfo(user);
                     if (redirectUrl != null && !string.IsNullOrEmpty(redirectUrl.ToString()))
                     {
                         AppSession.RedirectLink = redirectUrl.ToString();
                     }
                     //// saves user session & auth info
-                    return this.Redirect(FormsAuthentication.DefaultUrl);
+                    return Redirect(FormsAuthentication.DefaultUrl);
                 }
             }
 
@@ -336,19 +256,14 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
             Justification = "Reviewed. Suppression is OK here.")]
         public ActionResult LogOut()
         {
-            try
+            if (currentSession != null && currentSession.OnUserId != 0)
             {
-                _userNapService.UserLogOut(new LogOutUserCriteria
-                {
-                    OnUserId = _napCurrentSession.OnUserId
-                });
+                securityService.Logout(currentSession.OnUserId);
+            }
 
-                ClearingLoginCookie();
-            }
-            catch (Exception exception)
-            {
-                LogExtensions.ExceptionHandler(exception);
-            }
+            Session.Clear();
+            Response.Cookies.Clear();
+            FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "UserLogin");
         }
@@ -358,47 +273,21 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         /// </summary>
         /// <returns>The action result.</returns>
         [HttpPost]
-        public ActionResult CheckUserOnlineStatus()
+        public ActionResult ReCheckLogIn()
         {
-            try
-            {
-                var settings = NapSettings.Settings;
-                if (!settings.EnableReCheckIn)
-                {
-                    return Json(new { ErrCode = 0 });
-                }
-
-                var siteStatus = _napSiteService.GetStatusById(this.SiteId);
-                if (!siteStatus)
-                {
-                    ClearingLoginCookie();
-                    return Json(new { ErrCode = 2, ErrMsg = "Site is invalid" });
-                }
-
-                UserReCheckInUserCriteria criteria = new UserReCheckInUserCriteria { OnUserId = _napCurrentSession.OnUserId };
-                _userNapService.ReUserCheckIn(criteria);
-                if (criteria.IsKickedOut)
-                {
-                    return Json(new { ErrCode = 1, ErrMsg = "Is kickout" });
-                }
-
-                return Json(new { OnUserId = _napCurrentSession.OnUserId, ErrCode = 0 });
-            }
-            catch (Exception ex)
-            {
-                LogExtensions.ExceptionHandler(ex);
-                throw;
-            }
+            var isKickedOut = NapSettings.Settings.EnableReCheckIn
+               && securityService.ReCheckIn(currentSession.OnUserId, NapSettings.Settings.SiteId) > 0;
+            return Json(isKickedOut);
         }
 
         private void CreateUserMenu(User user)
         {
-            _napCurrentSession.MenuItemList = (IList<MenuItem>)_menuItemNapService.GetByUserAndSiteIncludeGroup(
-                user.Id,
-                SiteId,
-                Environment,
-                true);
-            AppSession.CurrentUserMenu = _napCurrentSession.MenuItemList;
+            currentSession.MenuItemList = userService.GetMenuItem(
+                                user.Id,
+                                NapSettings.Settings.SiteId,
+                                NapSettings.Settings.Environment,
+                                true) as List<MenuItem>;
+            AppSession.CurrentUserMenu = currentSession.MenuItemList;
         }
 
         /// <summary>
@@ -407,11 +296,12 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
         /// <param name="user">The user value.</param>
         private void CreateAuthInfo(User user)
         {
+            AppSession.CurrentUser = user;
             var currentDomain = CurrentContext.CurrentDomain;
             var authInfo = new AuthInfo();
 
             authInfo.UserId = user.Id;
-            authInfo.OnUserId = this._napCurrentSession.OnUserId;
+            authInfo.OnUserId = currentSession.OnUserId;
 
             var authTicket = new FormsAuthenticationTicket(
                  1,
@@ -433,162 +323,17 @@ namespace Fanex.BetFollow.UserLogIn.Controllers
             Response.Cookies.Add(authCookie);
         }
 
-        private void DoSignOut()
-        {
-            _userNapService.UserLogOut(new LogOutUserCriteria
-            {
-                OnUserId = _napCurrentSession.OnUserId
-            });
-            FormsAuthentication.SignOut();
-            _napCurrentSession.ClearAll();
-        }
-
-        private void ClearingLoginCookie()
-        {
-            System.Web.HttpContext.Current.Session.Clear();
-            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName)
-            {
-                Expires = DateTime.Now.AddDays(-1)
-            };
-            System.Web.HttpContext.Current.Response.Cookies.Add(cookie);
-            FormsAuthentication.SignOut();
-        }
-
-        /// <summary>
-        /// Add Token To Cookie.
-        /// </summary>
-        /// <param name="loginToken">The login Token.</param>
-        private void AddTokenToCookie(string loginToken)
-        {
-            //// Create the non-persistent secure form token cookie
-            var responseCookie = new HttpCookie(FormTokenName)
-            {
-                //// Set the HttpOnly property to prevent the cookie from
-                //// being accessed by client side script
-                HttpOnly = true,
-
-                //// Add login token to the cookie value
-                Value = loginToken
-            };
-
-            //// If we are using SSL, the cookie should be set to secure to
-            //// prevent it from being sent over HTTP connections
-            if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
-            {
-                responseCookie.Secure = true;
-            }
-
-            //// Add the cookie to the response
-            Response.Cookies.Set(responseCookie);
-        }
-
-        /// <summary>
-        /// Check Valid Token.
-        /// </summary>
-        /// <param name="loginToken">The login Token.</param>
-        /// <returns>Return validation result.</returns>
-        private bool CheckValidToken(string loginToken)
-        {
-            return !string.IsNullOrWhiteSpace(loginToken)
-                && FormToken == loginToken
-                && Request.Cookies[FormTokenName] != null
-                && loginToken == Request.Cookies[FormTokenName].Value;
-        }
-
-        /// <summary>
-        /// Clear Token.
-        /// </summary>
-        private void ClearToken()
-        {
-            //// delete token session
-            Session.Remove(FormTokenName);
-
-            //// delete token cookie 
-            if (Request.Cookies[FormTokenName] != null)
-            {
-                HttpCookie tokenCookie = new HttpCookie(FormTokenName);
-                //// Here, we are setting the time to a previous time.
-                //// When the browser detect it next time, it will be deleted automatically.
-                tokenCookie.Expires = DateTime.Now.AddDays(-1d);
-                Response.Cookies.Add(tokenCookie);
-            }
-        }
-
-        /// <summary>
-        /// Create New Token.
-        /// </summary>
-        private void CreateNewToken()
-        {
-            // generate a new token
-            string loginToken = Guid.NewGuid().ToString("N");
-            FormToken = loginToken;
-            ViewBag.LoginToken = loginToken;
-
-            AddTokenToCookie(loginToken);
-        }
-
-        /// <summary>
-        /// Get hashed string by hash algorithm.
-        /// </summary>
-        /// <param name="input">Must be not whitespace or null.</param>
-        /// <returns>Return string without - and all chars are converted to lower.</returns>
         private string GetHash(string input)
         {
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                throw new ArgumentException("Hey guy! I dont want to hash an empty or white space string");
-            }
+            var encrypted = string.Empty;
 
-            var hashData = _hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
-            string encrypted = BitConverter.ToString(hashData).Replace("-", string.Empty).ToLower();
+            if (!string.IsNullOrWhiteSpace(input))
+            {
+                var hashData = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
+                encrypted = BitConverter.ToString(hashData).Replace("-", string.Empty).ToLower();
+            }
 
             return encrypted;
-        }
-
-        private string SHA256(string input)
-        {
-            _hashAlgorithm = new SHA256Managed();
-            return GetHash(input);
-        }
-
-        /// <summary>
-        /// Assign User Permission To Session.
-        /// </summary>
-        /// <param name="username">The username.</param>
-        /// <param name="user">The user object.</param>
-        private void AssignUserPermissionToSession(string username, User user)
-        {
-            var criteria = new UserCheckInUserCriteria
-            {
-                UserId = user.Id,
-                SiteId = this.SiteId,
-                NetSessionId = Session.SessionID,
-                Ip = CurrentContext.IP,
-                LoginDate = DateTime.Now,
-                BrowserName = CurrentContext.BrowserName,
-                CountryCode = CurrentContext.CountryCode,
-                Domain = CurrentContext.DomainName,
-                Platform = CurrentContext.Platform
-            };
-
-            _userNapService.UserCheckIn(criteria);
-
-            _napCurrentSession.Level = _userNapService.GetUserSiteLevel(user.Id, this.SiteId);
-            _napCurrentSession.UserId = user.Id;
-            _napCurrentSession.Username = username;
-            _napCurrentSession.OnUserId = criteria.OnUserId;
-            _napCurrentSession.SessionId = Session.SessionID.ToString();
-            if (this.SiteId != 0)
-            {
-                CreateUserMenu(user);
-            }
-
-            CreateAuthInfo(user);
-            AppSession.CurrentUser = user;
-            AppSession.RoleAccess = GetRoleAccess((new FunctionService()).GetByUserAndSiteIncludeGroup(
-                user.Id,
-                NapSettings.Settings.SiteId,
-                NapSettings.Settings.Environment));
         }
     }
 }

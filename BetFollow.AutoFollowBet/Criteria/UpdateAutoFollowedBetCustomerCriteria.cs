@@ -126,7 +126,7 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
         public bool IsValid()
         {
             var rateConfig = Admin_AutoFollowBetSection.Instance.Configs["Rate"];
-            return (decimal)rateConfig.Min <= Rate &&
+            return rateConfig.Min <= Rate &&
                 Rate <= rateConfig.Max &&
                 Math.Round(Rate, 2) == Rate &&
                 !string.IsNullOrEmpty(Follower);

@@ -13,7 +13,7 @@ namespace Fanex.BetFollow.Infrastructure.Services
     using System.Web;
     using System.Web.SessionState;
     using Fanex.BetFollow.Infrastructure.Extensions;
-    using Fanex.NAP.Core.Model;
+    using NAP.Core.Models;
 
     /// <summary>
     /// Application Session.
@@ -77,7 +77,7 @@ namespace Fanex.BetFollow.Infrastructure.Services
                 SessionExtension.AddSession(CurrentSession, CurrentHttpMethodKey, value);
             }
         }
-        
+
         public static string RedirectLink
         {
             get
@@ -91,18 +91,6 @@ namespace Fanex.BetFollow.Infrastructure.Services
             }
         }
 
-        public static Dictionary<string, int> RoleAccess
-        {
-            get
-            {
-                return SessionExtension.GetSession(CurrentSession, CurrentUserRoleAccessKey) as Dictionary<string, int>;
-            }
-
-            set
-            {
-                SessionExtension.AddSession(CurrentSession, CurrentUserRoleAccessKey, value);
-            }
-        }
 
         /// <summary>
         /// Gets or sets IsTrackedMenu: determine current working on menu is

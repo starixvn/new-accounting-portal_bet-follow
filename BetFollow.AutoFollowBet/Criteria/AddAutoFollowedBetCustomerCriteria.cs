@@ -129,16 +129,13 @@ namespace Fanex.BetFollow.AutoFollowBet.Criteria
             storeProcedureParams.Add("username", Username ?? string.Empty);
         }
 
-        public virtual string SettingKey()
-        {
-            return "Admin_AutoFollowBetManagement_Add";
-        }
+        public virtual string SettingKey() => "Admin_AutoFollowBetManagement_Add";
 
         public virtual bool IsValid()
         {
             var rateConfig = Admin_AutoFollowBetSection.Instance.Configs["Rate"];
             return !string.IsNullOrEmpty(Username) &&
-                (decimal)rateConfig.Min <= Rate &&
+                rateConfig.Min <= Rate &&
                 Rate <= rateConfig.Max &&
                 Math.Round(Rate, 2) == Rate &&
                 !string.IsNullOrEmpty(Follower);

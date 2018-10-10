@@ -11,26 +11,21 @@ var RecheckIn = function () {
 
         self.RecheckinXHR = $.ajax({
             type: "POST",
-            url: window.rootUrl + "UserLogin/CheckUserOnlineStatus",
+            url: window.rootUrl + "UserLogin/ReCheckLogIn",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: '',
             success: function (rs) {
-                if (rs != null && rs.ErrCode != null) {
-                    if (rs.ErrCode > 0) {
-                        self.openConfirmPopup();
-                    }
-
-                    return false;
-                }
-                else {
-                    self.openConfirmPopup();
-                    return false;
+                if (rs) {
+                    alert('Another session has been logged in or your session is expired. Forced to logout!');
+                    window.location.href = window.rootUrl + "UserLogin/LogOut";
                 }
             },
-            error: function () {
-                self.openConfirmPopup();
-                return false;
+            error: function (request, status, error) {
+                var result = $.parseJSON(request.responseText);
+                if (result.code == 999999) {
+                    window.location.href = window.rootUrl + "Common/Offline";
+                }
             },
             complete: function () {
                 self.RecheckinXHR = null;
@@ -38,35 +33,6 @@ var RecheckIn = function () {
         });
     };
 
-    self.openConfirmPopup = function () {
-        $("#dialog:ui-dialog").dialog("destroy");
-
-        $("#divErrorPoup").html('Another session has been logged in or your session is expired. Forced to logout!');
-        $("#divErrorPoup").dialog({
-            width: 480,
-            height: 140,
-            zIndex: 500,
-            resizable: false,
-            modal: true,
-            title: 'Alert',
-            position: [300, 120],
-            close: function (event, ui) {
-                window.location.href = accUrlDefault;
-            },
-            buttons: [
-                {
-                    text: "OK",
-                    click: function () {
-                        window.location.href = accUrlDefault;
-                        $(this).dialog("close");
-                    }
-                }
-            ]
-        });
-
-        $(".ui-dialog-buttonpane .ui-button-text").html("OK");
-        return false;
-    }
 };
 
 recheckIn = new RecheckIn();
